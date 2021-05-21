@@ -2,11 +2,11 @@ package com.library.models;
 
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
-import javax.persistence.GeneratedValue;
+import java.math.BigDecimal;
+import java.util.List;
+
 import static javax.persistence.GenerationType.IDENTITY;
 
 @Data
@@ -17,15 +17,21 @@ public class Book {
     @GeneratedValue(strategy = IDENTITY)
     private Long id;
 
-    private String name;
+    private String title;
+
+    private BigDecimal price;
 
     private String description;
 
-    private int numberPages;
+    private int nbOfPage;
 
     private int ISBN;
 
     private boolean illustration;
+
+    @ManyToMany
+    @JoinTable(name = "author_book", joinColumns = @JoinColumn(name = "author_id"), inverseJoinColumns = @JoinColumn(name = "book_id"))
+    private List<Author> authors;
 
 
 }

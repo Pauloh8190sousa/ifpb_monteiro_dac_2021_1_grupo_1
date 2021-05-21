@@ -13,16 +13,25 @@ public class BookService {
     @Autowired
     private BookRepository bookRepository;
 
-    public void saveBook(Book book) {
+    public void save(Book book) {
         bookRepository.save(book);
     }
 
-    public void deleteBook(Book book) {
+    public void deleteById(Long idBook) {
+        Book book = bookRepository.findById(idBook).orElseThrow();
         bookRepository.delete(book);
     }
 
-    public List<Book> searchByName(String nameBook) {
-        return bookRepository.searchByName(nameBook);
+    public List<Book> findByName(String titleBook) {
+        return bookRepository.findByTitle(titleBook);
     }
+
+    public Book findById(Long idBook) {
+        return bookRepository.findById(idBook).orElseThrow();
+    }
+
+
+
+
 
 }
