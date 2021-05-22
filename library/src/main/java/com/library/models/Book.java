@@ -1,7 +1,10 @@
 package com.library.models;
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
+import javax.management.ConstructorParameters;
 import javax.persistence.*;
 
 import java.math.BigDecimal;
@@ -11,6 +14,8 @@ import static javax.persistence.GenerationType.IDENTITY;
 
 @Data
 @Entity
+@Getter
+@Setter
 public class Book {
 
     @Id
