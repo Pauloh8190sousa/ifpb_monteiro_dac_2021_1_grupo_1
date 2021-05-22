@@ -28,7 +28,7 @@ public class Book {
 
     private String description;
 
-    private int nbOfPage;
+    private int nbOfPages;
 
     private int ISBN;
 

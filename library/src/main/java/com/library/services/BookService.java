@@ -5,6 +5,7 @@ import com.library.repositories.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @Service
@@ -30,8 +31,17 @@ public class BookService {
         return bookRepository.findById(idBook).orElseThrow();
     }
 
+    public void changeBook(Long idBook, String title, BigDecimal price, String description, int nbOfPages, int ISBN, boolean illustration) {
+        Book updatedBook = bookRepository.findById(idBook).orElseThrow();
 
+        updatedBook.setTitle(title);
+        updatedBook.setPrice(price);
+        updatedBook.setDescription(description);
+        updatedBook.setNbOfPages(nbOfPages);
+        updatedBook.setISBN(ISBN);
+        updatedBook.setIllustration(illustration);
 
-
+        save(updatedBook);
+    }
 
 }
