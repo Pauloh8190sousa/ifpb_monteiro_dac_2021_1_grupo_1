@@ -3,6 +3,8 @@ package com.library.services;
 import com.library.models.Book;
 import com.library.repositories.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
@@ -42,6 +44,16 @@ public class BookService {
         updatedBook.setIllustration(illustration);
 
         save(updatedBook);
+    }
+
+    public List<Book> listCheapBooksAvailable() {
+        PageRequest pageRequest = PageRequest.of(0,5, Sort.Direction.ASC, "price");
+        return bookRepository.findAll(pageRequest).getContent();
+    }
+
+    public List<Book> listAllBooks(int pageNumber) {
+        PageRequest pageRequest = PageRequest.of(pageNumber,5, Sort.Direction.ASC, "title");
+        return bookRepository.findAll(pageRequest).getContent();
     }
 
 }
