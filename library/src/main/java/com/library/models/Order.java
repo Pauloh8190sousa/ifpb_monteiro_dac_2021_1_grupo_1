@@ -17,17 +17,23 @@ import static javax.persistence.GenerationType.IDENTITY;
 @Getter
 @Setter
 public class Order {
+
     @Id
     @GeneratedValue (strategy = IDENTITY)
     private Long id;
-    private BigDecimal price;
+    private BigDecimal totalValue;
     private boolean status;
 
-    @ManyToMany(mappedBy = "books_order", cascade = CascadeType.MERGE)
-    private List<Book> books;
+    @OneToOne
+    private User user;
+
+    @OneToMany(cascade = CascadeType.MERGE)
+    private List<Book> orderBooks;
 
     public void addOrderBook(Book book){
 
-        books.add(book);
+        orderBooks.add(book);
     }
+
+
 }
