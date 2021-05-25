@@ -36,9 +36,9 @@ public class StockService {
         Stock s = stockRepository.findById(stockId).orElseThrow();
         stockRepository.delete(s);
     }
-    public List<Stock> findByCatalog(String catalog){
+    public List<Book> findByStockBook(Long bookId){
 
-        return stockRepository.findByCatalog(catalog);
+        return stockRepository.findByStockBook(bookId);
     }
 
 }

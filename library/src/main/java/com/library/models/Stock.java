@@ -17,7 +17,7 @@ public class Stock {
     @Id
     @GeneratedValue(strategy = IDENTITY)
     private Long id;
-    private String catalog;
+    private int theAmountBooks;
 
     @ManyToMany(mappedBy = "books", cascade = CascadeType.MERGE)
     private List<Book> booksList;
@@ -35,4 +35,5 @@ public class Stock {
         }
         return null;
     }
+
 }
