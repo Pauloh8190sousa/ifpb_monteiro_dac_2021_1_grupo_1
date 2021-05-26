@@ -14,6 +14,7 @@ import static javax.persistence.GenerationType.IDENTITY;
 
 @Data
 @Entity
+@Table(name = "order_tb")
 @Getter
 @Setter
 public class Order {
@@ -28,11 +29,12 @@ public class Order {
     private User user;
 
     @OneToMany(cascade = CascadeType.MERGE)
-    private List<Book> orderBooks;
+    @JoinTable(name = "order_books_tb", joinColumns = @JoinColumn(name = "book_id"), inverseJoinColumns = @JoinColumn(name = "order_id"))
+    private List<Book> books;
 
     public void addOrderBook(Book book){
 
-        orderBooks.add(book);
+        books.add(book);
     }
 
 

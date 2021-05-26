@@ -36,9 +36,9 @@ public class StockService {
         Stock s = stockRepository.findById(stockId).orElseThrow();
         stockRepository.delete(s);
     }
-    public List<Book> findByStockBook(Long bookId){
-
-        return stockRepository.findByStockBook(bookId);
-    }
+//    public List<Book> findByStockBook(Long bookId){
+//
+//        return stockRepository.findByBook(bookId);
+//    }
 
 }

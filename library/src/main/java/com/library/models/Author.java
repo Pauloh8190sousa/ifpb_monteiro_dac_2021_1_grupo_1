@@ -12,6 +12,7 @@ import static javax.persistence.GenerationType.IDENTITY;
 
 @Data
 @Entity
+@Table(name = "author_tb")
 @Getter
 @Setter
 public class Author {

@@ -4,7 +4,6 @@ import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.management.ConstructorParameters;
 import javax.persistence.*;
 
 import java.math.BigDecimal;
@@ -14,6 +13,7 @@ import static javax.persistence.GenerationType.IDENTITY;
 
 @Data
 @Entity
+@Table(name = "book_tb")
 @Getter
 @Setter
 public class Book {
@@ -37,7 +37,7 @@ public class Book {
     private String catalog;
 
     @ManyToMany
-    @JoinTable(name = "author_book", joinColumns = @JoinColumn(name = "author_id"), inverseJoinColumns = @JoinColumn(name = "book_id"))
+    @JoinTable(name = "author_book_tb", joinColumns = @JoinColumn(name = "author_id"), inverseJoinColumns = @JoinColumn(name = "book_id"))
     private List<Author> authors;
 
 

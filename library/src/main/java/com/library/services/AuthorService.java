@@ -18,10 +18,10 @@ public class AuthorService {
         authorRepository.save(author);
     }
 
-//    public void deleteById(Long idAuthor) {
-//        Author author = authorRepository.findById(idAuthor).orElseThrow();
-//        authorRepository.delete(author);
-//    }
+    public void deleteById(Long idAuthor) {
+        Author author = authorRepository.findById(idAuthor).orElseThrow();
+        authorRepository.delete(author);
+    }
 
     public List<Author> findByName(String nameAuthor) {
         return authorRepository.findByName(nameAuthor);

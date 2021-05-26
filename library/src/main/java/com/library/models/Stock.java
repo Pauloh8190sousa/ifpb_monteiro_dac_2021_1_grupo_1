@@ -11,6 +11,7 @@ import static javax.persistence.GenerationType.IDENTITY;
 
 @Data
 @Entity
+@Table(name = "stock_tb")
 @Getter
 @Setter
 public class Stock {
@@ -19,16 +20,16 @@ public class Stock {
     private Long id;
     private int theAmountBooks;
 
-    @ManyToMany(mappedBy = "books", cascade = CascadeType.MERGE)
-    private List<Book> booksList;
+    @OneToMany
+    private List<Book> books;
 
     public void addBook(Book book){
 
-        booksList.add(book);
+        books.add(book);
     }
 
-    public Book findBookId(Long bookId){
-        for(Book book : booksList){
+    public Book findBookId(Long bookId) {
+        for(Book book : books){
             if(book.getId().longValue() == bookId.longValue()){
                 return book;
             }
