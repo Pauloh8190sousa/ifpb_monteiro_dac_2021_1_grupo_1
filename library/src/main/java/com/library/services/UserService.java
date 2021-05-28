@@ -13,22 +13,22 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
-    public void save(User user){
+    public void save(User user) {
 
         userRepository.save(user);
     }
 
-    public void delete(Long idUser){
+    public void delete(Long idUser) {
         User user = userRepository.findById(idUser).orElseThrow();
         userRepository.delete(user);
     }
 
-    public List<User> findByEmail(String emailUser){
+    public List<User> findByEmail(String emailUser) {
 
         return userRepository.findByEmail(emailUser);
     }
 
-    public User findById(Long idUser){
+    public User findById(Long idUser) {
 
         return userRepository.findById(idUser).orElseThrow();
     }
