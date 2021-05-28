@@ -21,10 +21,10 @@ public class UserController {
         return "Olá";
     }
 
-//    @PostMapping
-//    public User postUser(@RequestBody User user) {
-//        return userService.save(user);
-//    }
+    @PostMapping
+    public User postUser(@RequestBody User user) {
+        return userService.save(user);
+    }
 
 
 
