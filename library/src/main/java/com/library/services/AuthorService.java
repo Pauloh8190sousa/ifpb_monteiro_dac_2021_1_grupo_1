@@ -14,8 +14,8 @@ public class AuthorService {
     @Autowired
     private AuthorRepository authorRepository;
 
-    public void save(Author author) {
-        authorRepository.save(author);
+    public Author save(Author author) {
+        return authorRepository.save(author);
     }
 
     public void deleteById(Long idAuthor) {
@@ -38,6 +38,10 @@ public class AuthorService {
         updatedAuthor.setBibliographicReference(bibliographicReference);
 
         save(updatedAuthor);
+    }
+
+    public List<Author> findAll() {
+        return authorRepository.findAll();
     }
 
 }
