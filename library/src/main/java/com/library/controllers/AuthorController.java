@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@Controller
+@RestController
 @RequestMapping("/author")
 public class AuthorController {
 
@@ -23,7 +23,12 @@ public class AuthorController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Author postAuthor(@RequestBody Author author) {
+    public Author registerAuthor(@RequestBody Author author) {
+        return authorService.save(author);
+    }
+
+    @PutMapping
+    public Author changeAuthor(@RequestBody Author author) {
         return authorService.save(author);
     }
 }

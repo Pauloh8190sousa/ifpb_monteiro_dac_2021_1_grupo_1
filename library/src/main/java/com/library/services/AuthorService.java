@@ -31,14 +31,14 @@ public class AuthorService {
         return authorRepository.findById(idAuthor).orElseThrow();
     }
 
-    public void changeAuthor(Long idAuthor, String nameAuthor, String bibliographicReference) {
-        Author updatedAuthor  = authorRepository.findById(idAuthor).orElseThrow();
-
-        updatedAuthor.setName(nameAuthor);
-        updatedAuthor.setBibliographicReference(bibliographicReference);
-
-        save(updatedAuthor);
-    }
+//    public Author changeAuthor(Author author) {
+//        Author updatedAuthor = authorRepository.findById(author.getId()).orElseThrow();
+//
+//        updatedAuthor.setName(updatedAuthor.getName());
+//        updatedAuthor.setBibliographicReference(updatedAuthor.getBibliographicReference());
+//
+//        return save(updatedAuthor);
+//    }
 
     public List<Author> findAll() {
         return authorRepository.findAll();
