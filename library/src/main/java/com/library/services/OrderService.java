@@ -15,9 +15,9 @@ public class OrderService {
     @Autowired
     private OrderRepository orderRepository;
 
-    public void save(Order order){
+    public Order save(Order order){
 
-        orderRepository.save(order);
+        return orderRepository.save(order);
     }
     public Order findById(Long orderId){
 
@@ -35,5 +35,8 @@ public class OrderService {
     public List<Order> findByStatus(boolean status){
 
         return orderRepository.findByStatus(status);
+    }
+    public List<Order> findAll(){
+        return orderRepository.findAll();
     }
 }

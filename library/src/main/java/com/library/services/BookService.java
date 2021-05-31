@@ -16,8 +16,8 @@ public class BookService {
     @Autowired
     private BookRepository bookRepository;
 
-    public void save(Book book) {
-        bookRepository.save(book);
+    public Book save(Book book) {
+        return bookRepository.save(book);
     }
 
     public void deleteById(Long idBook) {
@@ -56,4 +56,7 @@ public class BookService {
         return bookRepository.findAll(pageRequest).getContent();
     }
 
+    public List<Book> findAll(){
+        return bookRepository.findAll();
+    }
 }

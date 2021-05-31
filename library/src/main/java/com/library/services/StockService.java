@@ -15,9 +15,9 @@ public class StockService {
     @Autowired
     private StockRepository stockRepository;
 
-    public void save(Stock stock){
+    public Stock save(Stock stock){
 
-        stockRepository.save(stock);
+        return stockRepository.save(stock);
     }
     public Stock findById(Long stockId){
 
@@ -35,6 +35,9 @@ public class StockService {
     public void delete(Long stockId){
         Stock s = stockRepository.findById(stockId).orElseThrow();
         stockRepository.delete(s);
+    }
+    public List<Stock> findAll(){
+        return stockRepository.findAll();
     }
 //    public List<Book> findByStockBook(Long bookId){
 //
