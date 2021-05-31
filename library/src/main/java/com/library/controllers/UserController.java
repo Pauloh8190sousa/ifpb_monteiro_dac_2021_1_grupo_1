@@ -15,9 +15,14 @@ public class UserController {
     @Autowired
     UserService userService;
 
-    @GetMapping
+    @GetMapping("/users")
     public List<User> getUsers() {
         return userService.findAll();
+    }
+
+    @GetMapping("/byEmail")
+    public List<User> getUserByEmail(String email) {
+        return userService.findByEmail(email);
     }
 
     @PostMapping
