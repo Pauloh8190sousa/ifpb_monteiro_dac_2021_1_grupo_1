@@ -3,6 +3,8 @@
 ## Ferramentas e Frameworks Utilizadas
 - **IntelliJ IDEA**
 - **Spring Framework**
+- **Postman**
+- **PostgreSQL**
 ## Descrição
 **Projeto referente a disciplina de Desenvolvimento de Aplicações Corporativas (DAC), que tem o intuito de desenvolvedor uma Livraria online com a contribuição dos alunos
 Paulo Henrique Pereira de Sousa e Inathan Moreira da Silva.**
