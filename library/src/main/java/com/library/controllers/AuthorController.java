@@ -1,7 +1,6 @@
 package com.library.controllers;
 
 import com.library.models.Author;
-import com.library.models.User;
 import com.library.services.AuthorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
