@@ -15,22 +15,22 @@ public class StockController {
     @Autowired
     StockService stockService;
 
-    @GetMapping
-    public List<Stock> getStocks() {
-        return stockService.findAll();
-    }
-    @GetMapping("/books_stock/{id}")
-    public List<Book> listAllBooks(@PathVariable(value = "id") Long stockId){
-        return stockService.listAllBooks(stockId);
-    }
-    @PostMapping
-    @ResponseStatus(HttpStatus.CREATED)
-    public Stock postStocks(@RequestBody Stock stock) {
-        return stockService.save(stock);
-    }
-    @PostMapping("/{id}")
-    @ResponseStatus(HttpStatus.CREATED)
-    public void addBook(@PathVariable(value = "id") Long id, @RequestBody Book book){
-            stockService.addBook(id,book);
-    }
+//    @GetMapping
+//    public List<Stock> getStocks() {
+//        return stockService.findAll();
+//    }
+//    @GetMapping("/books_stock/{id}")
+//    public List<Book> listAllBooks(@PathVariable(value = "id") Long stockId){
+//        return stockService.listAllBooks(stockId);
+//    }
+//    @PostMapping
+//    @ResponseStatus(HttpStatus.CREATED)
+//    public Stock postStocks(@RequestBody Stock stock) {
+//        return stockService.save(stock);
+//    }
+//    @PostMapping("/{id}")
+//    @ResponseStatus(HttpStatus.CREATED)
+//    public void addBook(@PathVariable(value = "id") Long id, @RequestBody Book book){
+//            stockService.addBook(id,book);
+//    }
 }
