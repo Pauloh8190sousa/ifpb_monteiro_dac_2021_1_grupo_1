@@ -32,6 +32,10 @@ public class StockService {
         stock.addBook(book);
         stockRepository.save(stock);
     }
+    public List<Book> listAllBooks(Long stockId){
+        Stock stock = stockRepository.findById(stockId).orElseThrow();
+        return stock.getBooks();
+    }
     public void delete(Long stockId){
         Stock s = stockRepository.findById(stockId).orElseThrow();
         stockRepository.delete(s);

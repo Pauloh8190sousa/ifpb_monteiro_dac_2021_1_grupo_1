@@ -28,6 +28,10 @@ public class OrderService {
         order.addOrderBook(book);
         orderRepository.save(order);
     }
+    public List<Book> listAllBooks(Long orderId){
+        Order order = orderRepository.findById(orderId).orElseThrow();
+        return order.getBooks();
+    }
     public void delete(Long orderId){
         Order order = orderRepository.findById(orderId).orElseThrow();
         orderRepository.delete(order);
