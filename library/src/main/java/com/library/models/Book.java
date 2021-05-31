@@ -30,11 +30,9 @@ public class Book {
 
     private int nbOfPages;
 
-    private int ISBN;
+    private int isbn;
 
     private boolean illustration;
-
-    private String catalog;
 
     @ManyToMany
     @JoinTable(name = "author_book_tb", joinColumns = @JoinColumn(name = "author_id"), inverseJoinColumns = @JoinColumn(name = "book_id"))
