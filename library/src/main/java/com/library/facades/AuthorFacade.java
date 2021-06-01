@@ -16,6 +16,12 @@ public class AuthorFacade {
         Author author = new Author(name,bibliographicReference);
         authorService.save(author);
     }
+    public void changeAuthor(Long idAuthor, String name, String reference){
+        Author author = findById(idAuthor);
+        author.setName(name);
+        author.setBibliographicReference(reference);
+        authorService.save(author);
+    }
     public List<Author> findByName(String name){
         return authorService.findByName(name);
     }

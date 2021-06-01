@@ -1,7 +1,9 @@
 package com.library;
 
 import com.library.facades.AuthorFacade;
+import com.library.facades.BookFacade;
 import com.library.facades.UserFacade;
+import com.library.models.Author;
 import com.library.models.User;
 import com.library.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +12,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.stereotype.Component;
 
+import java.math.BigDecimal;
 import java.util.Scanner;
 
 /**
@@ -26,16 +29,18 @@ public class LibraryApplication implements CommandLineRunner {
 	//private UserService userService;
 	private UserFacade userFacade;
 	private AuthorFacade authorFacade;
+	private BookFacade bookFacade;
 
 	public static void main(String[] args) {
 		SpringApplication.run(LibraryApplication.class, args);
 
 	}
 
-	public LibraryApplication(UserFacade userFacade, AuthorFacade authorFacade) {
+	public LibraryApplication(UserFacade userFacade, AuthorFacade authorFacade, BookFacade bookFacade) {
 	//	this.userService = userService;
 		this.userFacade = userFacade;
 		this.authorFacade = authorFacade;
+		this.bookFacade = bookFacade;
 	}
 
 	@Override
@@ -96,13 +101,78 @@ public class LibraryApplication implements CommandLineRunner {
 
 				System.out.println(userFacade.findByEmail(userEmail));
 			}else if(option == 3){
-				System.out.println("Nome: ");
+				System.out.println("Nome do autor: ");
 				String nameAuthor = read.nextLine();
 
-				System.out.println("Referência Bibliográfica: ");
+				System.out.println("Referência Bibliográfica do autor: ");
 				String reference = read.nextLine();
 
 				authorFacade.saveAuthor(nameAuthor,reference);
+				System.out.println("Cadastrado com sucesso!\n-----------");
+
+			}else if(option == 4){
+				System.out.println("Digite o ID do autor: ");
+				Long id = Long.parseLong(read.nextLine());
+
+				System.out.println("Novo nome: ");
+				String nameAuthor = read.nextLine();
+
+				System.out.println("Nova referência bibliográfica: ");
+				String reference = read.nextLine();
+
+				authorFacade.changeAuthor(id,nameAuthor,reference);
+				System.out.println("Alterado com sucesso!\n------------");
+
+			}else if(option==5){
+				System.out.println("Titulo: ");
+				String titulo = read.nextLine();
+
+				System.out.println("Preço: ");
+				BigDecimal preco =  BigDecimal.valueOf(Double.parseDouble(read.nextLine()));
+
+				System.out.println("Descrição: ");
+				String descricao = read.nextLine();
+
+				System.out.println("ISBN: ");
+				int ISBN = Integer.parseInt(read.nextLine());
+
+				System.out.println("Número de páginas: ");
+				int nbOfPages = Integer.parseInt(read.nextLine());
+
+				System.out.println("Ilustração (s/n): ");
+				boolean illustration = false;
+				if(read.nextLine().equals("s")){
+					illustration = true;
+				}
+				bookFacade.saveBook(titulo, preco, descricao, nbOfPages, ISBN, illustration);
+				System.out.println("Cadastrado com sucesso!\n-----------");
+
+			}else if(option==6){
+				System.out.println("Digite o ID do Livro: ");
+				Long id = Long.parseLong(read.nextLine());
+
+				System.out.println("Novo Titulo: ");
+				String titulo = read.nextLine();
+
+				System.out.println("Novo Preço: ");
+				BigDecimal preco =  BigDecimal.valueOf(Double.parseDouble(read.nextLine()));
+
+				System.out.println("Nova Descrição: ");
+				String descricao = read.nextLine();
+
+				System.out.println("Novo ISBN: ");
+				int ISBN = Integer.parseInt(read.nextLine());
+
+				System.out.println("Novo Número de páginas: ");
+				int nbOfPages = Integer.parseInt(read.nextLine());
+
+				System.out.println("Ilustração (s/n): ");
+				boolean illustration = false;
+				if(read.nextLine().equals("s")){
+					illustration = true;
+				}
+				bookFacade.changeBook(id, titulo, preco, descricao, nbOfPages, ISBN, illustration);
+				System.out.println("Alterado com sucesso!\n------------");
 			}
 
 		}
