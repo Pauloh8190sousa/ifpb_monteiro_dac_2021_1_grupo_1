@@ -1,5 +1,6 @@
 package com.library;
 
+import com.library.facades.AuthorFacade;
 import com.library.facades.UserFacade;
 import com.library.models.User;
 import com.library.services.UserService;
@@ -24,15 +25,17 @@ public class LibraryApplication implements CommandLineRunner {
 
 	//private UserService userService;
 	private UserFacade userFacade;
+	private AuthorFacade authorFacade;
 
 	public static void main(String[] args) {
 		SpringApplication.run(LibraryApplication.class, args);
 
 	}
 
-	public LibraryApplication(UserFacade userFacade) {
+	public LibraryApplication(UserFacade userFacade, AuthorFacade authorFacade) {
 	//	this.userService = userService;
 		this.userFacade = userFacade;
+		this.authorFacade = authorFacade;
 	}
 
 	@Override
@@ -92,6 +95,14 @@ public class LibraryApplication implements CommandLineRunner {
 				String userEmail = read.nextLine();
 
 				System.out.println(userFacade.findByEmail(userEmail));
+			}else if(option == 3){
+				System.out.println("Nome: ");
+				String nameAuthor = read.nextLine();
+
+				System.out.println("Referência Bibliográfica: ");
+				String reference = read.nextLine();
+
+				authorFacade.saveAuthor(nameAuthor,reference);
 			}
 
 		}

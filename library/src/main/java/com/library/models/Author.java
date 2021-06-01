@@ -25,6 +25,13 @@ public class Author {
 
     private String bibliographicReference;
 
+    public Author(String name, String bibliographicReference){
+        this.name = name;
+        this.bibliographicReference = bibliographicReference;
+    }
+    public Author(){
+
+    }
     @ManyToMany(mappedBy = "authors", cascade = CascadeType.MERGE)
     private List<Book> books;
 
