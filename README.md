@@ -21,3 +21,4 @@ Paulo Henrique Pereira de Sousa e Inathan Moreira da Silva.**
 - [ ] Camada de Apresentação
 - [ ] Camada de Integrção
 - [ ] Apresentação do Projeto
+<img src="https://github.com/joaopaulopbjp/ifpb_monteiro_dac_2021_1_grupo_1/blob/main/library/img/livrariaLogo.png" width="350" height="200"/>
