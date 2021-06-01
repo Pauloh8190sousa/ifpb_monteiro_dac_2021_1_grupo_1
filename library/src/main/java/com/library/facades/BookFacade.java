@@ -26,6 +26,9 @@ public class BookFacade {
        book.setIllustration(illustration);
        bookService.save(book);
     }
+    public void deleteBook(Long id){
+        bookService.deleteById(id);
+    }
 
     public Book findById(Long idBook){
         return bookService.findById(idBook);

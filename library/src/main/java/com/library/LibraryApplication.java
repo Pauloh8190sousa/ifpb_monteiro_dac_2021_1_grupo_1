@@ -173,6 +173,23 @@ public class LibraryApplication implements CommandLineRunner {
 				}
 				bookFacade.changeBook(id, titulo, preco, descricao, nbOfPages, ISBN, illustration);
 				System.out.println("Alterado com sucesso!\n------------");
+			}else if(option==7){
+				System.out.println("Digite o ID do Livro: ");
+				Long id = Long.parseLong(read.nextLine());
+
+				System.out.println("Dedeja excluir o livro (s/n): ");
+				if(read.nextLine().equals("s")){
+					bookFacade.deleteBook(id);
+					System.out.println("Livro deletado com sucesso!\n----------");
+				}
+			}else if(option==8){
+				//falta implementar
+			}else if(option==9){
+				//falta implementar
+			}else if(option==10){
+				//falta implementar
+			}else if(option==11){
+				//falta implementar
 			}
 
 		}
