@@ -185,7 +185,13 @@ public class LibraryApplication implements CommandLineRunner {
 					System.out.println("Livro deletado com sucesso!\n----------");
 				}
 			}else if(option==8){
-				//falta implementar
+
+				Book bookSelected = bookFacade.selectBook();
+				System.out.println("Livro Selecionado: "+ bookSelected.getTitle());
+				bookFacade.addBookToStock(bookSelected);
+
+				System.out.println("Livro adicionado ao Estoque!");
+
 			}else if(option==9){
 				//falta implementar
 			}else if(option==10){

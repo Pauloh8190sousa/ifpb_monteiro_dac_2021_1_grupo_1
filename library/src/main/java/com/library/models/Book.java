@@ -24,6 +24,8 @@ public class Book {
 
     private String title;
 
+    private int stock;
+
     private BigDecimal price;
 
     private String description;

@@ -48,6 +48,10 @@ public class BookService {
         return bookRepository.findById(idBook).orElseThrow();
     }
 
+    public void addBookToStock(Book book) {
+       book.setStock(book.getStock()+1);
+    }
+
 //    public void changeBook(Long idBook, String title, BigDecimal price, String description, int nbOfPages, int ISBN, boolean illustration) {
 //        Book updatedBook = bookRepository.findById(idBook).orElseThrow();
 //
@@ -73,5 +77,9 @@ public class BookService {
 
     public List<Book> findAll(){
         return bookRepository.findAll();
+    }
+
+    public int listBooksInStock(Book book) {
+        return book.getStock();
     }
 }
