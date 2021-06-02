@@ -4,6 +4,7 @@ import com.library.facades.AuthorFacade;
 import com.library.facades.BookFacade;
 import com.library.facades.UserFacade;
 import com.library.models.Author;
+import com.library.models.Book;
 import com.library.models.User;
 import com.library.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
+import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -187,9 +189,27 @@ public class LibraryApplication implements CommandLineRunner {
 			}else if(option==9){
 				//falta implementar
 			}else if(option==10){
-				//falta implementar
+				System.out.println("Deseja consultar os 5 livros mais baratos?(s/n): ");
+				String opcao = read.nextLine();
+				List<Book> books = null;
+				if(opcao.equals("s")) {
+                    books = bookFacade.listCheapBook();
+                    for(Book b: books){
+                        System.out.println("Livro: "+b.getTitle());
+                    }
+                }
 			}else if(option==11){
-				//falta implementar
+				System.out.println("Deseja consultar todos os livros?(s/n): ");
+				String res = read.nextLine();
+				List<Book> books = null;
+				if(res.equals("s")){
+					System.out.println("Número de páginas: ");
+					int pages = Integer.parseInt(read.nextLine());
+					books = bookFacade.findAllBooks(pages);
+					for(Book b: books){
+						System.out.println("Livro: "+b.getTitle());
+					}
+				}
 			}
 
 		}

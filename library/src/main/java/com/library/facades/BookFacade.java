@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 @Component
 public class BookFacade {
@@ -29,7 +30,12 @@ public class BookFacade {
     public void deleteBook(Long id){
         bookService.deleteById(id);
     }
-
+    public List<Book> findAllBooks(int page){
+        return bookService.listAllBooks(page);
+    }
+    public List<Book> listCheapBook(){
+        return bookService.listCheapBooksAvailable()
+    }
     public Book findById(Long idBook){
         return bookService.findById(idBook);
     }
