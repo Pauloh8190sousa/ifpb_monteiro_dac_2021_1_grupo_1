@@ -13,22 +13,22 @@ import java.util.List;
 @RequestMapping("/author")
 public class AuthorController {
 
-    @Autowired
-    AuthorService authorService;
-
-    @GetMapping
-    public List<Author> getAuthors() {
-        return authorService.findAll();
-    }
-
-    @PostMapping
-    @ResponseStatus(HttpStatus.CREATED)
-    public Author registerAuthor(@RequestBody Author author) {
-        return authorService.save(author);
-    }
-
-    @PutMapping
-    public Author changeAuthor(@RequestBody Author author) {
-        return authorService.save(author);
-    }
+//    @Autowired
+//    AuthorService authorService;
+//
+//    @GetMapping
+//    public List<Author> getAuthors() {
+//        return authorService.findAll();
+//    }
+//
+//    @PostMapping
+//    @ResponseStatus(HttpStatus.CREATED)
+//    public Author registerAuthor(@RequestBody Author author) {
+//        return authorService.save(author);
+//    }
+//
+//    @PutMapping
+//    public Author changeAuthor(@RequestBody Author author) {
+//        return authorService.save(author);
+//    }
 }

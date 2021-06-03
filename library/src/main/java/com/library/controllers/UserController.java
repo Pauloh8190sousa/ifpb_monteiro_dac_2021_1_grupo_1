@@ -12,23 +12,23 @@ import java.util.List;
 @RequestMapping("/user")
 public class UserController {
 
-    @Autowired
-    UserService userService;
-
-    @GetMapping("/users")
-    public List<User> getUsers() {
-        return userService.findAll();
-    }
-
-    @GetMapping("/byEmail")
-    public List<User> getUserByEmail(String email) {
-        return userService.findByEmail(email);
-    }
-
-    @PostMapping
-    @ResponseStatus(HttpStatus.CREATED)
-    public User registerUser(@RequestBody User user) {
-        return userService.save(user);
-    }
+//    @Autowired
+//    UserService userService;
+//
+//    @GetMapping("/users")
+//    public List<User> getUsers() {
+//        return userService.findAll();
+//    }
+//
+//    @GetMapping("/byEmail")
+//    public List<User> getUserByEmail(String email) {
+//        return userService.findByEmail(email);
+//    }
+//
+//    @PostMapping
+//    @ResponseStatus(HttpStatus.CREATED)
+//    public User registerUser(@RequestBody User user) {
+//        return userService.save(user);
+//    }
 
 }

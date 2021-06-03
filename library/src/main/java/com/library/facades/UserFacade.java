@@ -13,9 +13,9 @@ public class UserFacade {
     @Autowired
     private UserService userService;
 
-    public void saveUser(String name, String email) {
+    public User saveUser(String name, String email) {
         User user = new User(name, email);
-        userService.save(user);
+        return userService.save(user);
     }
 
     public List<User> findByEmail(String emailUser) {

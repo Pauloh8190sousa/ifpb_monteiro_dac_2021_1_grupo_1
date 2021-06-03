@@ -8,6 +8,7 @@ import lombok.Setter;
 import javax.persistence.*;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 
 import static javax.persistence.GenerationType.IDENTITY;
@@ -30,12 +31,18 @@ public class Order {
 
     @OneToMany(cascade = CascadeType.MERGE)
     @JoinTable(name = "order_books_tb", joinColumns = @JoinColumn(name = "book_id"), inverseJoinColumns = @JoinColumn(name = "order_id"))
-    private List<Book> books;
+    private List<Book> books = new ArrayList<Book>();
 
     public void addOrderBook(Book book){
 
         books.add(book);
     }
+    public Order(boolean status, User user){
+        this.status = status;
+        this.user = user;
+    }
+    public Order(){
 
+    }
 
 }

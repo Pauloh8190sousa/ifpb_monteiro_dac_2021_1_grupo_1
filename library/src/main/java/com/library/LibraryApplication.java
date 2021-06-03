@@ -2,9 +2,11 @@ package com.library;
 
 import com.library.facades.AuthorFacade;
 import com.library.facades.BookFacade;
+import com.library.facades.OrderFacade;
 import com.library.facades.UserFacade;
 import com.library.models.Author;
 import com.library.models.Book;
+import com.library.models.Order;
 import com.library.models.User;
 import com.library.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,17 +34,19 @@ public class LibraryApplication implements CommandLineRunner {
 	private UserFacade userFacade;
 	private AuthorFacade authorFacade;
 	private BookFacade bookFacade;
+	private OrderFacade orderFacade;
 
 	public static void main(String[] args) {
 		SpringApplication.run(LibraryApplication.class, args);
 
 	}
 
-	public LibraryApplication(UserFacade userFacade, AuthorFacade authorFacade, BookFacade bookFacade) {
+	public LibraryApplication(UserFacade userFacade, AuthorFacade authorFacade, BookFacade bookFacade, OrderFacade orderFacade) {
 	//	this.userService = userService;
 		this.userFacade = userFacade;
 		this.authorFacade = authorFacade;
 		this.bookFacade = bookFacade;
+		this.orderFacade = orderFacade;
 	}
 
 	@Override
@@ -193,7 +197,24 @@ public class LibraryApplication implements CommandLineRunner {
 				System.out.println("Livro adicionado ao Estoque!");
 
 			}else if(option==9){
-				//falta implementar
+//				System.out.println("Digite seu nome: ");
+//				String nameUser = read.nextLine();
+//				System.out.println("Digite seu E-mail: ");
+//				String emailUser = read.nextLine();
+//				User user = userFacade.saveUser(nameUser,emailUser);
+//				boolean stop = false;
+//				Order order = orderFacade.saveOrder(false,user);
+//				while(stop==false){
+//					Book bookSelected = bookFacade.selectBook();
+//					System.out.println("Livro Selecionado: "+bookSelected.getTitle());
+//					order.addOrderBook(bookSelected);
+//					System.out.println("Digite -1 para parar de adicionar livro: ");
+//					if(read.nextLine().equals("-1")){
+//						stop = true;
+//					}
+//				}
+//				orderFacade.orderTotalValue(order.getId(), order.getBooks());
+//				System.out.println("Livro adicionado no pedido!\n-------------");
 			}else if(option==10){
 				System.out.println("Deseja consultar os 5 livros mais baratos?(s/n): ");
 				String opcao = read.nextLine();
