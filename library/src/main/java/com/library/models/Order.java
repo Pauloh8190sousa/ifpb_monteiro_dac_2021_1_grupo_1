@@ -13,6 +13,7 @@ import java.util.List;
 
 import static javax.persistence.GenerationType.IDENTITY;
 
+//CLASSE MODEL PARA ORDER(PEDIDO)
 @Data
 @Entity
 @Table(name = "order_tb")

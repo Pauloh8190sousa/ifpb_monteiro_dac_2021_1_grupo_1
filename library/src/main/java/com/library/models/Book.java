@@ -11,6 +11,7 @@ import java.util.List;
 
 import static javax.persistence.GenerationType.IDENTITY;
 
+//CLASSE MODEL PARA BOOK(LIVRO)
 @Data
 @Entity
 @Table(name = "book_tb")

@@ -10,6 +10,7 @@ import java.util.List;
 
 import static javax.persistence.GenerationType.IDENTITY;
 
+//CLASSE MODEL PARA USER(USUÁRIO)
 @Data
 @Entity
 @Table(name = "user_tb")

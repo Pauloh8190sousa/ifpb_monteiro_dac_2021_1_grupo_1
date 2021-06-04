@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+//CLASSE CONTROLLER DE USER(USUARIO)
 @RestController
 @RequestMapping("/user")
 public class UserController {
@@ -15,16 +16,19 @@ public class UserController {
 //    @Autowired
 //    UserService userService;
 //
+    //MÉTODO PARA LISTAR USERS
 //    @GetMapping("/users")
 //    public List<User> getUsers() {
 //        return userService.findAll();
 //    }
 //
+    //MÉTODO PARA LISTAR USERS PELO EMAIL
 //    @GetMapping("/byEmail")
 //    public List<User> getUserByEmail(String email) {
 //        return userService.findByEmail(email);
 //    }
 //
+    //MÉTODO PARA CRIAR UM USER
 //    @PostMapping
 //    @ResponseStatus(HttpStatus.CREATED)
 //    public User registerUser(@RequestBody User user) {

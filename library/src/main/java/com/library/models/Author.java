@@ -10,6 +10,7 @@ import java.util.List;
 
 import static javax.persistence.GenerationType.IDENTITY;
 
+//CLASSE MODEL PARA AUTHOR(AUTOR)
 @Data
 @Entity
 @Table(name = "author_tb")

@@ -9,25 +9,32 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+//CLASSE CONTROLLER DE ORDER(PEDIDO)
 @Controller
 @RequestMapping("/")
 public class OrderController {
     @Autowired
     OrderService orderService;
 
+    //MÉTODO PARA LISTAR ORDERS
 //    @GetMapping
 //    public List<Order> getOrders() {
 //        return orderService.findAll();
 //    }
+
+    //MÉTODO PARA LISTAR BOOKS_ORDERS
 //    @GetMapping("/books_order/{id}")
 //    public List<Book> listAllBooks(@PathVariable(value = "id") Long orderId){
 //        return orderService.listAllBooks(orderId);
 //    }
+
+    //MÉTODO CRIAR UM ORDER
 //    @PostMapping
 //    @ResponseStatus(HttpStatus.CREATED)
 //    public Order postOrders(@RequestBody Order order) {
 //        return orderService.save(order);
 //    }
+
 //    @PostMapping("/{id}")
 //    @ResponseStatus(HttpStatus.CREATED)
 //    public void addOrderBook(@PathVariable(value = "id") Long id, @RequestBody Book book){

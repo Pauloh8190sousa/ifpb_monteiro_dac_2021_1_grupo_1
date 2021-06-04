@@ -44,10 +44,6 @@ public class BookFacade {
         return bookService.findById(idBook);
     }
 
-    public int listBooksInStock(Book book) {
-        return bookService.listBooksInStock(book);
-    }
-
     public void addBookToStock(Long bookId) {
         bookService.addBookToStock(bookId);
     }
