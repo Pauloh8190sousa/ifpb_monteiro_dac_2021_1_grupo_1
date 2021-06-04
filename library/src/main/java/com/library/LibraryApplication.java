@@ -158,11 +158,21 @@ public class LibraryApplication implements CommandLineRunner {
 
 				Book bookSaved = bookFacade.saveBook(titulo, preco, descricao, nbOfPages, ISBN, illustration);
 
-				Author authorSelected = authorFacade.selectAuthor();
+				int exit = 100;
 
-				System.out.println("Autor Selecionado: "+ authorSelected.getName());
+				ArrayList<Author> authors = new ArrayList<>();
 
-				bookFacade.addAuthorToBook(authorSelected.getId(), bookSaved);
+				while (exit != 0) {
+					Author authorSelected = authorFacade.selectAuthor();
+					System.out.println("Autor Selecionado: "+ authorSelected.getName());
+
+					authors.add(authorSelected);
+
+					System.out.println("Adicionar mais autores?(1 para sim/0 para não)");
+					exit = Integer.parseInt(read.nextLine());
+				}
+
+				bookFacade.addAuthorToBook(bookSaved.getId(), authors);
 
 				System.out.println("Cadastrado com sucesso!\n-----------");
 
@@ -205,7 +215,7 @@ public class LibraryApplication implements CommandLineRunner {
 
 				Book bookSelected = bookFacade.selectBook();
 				System.out.println("Livro Selecionado: "+ bookSelected.getTitle());
-				bookFacade.addBookToStock(bookSelected);
+				bookFacade.addBookToStock(bookSelected.getId());
 
 				System.out.println("Livro adicionado ao Estoque!");
 

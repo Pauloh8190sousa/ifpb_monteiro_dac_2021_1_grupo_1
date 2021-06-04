@@ -1,5 +1,6 @@
 package com.library.facades;
 
+import com.library.models.Author;
 import com.library.models.Book;
 import com.library.services.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,8 +48,8 @@ public class BookFacade {
         return bookService.listBooksInStock(book);
     }
 
-    public void addBookToStock(Book book) {
-        bookService.addBookToStock(book);
+    public void addBookToStock(Long bookId) {
+        bookService.addBookToStock(bookId);
     }
 
     public Book selectBook() {
@@ -66,8 +67,8 @@ public class BookFacade {
         return bookService.findById(bookId);
     }
 
-    public void addAuthorToBook(Long authorId, Book book) {
-        bookService.addAuthorToBook(authorId, book);
+    public void addAuthorToBook(Long bookId, List<Author> authors) {
+        bookService.addAuthorToBook(bookId, authors);
     }
 
 }

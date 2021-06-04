@@ -27,12 +27,10 @@ public class BookService {
         return bookRepository.save(book);
     }
 
-    public void addAuthorToBook(Long authorId, Book book) {
-        Author author = authorRepository.findById(authorId).orElseThrow();
+    public void addAuthorToBook(Long bookId, List<Author> authors) {
+        Book book = bookRepository.findById(bookId).orElseThrow();
 
-        book.setAuthors(new ArrayList<>());
-
-        book.getAuthors().add(author);
+        book.setAuthors(authors);
 
         bookRepository.save(book);
 
@@ -51,8 +49,13 @@ public class BookService {
         return bookRepository.findById(idBook).orElseThrow();
     }
 
-    public void addBookToStock(Book book) {
-       book.setStock(book.getStock()+1);
+    public void addBookToStock(Long bookId) {
+       Book book = bookRepository.findById(bookId).orElseThrow();
+
+       int bookStock = book.getStock() + 1;
+       book.setStock(bookStock);
+
+       save(book);
     }
 
 //    public void changeBook(Long idBook, String title, BigDecimal price, String description, int nbOfPages, int ISBN, boolean illustration) {
@@ -70,7 +73,16 @@ public class BookService {
 
     public List<Book> listCheapBooksAvailable() {
         PageRequest pageRequest = PageRequest.of(0,5, Sort.Direction.ASC, "price");
-        return bookRepository.findAll(pageRequest).getContent();
+
+        ArrayList<Book> books = new ArrayList<>();
+
+        for (Book book: bookRepository.findAll(pageRequest).getContent()) {
+            if (book.getStock() > 0) {
+                books.add(book);
+            }
+        }
+
+        return books;
     }
 
     public List<Book> listAllBooks(int pageNumber) {
