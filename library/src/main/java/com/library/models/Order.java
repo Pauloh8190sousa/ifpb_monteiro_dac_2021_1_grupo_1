@@ -33,13 +33,10 @@ public class Order {
     @JoinTable(name = "order_books_tb", joinColumns = @JoinColumn(name = "book_id"), inverseJoinColumns = @JoinColumn(name = "order_id"))
     private List<Book> books = new ArrayList<Book>();
 
-    public void addOrderBook(Book book){
-
-        books.add(book);
-    }
-    public Order(boolean status, User user){
+    public Order(boolean status, User user, BigDecimal totalValue){
         this.status = status;
         this.user = user;
+        this.totalValue = totalValue;
     }
     public Order(){
 

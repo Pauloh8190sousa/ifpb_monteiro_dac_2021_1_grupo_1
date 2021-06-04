@@ -16,6 +16,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -88,6 +89,10 @@ public class LibraryApplication implements CommandLineRunner {
 			System.out.println("10 - Consultar os 5 livros mais baratos disponíveis no estoque;");
 
 			System.out.println("11 - Consultar todos os livros;");
+
+			System.out.println("\n---------- Pedido ----------");
+
+			System.out.println("12 - Criar novo pedido");
 
 			option = Integer.parseInt(read.nextLine());
 
@@ -204,7 +209,35 @@ public class LibraryApplication implements CommandLineRunner {
 
 				System.out.println("Livro adicionado ao Estoque!");
 
-			}else if(option==9){
+			}else if(option==9) {
+
+				int exit = 100;
+
+				ArrayList<Book> books = new ArrayList<>();
+
+				while (exit != 0) {
+					Book bookSelected = bookFacade.selectBook();
+					System.out.println("Livro Selecionado: "+ bookSelected.getTitle());
+					books.add(bookSelected);
+
+					System.out.println("Deseja adicionar mais livros ao pedido?(1 para sim/0 para não)");
+					exit = Integer.parseInt(read.nextLine());
+
+				}
+
+				Order orderSelected = orderFacade.selectOrder();
+				System.out.println("Pedido Selecionado: "+ orderSelected.getId());
+
+				orderFacade.addOrderBook(orderSelected.getId(), books);
+
+				System.out.println("Livros adicionados ao pedido!");
+
+
+//				orderFacade.orderTotalValue(orderSelected.getId());
+//
+//				System.out.println("Valor total do pedido: "+ orderSelected.getTotalValue() + "\n----------");
+
+
 //				System.out.println("Digite seu nome: ");
 //				String nameUser = read.nextLine();
 //				System.out.println("Digite seu E-mail: ");
@@ -245,6 +278,13 @@ public class LibraryApplication implements CommandLineRunner {
 						System.out.println("Livro: "+b.getTitle());
 					}
 				}
+			}else if(option == 12) {
+				User userSelected = userFacade.selectUser();
+				System.out.println("Usuário Selecionado: "+ userSelected.getName());
+				orderFacade.saveOrder(true, userSelected, BigDecimal.valueOf(0));
+
+				System.out.println("Novo pedido para o usuário "+ userSelected.getName()+ " Criado!");
+
 			}
 
 		}

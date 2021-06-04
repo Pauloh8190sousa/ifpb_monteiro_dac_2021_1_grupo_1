@@ -2,10 +2,12 @@ package com.library.services;
 
 import com.library.models.Book;
 import com.library.models.Order;
+import com.library.repositories.BookRepository;
 import com.library.repositories.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -13,6 +15,9 @@ public class OrderService {
 
     @Autowired
     private OrderRepository orderRepository;
+
+    @Autowired
+    private BookRepository bookRepository;
 
     public Order save(Order order){
 
@@ -22,9 +27,11 @@ public class OrderService {
 
         return orderRepository.findById(orderId).orElseThrow();
     }
-    public void addOrderBook(Long orderId, Book book){
+    public void addOrderBook(Long orderId, List<Book> books) {
         Order order = orderRepository.findById(orderId).orElseThrow();
-        order.addOrderBook(book);
+
+        order.setBooks(books);
+
         orderRepository.save(order);
     }
     public List<Book> listAllBooks(Long orderId){
