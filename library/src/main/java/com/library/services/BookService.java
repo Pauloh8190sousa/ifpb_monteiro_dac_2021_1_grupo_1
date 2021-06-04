@@ -10,6 +10,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -28,6 +29,8 @@ public class BookService {
 
     public void addAuthorToBook(Long authorId, Book book) {
         Author author = authorRepository.findById(authorId).orElseThrow();
+
+        book.setAuthors(new ArrayList<>());
 
         book.getAuthors().add(author);
 

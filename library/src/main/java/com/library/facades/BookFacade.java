@@ -16,9 +16,9 @@ public class BookFacade {
     private BookService bookService;
 
 
-    public void saveBook(String title, BigDecimal price, String description, int nbOfPages, int isbn, boolean illustration){
+    public Book saveBook(String title, BigDecimal price, String description, int nbOfPages, int isbn, boolean illustration){
         Book book = new Book(title, price, description, nbOfPages, isbn, illustration);
-        bookService.save(book);
+        return bookService.save(book);
     }
     public void changeBook(Long id, String title, BigDecimal price, String description, int nbOfPages, int isbn, boolean illustration){
        Book book = findById(id);
@@ -64,6 +64,10 @@ public class BookFacade {
         Long bookId = Long.parseLong(read.nextLine());
 
         return bookService.findById(bookId);
+    }
+
+    public void addAuthorToBook(Long authorId, Book book) {
+        bookService.addAuthorToBook(authorId, book);
     }
 
 }

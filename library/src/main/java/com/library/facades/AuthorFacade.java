@@ -1,14 +1,17 @@
 package com.library.facades;
 
 import com.library.models.Author;
+import com.library.models.Book;
 import com.library.services.AuthorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.Scanner;
 
 @Component
 public class AuthorFacade {
+
     @Autowired
     private AuthorService authorService;
 
@@ -28,4 +31,20 @@ public class AuthorFacade {
     public Author findById(Long authorId){
         return authorService.findById(authorId);
     }
+
+    public Author selectAuthor() {
+        Scanner read = new Scanner(System.in);
+
+        List<Author> authors = authorService.findAll();
+
+        for (Author author: authors) {
+            System.out.println("Id: "+ author.getId()+ "   Nome: "+ author.getName() );
+        }
+
+        System.out.println("Selecione um author pelo Id: ");
+        Long authorId = Long.parseLong(read.nextLine());
+
+        return authorService.findById(authorId);
+    }
+
 }

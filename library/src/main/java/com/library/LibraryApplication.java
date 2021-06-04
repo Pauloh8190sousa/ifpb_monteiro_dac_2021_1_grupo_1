@@ -150,7 +150,15 @@ public class LibraryApplication implements CommandLineRunner {
 				if(read.nextLine().equals("s")){
 					illustration = true;
 				}
-				bookFacade.saveBook(titulo, preco, descricao, nbOfPages, ISBN, illustration);
+
+				Book bookSaved = bookFacade.saveBook(titulo, preco, descricao, nbOfPages, ISBN, illustration);
+
+				Author authorSelected = authorFacade.selectAuthor();
+
+				System.out.println("Autor Selecionado: "+ authorSelected.getName());
+
+				bookFacade.addAuthorToBook(authorSelected.getId(), bookSaved);
+
 				System.out.println("Cadastrado com sucesso!\n-----------");
 
 			}else if(option==6){
