@@ -95,8 +95,8 @@ public class LibraryApplication implements CommandLineRunner {
 			System.out.println("12 - Criar novo pedido");
 
 			option = Integer.parseInt(read.nextLine());
-
-			if(option == 1) {
+		try {
+			if (option == 1) {
 				System.out.println("Nome: ");
 				String userName = read.nextLine();
 
@@ -106,22 +106,22 @@ public class LibraryApplication implements CommandLineRunner {
 				userFacade.saveUser(userName, userEmail);
 				System.out.println("Usuário cadastrado com sucesso!");
 
-			} else if(option == 2) {
+			} else if (option == 2) {
 				System.out.println("E-mail: ");
 				String userEmail = read.nextLine();
 
 				System.out.println(userFacade.findByEmail(userEmail));
-			}else if(option == 3){
+			} else if (option == 3) {
 				System.out.println("Nome do autor: ");
 				String nameAuthor = read.nextLine();
 
 				System.out.println("Referência Bibliográfica do autor: ");
 				String reference = read.nextLine();
 
-				authorFacade.saveAuthor(nameAuthor,reference);
+				authorFacade.saveAuthor(nameAuthor, reference);
 				System.out.println("Cadastrado com sucesso!\n-----------");
 
-			}else if(option == 4){
+			} else if (option == 4) {
 				System.out.println("Digite o ID do autor: ");
 				Long id = Long.parseLong(read.nextLine());
 
@@ -131,15 +131,15 @@ public class LibraryApplication implements CommandLineRunner {
 				System.out.println("Nova referência bibliográfica: ");
 				String reference = read.nextLine();
 
-				authorFacade.changeAuthor(id,nameAuthor,reference);
+				authorFacade.changeAuthor(id, nameAuthor, reference);
 				System.out.println("Alterado com sucesso!\n------------");
 
-			}else if(option==5){
+			} else if (option == 5) {
 				System.out.println("Titulo: ");
 				String titulo = read.nextLine();
 
 				System.out.println("Preço: ");
-				BigDecimal preco =  BigDecimal.valueOf(Double.parseDouble(read.nextLine()));
+				BigDecimal preco = BigDecimal.valueOf(Double.parseDouble(read.nextLine()));
 
 				System.out.println("Descrição: ");
 				String descricao = read.nextLine();
@@ -152,7 +152,7 @@ public class LibraryApplication implements CommandLineRunner {
 
 				System.out.println("Ilustração (s/n): ");
 				boolean illustration = false;
-				if(read.nextLine().equals("s")){
+				if (read.nextLine().equals("s")) {
 					illustration = true;
 				}
 
@@ -164,7 +164,7 @@ public class LibraryApplication implements CommandLineRunner {
 
 				while (exit != 0) {
 					Author authorSelected = authorFacade.selectAuthor();
-					System.out.println("Autor Selecionado: "+ authorSelected.getName());
+					System.out.println("Autor Selecionado: " + authorSelected.getName());
 
 					authors.add(authorSelected);
 
@@ -176,7 +176,7 @@ public class LibraryApplication implements CommandLineRunner {
 
 				System.out.println("Cadastrado com sucesso!\n-----------");
 
-			}else if(option==6){
+			} else if (option == 6) {
 				System.out.println("Digite o ID do Livro: ");
 				Long id = Long.parseLong(read.nextLine());
 
@@ -184,7 +184,7 @@ public class LibraryApplication implements CommandLineRunner {
 				String titulo = read.nextLine();
 
 				System.out.println("Novo Preço: ");
-				BigDecimal preco =  BigDecimal.valueOf(Double.parseDouble(read.nextLine()));
+				BigDecimal preco = BigDecimal.valueOf(Double.parseDouble(read.nextLine()));
 
 				System.out.println("Nova Descrição: ");
 				String descricao = read.nextLine();
@@ -197,29 +197,29 @@ public class LibraryApplication implements CommandLineRunner {
 
 				System.out.println("Ilustração (s/n): ");
 				boolean illustration = false;
-				if(read.nextLine().equals("s")){
+				if (read.nextLine().equals("s")) {
 					illustration = true;
 				}
 				bookFacade.changeBook(id, titulo, preco, descricao, nbOfPages, ISBN, illustration);
 				System.out.println("Alterado com sucesso!\n------------");
-			}else if(option==7){
+			} else if (option == 7) {
 				System.out.println("Digite o ID do Livro: ");
 				Long id = Long.parseLong(read.nextLine());
 
 				System.out.println("Dedeja excluir o livro (s/n): ");
-				if(read.nextLine().equals("s")){
+				if (read.nextLine().equals("s")) {
 					bookFacade.deleteBook(id);
 					System.out.println("Livro deletado com sucesso!\n----------");
 				}
-			}else if(option==8){
+			} else if (option == 8) {
 
 				Book bookSelected = bookFacade.selectBook();
-				System.out.println("Livro Selecionado: "+ bookSelected.getTitle());
+				System.out.println("Livro Selecionado: " + bookSelected.getTitle());
 				bookFacade.addBookToStock(bookSelected.getId());
 
 				System.out.println("Livro adicionado ao Estoque!");
 
-			}else if(option==9) {
+			} else if (option == 9) {
 
 				int exit = 100;
 
@@ -227,7 +227,7 @@ public class LibraryApplication implements CommandLineRunner {
 
 				while (exit != 0) {
 					Book bookSelected = bookFacade.selectBook();
-					System.out.println("Livro Selecionado: "+ bookSelected.getTitle());
+					System.out.println("Livro Selecionado: " + bookSelected.getTitle());
 					books.add(bookSelected);
 
 					System.out.println("Deseja adicionar mais livros ao pedido?(1 para sim/0 para não)");
@@ -236,67 +236,46 @@ public class LibraryApplication implements CommandLineRunner {
 				}
 
 				Order orderSelected = orderFacade.selectOrder();
-				System.out.println("Pedido Selecionado: "+ orderSelected.getId());
+				System.out.println("Pedido Selecionado: " + orderSelected.getId());
 
 				orderFacade.addOrderBook(orderSelected.getId(), books);
 
 				System.out.println("Livros adicionados ao pedido!");
 
-
-//				orderFacade.orderTotalValue(orderSelected.getId());
-//
-//				System.out.println("Valor total do pedido: "+ orderSelected.getTotalValue() + "\n----------");
-
-
-//				System.out.println("Digite seu nome: ");
-//				String nameUser = read.nextLine();
-//				System.out.println("Digite seu E-mail: ");
-//				String emailUser = read.nextLine();
-//				User user = userFacade.saveUser(nameUser,emailUser);
-//				boolean stop = false;
-//				Order order = orderFacade.saveOrder(false,user);
-//				while(stop==false){
-//					Book bookSelected = bookFacade.selectBook();
-//					System.out.println("Livro Selecionado: "+bookSelected.getTitle());
-//					order.addOrderBook(bookSelected);
-//					System.out.println("Digite -1 para parar de adicionar livro: ");
-//					if(read.nextLine().equals("-1")){
-//						stop = true;
-//					}
-//				}
-//				orderFacade.orderTotalValue(order.getId(), order.getBooks());
-//				System.out.println("Livro adicionado no pedido!\n-------------");
-			}else if(option==10){
+			} else if (option == 10) {
 				System.out.println("Deseja consultar os 5 livros mais baratos?(s/n): ");
 				String opcao = read.nextLine();
 				List<Book> books = null;
-				if(opcao.equals("s")) {
-                    books = bookFacade.listCheapBook();
-                    for(Book b: books){
-                        System.out.println("Livro: "+b.getTitle());
-                    }
-                }
-			}else if(option==11){
+				if (opcao.equals("s")) {
+					books = bookFacade.listCheapBook();
+					for (Book b : books) {
+						System.out.println("Livro: " + b.getTitle());
+					}
+				}
+			} else if (option == 11) {
 				System.out.println("Deseja consultar todos os livros?(s/n): ");
 				String res = read.nextLine();
 				List<Book> books = null;
-				if(res.equals("s")){
+				if (res.equals("s")) {
 					System.out.println("Número de páginas: ");
 					int pages = Integer.parseInt(read.nextLine());
 					books = bookFacade.findAllBooks(pages);
-					for(Book b: books){
-						System.out.println("Livro: "+b.getTitle());
+					for (Book b : books) {
+						System.out.println("Livro: " + b.getTitle());
 					}
 				}
-			}else if(option == 12) {
+			} else if (option == 12) {
 				User userSelected = userFacade.selectUser();
-				System.out.println("Usuário Selecionado: "+ userSelected.getName());
+				System.out.println("Usuário Selecionado: " + userSelected.getName());
 				orderFacade.saveOrder(true, userSelected, BigDecimal.valueOf(0));
 
-				System.out.println("Novo pedido para o usuário "+ userSelected.getName()+ " Criado!");
+				System.out.println("Novo pedido para o usuário " + userSelected.getName() + " Criado!");
 
 			}
 
+			}catch(Exception ex){
+				System.out.println("Entrada inválida!");
+			}
 		}
 	}
 }
