@@ -2,6 +2,7 @@ package com.library.facades;
 
 import com.library.models.Book;
 import com.library.models.User;
+import com.library.models.Validation;
 import com.library.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -16,8 +17,13 @@ public class UserFacade {
     private UserService userService;
 
     public User saveUser(String name, String email) {
-        User user = new User(name, email);
-        return userService.save(user);
+        if(Validation.validationEmail(email)){
+            User user = new User(name, email);
+            return userService.save(user);
+        }else{
+            System.out.println("E-mail inválido\nTente Novamente");
+        }
+        return null;
     }
 
     public List<User> findByEmail(String emailUser) {

@@ -2,6 +2,7 @@ package com.library.facades;
 
 import com.library.models.Author;
 import com.library.models.Book;
+import com.library.models.Validation;
 import com.library.services.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -18,17 +19,26 @@ public class BookFacade {
 
 
     public Book saveBook(String title, BigDecimal price, String description, int nbOfPages, int isbn, boolean illustration){
-        Book book = new Book(title, price, description, nbOfPages, isbn, illustration);
-        return bookService.save(book);
+        if(Validation.validationISBN(isbn) && Validation.validationPrice(price)){
+            Book book = new Book(title, price, description, nbOfPages, isbn, illustration);
+            return bookService.save(book);
+        }else{
+            System.out.println("Entrada inválida, verefique\nTente Novamente!");
+        }
+        return null;
     }
     public void changeBook(Long id, String title, BigDecimal price, String description, int nbOfPages, int isbn, boolean illustration){
        Book book = findById(id);
        book.setTitle(title);
-       book.setPrice(price);
+       if(Validation.validationPrice(price) && Validation.validationISBN(isbn)){
+           book.setPrice(price);
+           book.setIsbn(isbn);
+       }else{
+           System.out.println("Campo de preço ou ISBN está inválido\nTente Novamente!");
+       }
+       book.setIllustration(illustration);
        book.setDescription(description);
        book.setNbOfPages(nbOfPages);
-       book.setIsbn(isbn);
-       book.setIllustration(illustration);
        bookService.save(book);
     }
     public void deleteBook(Long id){
