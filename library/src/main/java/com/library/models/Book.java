@@ -41,6 +41,10 @@ public class Book {
     @JoinTable(name = "author_book_tb", joinColumns = @JoinColumn(name = "author_id"), inverseJoinColumns = @JoinColumn(name = "book_id"))
     private List<Author> authors;
 
+    @ManyToMany
+    @JoinTable(name = "category_book_tb", joinColumns = @JoinColumn(name = "category_id"), inverseJoinColumns = @JoinColumn(name = "book_id"))
+    private List<Category> categories;
+
     public Book(String title, BigDecimal price, String description, int nbOfPages, int isbn, boolean illustration){
         this.title = title;
         this.price = price;
