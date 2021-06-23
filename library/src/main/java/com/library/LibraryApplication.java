@@ -145,7 +145,7 @@ public class LibraryApplication implements CommandLineRunner {
 				String descricao = read.nextLine();
 
 				System.out.println("ISBN: ");
-				int ISBN = Integer.parseInt(read.nextLine());
+				String ISBN = read.nextLine();
 
 				System.out.println("Número de páginas: ");
 				int nbOfPages = Integer.parseInt(read.nextLine());
@@ -190,7 +190,7 @@ public class LibraryApplication implements CommandLineRunner {
 				String descricao = read.nextLine();
 
 				System.out.println("Novo ISBN: ");
-				int ISBN = Integer.parseInt(read.nextLine());
+				String ISBN = read.nextLine();
 
 				System.out.println("Novo Número de páginas: ");
 				int nbOfPages = Integer.parseInt(read.nextLine());

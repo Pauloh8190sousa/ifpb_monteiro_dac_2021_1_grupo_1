@@ -33,7 +33,7 @@ public class Book {
 
     private int nbOfPages;
 
-    private int isbn;
+    private String isbn;
 
     private boolean illustration;
 
@@ -45,7 +45,7 @@ public class Book {
     @JoinTable(name = "category_book_tb", joinColumns = @JoinColumn(name = "category_id"), inverseJoinColumns = @JoinColumn(name = "book_id"))
     private List<Category> categories;
 
-    public Book(String title, BigDecimal price, String description, int nbOfPages, int isbn, boolean illustration){
+    public Book(String title, BigDecimal price, String description, int nbOfPages, String isbn, boolean illustration){
         this.title = title;
         this.price = price;
         this.description = description;

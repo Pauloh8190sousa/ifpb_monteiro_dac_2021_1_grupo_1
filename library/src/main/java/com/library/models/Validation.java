@@ -30,7 +30,7 @@ public class Validation {
         return false;
     }
 
-    public static boolean validationISBN(int number){
+    public static boolean validationISBN(String number){
         String numero = String.valueOf(number);
         if(numero.length()==13){
             return true;

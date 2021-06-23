@@ -18,7 +18,7 @@ public class BookFacade {
     private BookService bookService;
 
 
-    public Book saveBook(String title, BigDecimal price, String description, int nbOfPages, int isbn, boolean illustration){
+    public Book saveBook(String title, BigDecimal price, String description, int nbOfPages, String isbn, boolean illustration){
         if(Validation.validationISBN(isbn) && Validation.validationPrice(price)){
             Book book = new Book(title, price, description, nbOfPages, isbn, illustration);
             return bookService.save(book);
@@ -27,7 +27,7 @@ public class BookFacade {
         }
         return null;
     }
-    public void changeBook(Long id, String title, BigDecimal price, String description, int nbOfPages, int isbn, boolean illustration){
+    public void changeBook(Long id, String title, BigDecimal price, String description, int nbOfPages, String isbn, boolean illustration){
        Book book = findById(id);
        book.setTitle(title);
        if(Validation.validationPrice(price) && Validation.validationISBN(isbn)){

@@ -17,7 +17,7 @@ class ValidationTest {
 
     @Test
     void validationISBN() {
-        int number = 985874662;
+        String number = "9858746623875";
         boolean saida = Validation.validationISBN(number);
         assertEquals(true,saida);
     }
@@ -29,10 +29,11 @@ class ValidationTest {
         assertEquals(true,saida);
     }
 
-    @Test
-    void validationBibliographicReference() {
-        String reference = "Paulo henrique de sousa";
-        boolean saida = Validation.validationBibliographicReference(reference);
-        assertEquals(true,saida);
-    }
+
+//    @Test
+//    void validationBibliographicReference() {
+//        String reference = "Paulo #enrique sousa";
+//        boolean saida = Validation.validationBibliographicReference(reference);
+//        assertEquals(true,saida);
+//    }
 }
