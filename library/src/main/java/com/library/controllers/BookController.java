@@ -17,42 +17,42 @@ import java.util.List;
 @RestController
 @RequestMapping("/book")
 public class BookController {
-//    @Autowired
-//    BookService bookService;
-//
-//    @GetMapping
-//    public List<Book> getBooks() {
-//        return bookService.findAll();
-//    }
-//
+    @Autowired
+    BookService bookService;
+
+    @GetMapping
+    public List<Book> getBooks() {
+        return bookService.findAll();
+    }
+
     //MÉTODO PARA LISTAR BOOKS DE FORMA PÁGINADA
-//    @GetMapping("/pages/{nbPage}")
-//    public List<Book> listAllBooks(@PathVariable(value = "nbPage") int nbPage) {
-//        return bookService.listAllBooks(nbPage);
-//    }
-//
+    @GetMapping("/pages/{nbPage}")
+    public List<Book> listAllBooks(@PathVariable(value = "nbPage") int nbPage) {
+        return bookService.listAllBooks(nbPage);
+    }
+
     //MÉTODO PARA LISTAR BOOKS PELO PREÇO
-//    @GetMapping("/price")
-//    public List<Book> listCheapBooksAvailable() {
-//        return bookService.listCheapBooksAvailable();
-//    }
-//
+    @GetMapping("/price")
+    public List<Book> listCheapBooksAvailable() {
+        return bookService.listCheapBooksAvailable();
+    }
+
     //MÉTODO PARA CRIAR UM BOOK
-//    @PostMapping
-//    @ResponseStatus(HttpStatus.CREATED)
-//    public Book registerBook(@RequestBody Book book) {
-//        return bookService.save(book);
-//    }
-//
+    @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
+    public Book registerBook(@RequestBody Book book) {
+        return bookService.save(book);
+    }
+
     //MÉTODO PARA ATUALIZAR UM BOOK
-//    @PutMapping
-//    public Book changeBook(@RequestBody Book book) {
-//        return bookService.save(book);
-//    }
-//
+    @PutMapping
+    public Book changeBook(@RequestBody Book book) {
+        return bookService.save(book);
+    }
+
     //MÉTODO PARA DELETAR UM BOOK PELO ID
-//    @DeleteMapping("/{id}")
-//    public void deleteBookById(@PathVariable(value = "id") Long id) {
-//        bookService.deleteById(id);
-//    }
+    @DeleteMapping("/{id}")
+    public void deleteBookById(@PathVariable(value = "id") Long id) {
+        bookService.deleteById(id);
+    }
 }
