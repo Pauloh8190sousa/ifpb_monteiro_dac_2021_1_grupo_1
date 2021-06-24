@@ -3,6 +3,9 @@ package com.library.models;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -27,6 +30,17 @@ class ValidationTest {
         BigDecimal price = BigDecimal.valueOf(150.20);
         boolean saida = Validation.validationPrice(price);
         assertEquals(true,saida);
+    }
+
+    @Test
+    public void validationDateOfBook() throws ParseException {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        Date date = sdf.parse("30/07/2007");
+
+        assertTrue(Validation.validationDateOfBook(date));
+
+        date = sdf.parse("05/09/2050");
+        assertFalse(Validation.validationDateOfBook(date));
     }
 
 

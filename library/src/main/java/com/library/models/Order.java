@@ -35,9 +35,9 @@ public class Order {
     private List<Book> books = new ArrayList<Book>();
 
     public Order(boolean status, User user, BigDecimal totalValue){
-        this.status = status;
+        this.setStatus(status);
         this.user = user;
-        this.totalValue = totalValue;
+        this.setTotalValue(totalValue);
     }
     public Order(){
 

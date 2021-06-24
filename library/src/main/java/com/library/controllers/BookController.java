@@ -14,7 +14,7 @@ import java.util.List;
 
 //CLASSE CONTROLLER PARA BOOK(LIVRO)
 @Slf4j //Faz o log da classe para poder tratar erros
-@RestController
+@Controller
 @RequestMapping("/book")
 public class BookController {
     @Autowired

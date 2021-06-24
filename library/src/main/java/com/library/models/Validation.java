@@ -1,6 +1,7 @@
 package com.library.models;
 
 import java.math.BigDecimal;
+import java.util.Date;
 
 public class Validation {
     private static Validation validation;
@@ -54,4 +55,12 @@ public class Validation {
         }
         return false;
     }
+
+    public static boolean validationDateOfBook(Date date) {
+
+        Date currentDate = new Date(System.currentTimeMillis());
+
+        return !date.after(currentDate);
+    }
+
 }
