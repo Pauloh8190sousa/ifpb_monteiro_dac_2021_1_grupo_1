@@ -21,12 +21,23 @@ public class AuthorTest {
     private AuthorService authorService;
 
     @TestConfiguration
-    static class UserTestConfig {
+    static class AuthorTestConfig {
 
         @Bean
         public AuthorService authorService() {
             return new AuthorService();
         }
+    }
+
+    @Test  //DESCOBRIMOS UM ERRO NO SISTEMA
+    public void changeAuthor() {
+        Author author = authorService.changeAuthor(authorService.findById(4L));
+        author.setName("Joane Rowling");
+        author.setBibliographicReference("J.K Rowling");
+        assertEquals(4L, author.getId());
+        assertEquals("Joane Rowling", author.getName());
+        assertEquals("J.K Rowling", author.getBibliographicReference());
+        assertNotNull(author);
     }
 
     @Test
@@ -47,17 +58,6 @@ public class AuthorTest {
         List<Author> authors = authorService.findByName("Joaneee Rowling");
         assertEquals("J.K Rowlingg", authors.get(0).getBibliographicReference());
         assertEquals(4L, authors.get(0).getId());
-    }
-
-    @Test  //DESCOBRIMOS UM ERRO NO SISTEMA
-    public void changeAuthor() {
-        Author author = authorService.changeAuthor(authorService.findById(4L));
-        author.setName("Joane Rowling");
-        author.setBibliographicReference("J.K Rowling");
-        assertEquals(4L, author.getId());
-        assertEquals("Joane Rowling", author.getName());
-        assertEquals("J.K Rowling", author.getBibliographicReference());
-        assertNotNull(author);
     }
 
     @Test
