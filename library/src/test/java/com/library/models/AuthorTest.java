@@ -1,7 +1,6 @@
 package com.library.models;
 
 import com.library.services.AuthorService;
-import com.library.services.UserService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
@@ -45,14 +44,16 @@ public class AuthorTest {
 
     @Test
     public void findByName() {
-        List<Author> authors = authorService.findByName("Joaneee Rowlingg");
+        List<Author> authors = authorService.findByName("Joaneee Rowling");
         assertEquals("J.K Rowlingg", authors.get(0).getBibliographicReference());
         assertEquals(4L, authors.get(0).getId());
     }
 
     @Test  //DESCOBRIMOS UM ERRO NO SISTEMA
     public void changeAuthor() {
-        Author author = authorService.changeAuthor(new Author("Joane Rowling", "J.K Rowling"));
+        Author author = authorService.changeAuthor(authorService.findById(4L));
+        author.setName("Joane Rowling");
+        author.setBibliographicReference("J.K Rowling");
         assertEquals(4L, author.getId());
         assertEquals("Joane Rowling", author.getName());
         assertEquals("J.K Rowling", author.getBibliographicReference());
