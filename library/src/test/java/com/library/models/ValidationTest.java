@@ -44,11 +44,16 @@ class ValidationTest {
         assertFalse(Validation.validationDateOfBook(date));
     }
 
-
-//    @Test
-//    void validationBibliographicReference() {
-//        String reference = "Paulo #enrique sousa";
-//        boolean saida = Validation.validationBibliographicReference(reference);
-//        assertEquals(true,saida);
-//    }
+    @Test
+    public void validationPassword(){
+        String password = "paulo";
+        boolean saida = Validation.validationPassword(password);
+        assertEquals(false,saida);
+    }
+    @Test
+    void validationBibliographicReference() {
+        String reference = "Sousa P. H. P";
+        boolean saida = Validation.validationBibliographicReference(reference);
+        assertEquals(true,saida);
+    }
 }

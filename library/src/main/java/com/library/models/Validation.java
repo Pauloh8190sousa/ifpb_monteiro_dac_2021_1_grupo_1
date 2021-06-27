@@ -45,9 +45,9 @@ public class Validation {
         return true;
     }
     public static boolean validationBibliographicReference(String bibliographic){
-        String regex = "[A-Za-z]+\\[A-Za-z]+\\.[A-Za-z]+\\.[A-Za-z]+\\.[A-Za-z]+";
-        String regex2 = "[A-Za-z]+\\[A-Za-z]+\\.[A-Za-z]+\\.[A-Za-z]+\\.[A-Za-z]+\\.[A-Za-z]+";
-        String regex3 = "[A-Za-z]+\\[A-Za-z]+\\.[A-Za-z]+\\.[A-Za-z]+\\.[A-Za-z]+\\.[A-Za-z]+\\.[A-Za-z]+";
+        String regex = "[A-Za-z]+\\.[A-Za-z]+\\.[A-Za-z]+\\.[A-Za-z]+";
+        String regex2 = "[A-Za-z]+\\.[A-Za-z]+\\.[A-Za-z]+\\.[A-Za-z]+\\.[A-Za-z]+";
+        String regex3 = "[A-Za-z]+\\.[A-Za-z]+\\.[A-Za-z]+\\.[A-Za-z]+\\.[A-Za-z]+\\.[A-Za-z]+";
         if(bibliographic.matches(regex) ||
            bibliographic.matches(regex2) ||
            bibliographic.matches(regex3)){
@@ -61,6 +61,13 @@ public class Validation {
         Date currentDate = new Date(System.currentTimeMillis());
 
         return !date.after(currentDate);
+    }
+
+    public static boolean validationPassword(String password){
+        if(password.length()>4 && password.matches("[A-Za-z0-9]")){
+            return true;
+        }
+        return false;
     }
 
 }

@@ -33,10 +33,10 @@ public class AuthorTest {
     public void changeAuthor() {
         Author author = authorService.changeAuthor(authorService.findById(4L));
         author.setName("Joane Rowling");
-        author.setBibliographicReference("J.K Rowling");
+        author.setBibliographicReference("Rowling J. K");
         assertEquals(4L, author.getId());
         assertEquals("Joane Rowling", author.getName());
-        assertEquals("J.K Rowling", author.getBibliographicReference());
+        assertEquals("Rowling J. K", author.getBibliographicReference());
         assertNotNull(author);
     }
 
