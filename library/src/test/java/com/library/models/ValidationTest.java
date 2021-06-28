@@ -44,7 +44,7 @@ class ValidationTest {
     }
 
     @Test
-    public void validationPassword(){
+    public void validationPassword() {
         String password = "paulo";
         boolean saida = Validation.validationPassword(password);
         assertEquals(false,saida);

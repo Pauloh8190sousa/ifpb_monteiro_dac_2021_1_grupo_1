@@ -11,8 +11,7 @@ import org.springframework.context.annotation.Bean;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = Replace.NONE)
@@ -56,4 +55,30 @@ public class UserTest {
         assertNotNull(userService.findAll());
     }
 
+    //<---------- VALIDAÇÃO ---------->
+
+
+    @Test
+    public void validationUserName() {
+        String userName = "Inathan";
+        assertTrue(Validation.validationUserName(userName));
+    }
+
+    @Test
+    public void duplicateEmail() {
+        User user = userService.findByEmail("inathan@gmail.com").get(0);
+        assertFalse(Validation.duplicateEmail(user, "inathan@gmail.com"));
+    }
+
+    @Test
+    void validationEmail() {
+        String emailEntrada = "ph@gmail.com";
+        assertTrue(Validation.validationEmail(emailEntrada));
+    }
+
+    @Test
+    public void validationPassword() {
+        String password = "paulo";
+        assertFalse(Validation.validationPassword(password));
+    }
 }

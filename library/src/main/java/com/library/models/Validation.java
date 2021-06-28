@@ -1,9 +1,15 @@
 package com.library.models;
 
+import com.library.services.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
 import java.math.BigDecimal;
 import java.util.Date;
 
+@Component
 public class Validation {
+
     private static Validation validation;
 
     private Validation(){
@@ -16,6 +22,7 @@ public class Validation {
         }
         return validation;
     }
+
     public static boolean validationEmail(String email){
         String regex = "[A-Za-z0-9\\._-]+@[A-Za-z]+\\.[A-Za-z]+";
         String regex2 = "[A-Za-z0-9\\._-]+@[A-Za-z]+\\.[A-Za-z]+\\.[A-Za-z]+";
@@ -68,6 +75,34 @@ public class Validation {
             return true;
         }
         return false;
+    }
+
+    public static boolean validationUserName(String userName) {
+        if(userName.length() >= 3 && userName.length()<=20){
+            return true;
+        }
+        return false;
+    }
+
+    public static boolean duplicateEmail(User user, String userEmail) {
+        if(user.getEmail().equals(userEmail)) {
+            return false;
+        }
+        return true;
+    }
+
+    public static boolean validationStock(int stock) {
+        if(stock <= 0) {
+            return false;
+        }
+        return true;
+    }
+
+    public static boolean pageLimit(int nbOfPages) {
+        if(nbOfPages <= 0 || nbOfPages > 10000) {
+            return false;
+        }
+        return true;
     }
 
 }

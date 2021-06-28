@@ -9,6 +9,9 @@ import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.context.annotation.Bean;
 
 import java.math.BigDecimal;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -70,4 +73,41 @@ public class BookTest {
     public void listAllBooks() {
         assertNotNull(bookService.listAllBooks(0));
     }
+
+
+    //<---------- VALIDAÇÃO ---------->
+
+
+    @Test
+    void validationISBN() {
+        assertTrue(Validation.validationISBN("9858746623875"));
+    }
+
+    @Test
+    void validationPrice() {
+        BigDecimal price = BigDecimal.valueOf(150.20);
+        assertTrue(Validation.validationPrice(price));
+    }
+
+    @Test
+    public void validationDateOfBook() throws ParseException {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        Date date = sdf.parse("30/07/2007");
+
+        assertTrue(Validation.validationDateOfBook(date));
+
+        date = sdf.parse("05/09/2050");
+        assertFalse(Validation.validationDateOfBook(date));
+    }
+
+    @Test
+    public void stockBook() {
+        assertTrue(Validation.validationStock(3));
+    }
+
+    @Test
+    public void pageLimit() {
+        assertTrue(Validation.pageLimit(327));
+    }
+
 }
