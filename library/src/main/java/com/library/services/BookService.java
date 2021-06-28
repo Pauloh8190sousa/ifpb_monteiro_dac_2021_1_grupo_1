@@ -1,7 +1,7 @@
 package com.library.services;
 
-import com.library.unidade.Author;
-import com.library.unidade.Book;
+import com.library.models.Author;
+import com.library.models.Book;
 import com.library.repositories.AuthorRepository;
 import com.library.repositories.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;

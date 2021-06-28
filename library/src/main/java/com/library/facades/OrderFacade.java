@@ -1,8 +1,8 @@
 package com.library.facades;
 
-import com.library.unidade.Book;
-import com.library.unidade.Order;
-import com.library.unidade.User;
+import com.library.models.Book;
+import com.library.models.Order;
+import com.library.models.User;
 import com.library.services.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

@@ -1,6 +1,6 @@
 package com.library.controllers;
 
-import com.library.unidade.Author;
+import com.library.models.Author;
 import com.library.services.AuthorService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

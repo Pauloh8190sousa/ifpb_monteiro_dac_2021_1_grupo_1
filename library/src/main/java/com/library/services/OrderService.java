@@ -1,7 +1,7 @@
 package com.library.services;
 
-import com.library.unidade.Book;
-import com.library.unidade.Order;
+import com.library.models.Book;
+import com.library.models.Order;
 import com.library.repositories.BookRepository;
 import com.library.repositories.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
