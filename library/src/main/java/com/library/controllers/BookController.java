@@ -1,7 +1,6 @@
 package com.library.controllers;
 
-import com.library.models.Author;
-import com.library.models.Book;
+import com.library.unidade.Book;
 
 import com.library.services.BookService;
 import lombok.extern.slf4j.Slf4j;

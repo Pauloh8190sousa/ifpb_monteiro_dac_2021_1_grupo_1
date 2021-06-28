@@ -1,8 +1,7 @@
 package com.library.facades;
 
-import com.library.models.Author;
-import com.library.models.Book;
-import com.library.models.Validation;
+import com.library.unidade.Author;
+import com.library.unidade.Validation;
 import com.library.services.AuthorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

@@ -1,4 +1,4 @@
-package com.library.models;
+package com.library.unidade;
 
 import lombok.Data;
 import lombok.Getter;
