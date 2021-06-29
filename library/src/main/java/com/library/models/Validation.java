@@ -92,7 +92,7 @@ public class Validation {
     }
 
     public static boolean validationStock(int stock) {
-        if(stock <= 0) {
+        if(stock <= 0 || stock > 1000) {
             return false;
         }
         return true;
@@ -103,6 +103,20 @@ public class Validation {
             return false;
         }
         return true;
+    }
+
+    public static boolean validationTitle(String bookTitle) {
+       if(bookTitle.length() <= 0 || bookTitle.length() > 100) {
+           return false;
+       }
+       return true;
+    }
+
+    public static boolean validationDescriptionBook(String bookDescription) {
+       if(bookDescription.length() <= 0 || bookDescription.length() > 300) {
+           return false;
+       }
+       return true;
     }
 
 }

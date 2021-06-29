@@ -110,4 +110,14 @@ public class BookTest {
         assertTrue(Validation.pageLimit(327));
     }
 
+    @Test
+    public void validationTitle() {
+        assertTrue(Validation.validationTitle("Harry Potter"));
+    }
+
+    @Test
+    public void validationDescription() {
+        assertTrue(Validation.validationTitle("Um mundo de magia e mistério"));
+    }
+
 }
