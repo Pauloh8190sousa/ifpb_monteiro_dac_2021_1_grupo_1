@@ -7,11 +7,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 //CLASSE CONTROLLER DO INDEX DA APLICACAO
 @Slf4j //Faz o log da classe para poder tratar erros
 @Controller
-@RequestMapping("/")
 public class IndexController {
 
     //MÉTODO PARA RETORNAR PAGINA
-    @RequestMapping
+    @RequestMapping("/Home")
     public String index() {
         return "index";
     }
