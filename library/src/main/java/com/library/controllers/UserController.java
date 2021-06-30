@@ -20,7 +20,7 @@ public class UserController {
 
     @RequestMapping(value = "/register", method = RequestMethod.GET)
     public String registerUser() {
-        return "User/Register";
+        return "User/UserForm";
     }
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)

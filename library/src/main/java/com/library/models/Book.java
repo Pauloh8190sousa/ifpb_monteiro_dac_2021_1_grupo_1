@@ -39,9 +39,11 @@ public class Book {
 
     private boolean illustration;
 
-    @DateTimeFormat(pattern = "dd/MM/yyyy")
-    @Temporal(TemporalType.DATE)
-    private Date publicationDate;
+//    @DateTimeFormat(pattern = "dd/MM/yyyy")
+//    @Temporal(TemporalType.DATE)
+//    private Date publicationDate;
+
+    private String publicationDate;
 
     @ManyToMany
     @JoinTable(name = "author_book_tb", joinColumns = @JoinColumn(name = "author_id"), inverseJoinColumns = @JoinColumn(name = "book_id"))
