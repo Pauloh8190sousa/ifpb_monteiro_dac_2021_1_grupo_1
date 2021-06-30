@@ -15,35 +15,43 @@ import java.util.List;
  */
 @Slf4j //Faz o log da classe para poder tratar erros
 @Controller
-@RequestMapping("/author")
-
 public class AuthorController {
 
     @Autowired
     AuthorService authorService;
 
-    /**
-     * MÉTODO PARA LISTAR TODOS OS AUTHORS
-     */
-    @GetMapping
-    public List<Author> getAuthors() {
-        return authorService.findAll();
+    @RequestMapping(value = "/createAuthor", method = RequestMethod.GET)
+    public String createAuthor() {
+        return "Author/AuthorForm";
+    }
+    @RequestMapping(value = "/createAuthor", method = RequestMethod.POST)
+    public String createAuthor(Author author) {
+        authorService.save(author);
+        return "redirect:/Home";
     }
 
-    /**
-     * MÉTODO PARA CRIAR AUTHORS
-     */
-    @PostMapping
-    @ResponseStatus(HttpStatus.CREATED)
-    public Author registerAuthor(@RequestBody Author author) {
-        return authorService.save(author);
-    }
-
-    /**
-     * MÉTODO PARA ATUALIZAR AUTHORS
-     */
-    @PutMapping
-    public Author changeAuthor(@RequestBody Author author) {
-        return authorService.save(author);
-    }
+//    /**
+//     * MÉTODO PARA LISTAR TODOS OS AUTHORS
+//     */
+//    @GetMapping
+//    public List<Author> getAuthors() {
+//        return authorService.findAll();
+//    }
+//
+//    /**
+//     * MÉTODO PARA CRIAR AUTHORS
+//     */
+//    @PostMapping
+//    @ResponseStatus(HttpStatus.CREATED)
+//    public Author registerAuthor(@RequestBody Author author) {
+//        return authorService.save(author);
+//    }
+//
+//    /**
+//     * MÉTODO PARA ATUALIZAR AUTHORS
+//     */
+//    @PutMapping
+//    public Author changeAuthor(@RequestBody Author author) {
+//        return authorService.save(author);
+//    }
 }
