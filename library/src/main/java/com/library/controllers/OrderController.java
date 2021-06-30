@@ -1,22 +1,32 @@
-//package com.library.controllers;
-//import com.library.models.Book;
-//import com.library.models.Order;
-//import com.library.services.OrderService;
-//import lombok.extern.slf4j.Slf4j;
-//import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.http.HttpStatus;
-//import org.springframework.stereotype.Controller;
-//import org.springframework.web.bind.annotation.*;
-//
-//import java.util.List;
+package com.library.controllers;
+import com.library.models.Book;
+import com.library.models.Order;
+import com.library.services.OrderService;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.*;
+import java.util.List;
 //
 ////CLASSE CONTROLLER DE ORDER(PEDIDO)
-//@Slf4j //Faz o log da classe para poder tratar erros
-//@Controller
-//@RequestMapping("/")
-//public class OrderController {
-//    @Autowired
-//    OrderService orderService;
+@Slf4j //Faz o log da classe para poder tratar erros
+@Controller
+
+public class OrderController {
+    @Autowired
+    OrderService orderService;
+    @RequestMapping(value = "/createOrder", method = RequestMethod.GET)
+    public String createOrder(){
+        return "Order/OrderForm";
+    }
+    @RequestMapping(value = "/createOrder", method = RequestMethod.POST)
+    public String createOrder(Order order){
+
+        orderService.save(order);
+
+        return "redirect:/Home";
+    }
 //
 //    //MÉTODO PARA LISTAR ORDERS
 //    @GetMapping
@@ -42,4 +52,4 @@
 //    public void addOrderBook(@PathVariable(value = "id") Long id, @RequestBody Book book){
 //        orderService.addOrderBook(id,book);
 //    }
-//}
+}
