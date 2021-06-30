@@ -51,14 +51,13 @@ public class Validation {
         }
         return true;
     }
+    //metodo corrigido
     public static boolean validationBibliographicReference(String bibliographic){
-        String regex = "[A-Za-z]+\\.[A-Za-z]+\\.[A-Za-z]+\\.[A-Za-z]+";
-        String regex2 = "[A-Za-z]+\\.[A-Za-z]+\\.[A-Za-z]+\\.[A-Za-z]+\\.[A-Za-z]+";
-        String regex3 = "[A-Za-z]+\\.[A-Za-z]+\\.[A-Za-z]+\\.[A-Za-z]+\\.[A-Za-z]+\\.[A-Za-z]+";
-        if(bibliographic.matches(regex) ||
-           bibliographic.matches(regex2) ||
-           bibliographic.matches(regex3)){
-            return true;
+        String regex = "[A-Za-z].+";
+        if(bibliographic.matches(regex)){
+            if(bibliographic.contains(" ") && bibliographic.contains(".")) {
+                return true;
+            }
         }
         return false;
     }

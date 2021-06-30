@@ -51,8 +51,8 @@ class ValidationTest {
     }
     @Test
     void validationBibliographicReference() {
-        String reference = "Sousa P. H. P";
+        String reference = "Sousa";
         boolean saida = Validation.validationBibliographicReference(reference);
-        assertEquals(true,saida);
+        assertEquals(false,saida);
     }
 }

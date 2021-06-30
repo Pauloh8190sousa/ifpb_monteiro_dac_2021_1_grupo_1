@@ -35,12 +35,18 @@ public class AuthorService {
         return authorRepository.findById(idAuthor).orElseThrow();
     }
 
-    //MÉTODO PARA ALTERAR UM AUTHOR
-    public Author changeAuthor(Author author) {
-        Author updatedAuthor = authorRepository.findById(author.getId()).orElseThrow();
-
-        updatedAuthor.setName(updatedAuthor.getName());
-        updatedAuthor.setBibliographicReference(updatedAuthor.getBibliographicReference());
+    /**
+     * MÉTODO PARA ALTERAR UM AUTHOR
+     * @param author > O author que será setado para atualizar o author antigo
+     * @param idAuthor > id do author antigo para ser atualizado.
+     * @return > retorna o author atualizado
+     */
+    public Author changeAuthor(Author author, Long idAuthor) {
+        //erro corrigido - Paulo
+        Author updatedAuthor = authorRepository.findById(idAuthor).orElseThrow();
+        //não estava setando o author no updateAuthor.
+        updatedAuthor.setName(author.getName());
+        updatedAuthor.setBibliographicReference(author.getBibliographicReference());
 
         return save(updatedAuthor);
     }
