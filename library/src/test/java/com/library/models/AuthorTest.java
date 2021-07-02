@@ -30,14 +30,13 @@ public class AuthorTest {
     }
 
     @Test  //DESCOBRIMOS UM ERRO NO SISTEMA
-    //Consertei alguns erros do método change de author e a lógica de testar esse método - Paulo
     public void changeAuthor() {
         Author author = new Author();
         author.setName("Joane Rowling");
         author.setBibliographicReference("Rowling J.K");
-        Author updateAuthor = authorService.changeAuthor(author,4L);
+        Author updateAuthor = authorService.changeAuthor(author,5L);
         assertNotNull(updateAuthor);
-        assertEquals(4L, updateAuthor.getId());
+        assertEquals(5L, updateAuthor.getId());
         assertEquals("Joane Rowling", updateAuthor.getName());
         assertEquals("Rowling J.K", updateAuthor.getBibliographicReference());
 
@@ -51,7 +50,7 @@ public class AuthorTest {
 
     @Test
     public void findById() {
-        Author author = authorService.findById(4L);
+        Author author = authorService.findById(5L);
         assertEquals("Joaneee Rowling", author.getName());
         assertEquals("Rowlingg J.K", author.getBibliographicReference());
     }
@@ -60,11 +59,11 @@ public class AuthorTest {
     public void findByName() {
         List<Author> authors = authorService.findByName("Joaneee Rowling");
         assertEquals("Rowlingg J.K", authors.get(0).getBibliographicReference());
-        assertEquals(4L, authors.get(0).getId());
+        assertEquals(5L, authors.get(0).getId());
     }
     @Test
     void validationBibliographicReference() {
-        Author author = authorService.findById(4L);
+        Author author = authorService.findById(5L);
         boolean saida = Validation.validationBibliographicReference(author.getBibliographicReference());
         assertEquals(true,saida);
     }

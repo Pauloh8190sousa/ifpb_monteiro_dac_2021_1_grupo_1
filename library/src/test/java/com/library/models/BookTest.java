@@ -35,15 +35,15 @@ public class BookTest {
     @Test
     public void saveBook() {
         Book book = bookService.save(new Book("Harry Potter", BigDecimal.valueOf(Double.parseDouble("37")),
-                "Um mundo de mágia e mistério", 327, "1234567891023", true));
+                "Um mundo de magia e mistério", 327, "1234567891023", true));
         assertNotNull(book);
     }
 
     @Test
     public void findById() {
-        Book book = bookService.findById(1L);
+        Book book = bookService.findById(2L);
         assertEquals("Harry Potter", book.getTitle());
-        assertEquals("Um mundo de mágia e mistério", book.getDescription());
+        assertEquals("Um mundo de magia e mistério", book.getDescription());
         assertEquals(327, book.getNbOfPages());
         assertEquals("1234567891023", book.getIsbn());
         assertTrue(book.isIllustration());
@@ -52,8 +52,8 @@ public class BookTest {
     @Test
     public void findByTitle() {
         List<Book> books = bookService.findByTitle("Harry Potter");
-        assertEquals(1, books.get(0).getId());
-        assertEquals("Um mundo de mágia e mistério", books.get(0).getDescription());
+        assertEquals(2, books.get(0).getId());
+        assertEquals("Um mundo de magia e mistério", books.get(0).getDescription());
         assertEquals(327, books.get(0).getNbOfPages());
         assertEquals("1234567891023", books.get(0).getIsbn());
         assertTrue(books.get(0).isIllustration());
@@ -81,12 +81,16 @@ public class BookTest {
     @Test
     void validationISBN() {
         assertTrue(Validation.validationISBN("9858746623875"));
+        assertFalse(Validation.validationISBN("98587465"));
     }
 
     @Test
     void validationPrice() {
         BigDecimal price = BigDecimal.valueOf(150.20);
         assertTrue(Validation.validationPrice(price));
+
+        price = BigDecimal.valueOf(-20);
+        assertFalse(Validation.validationPrice(price));
     }
 
     @Test
@@ -103,21 +107,28 @@ public class BookTest {
     @Test
     public void stockBook() {
         assertTrue(Validation.validationStock(3));
+        assertFalse(Validation.validationStock(-10));
+        assertFalse(Validation.validationStock(1001));
     }
 
     @Test
     public void pageLimit() {
         assertTrue(Validation.pageLimit(327));
+        assertFalse(Validation.pageLimit(0));
     }
 
     @Test
     public void validationTitle() {
         assertTrue(Validation.validationTitle("Harry Potter"));
+        assertFalse(Validation.validationTitle(""));
+        assertFalse(Validation.validationTitle("kmdsk sdnksdn ndsnkdnks ndksndksn nksndknd knsdks" +
+                "dmskdmks ndskndks ndksndk sndksnd cnjdnj fbdjbf jbfdjbfjd jbdfjbdjf jdsdknd"));
     }
 
     @Test
     public void validationDescription() {
-        assertTrue(Validation.validationTitle("Um mundo de magia e mistério"));
+        assertTrue(Validation.validationDescriptionBook("Um mundo de magia e mistério"));
+        assertFalse(Validation.validationDescriptionBook(""));
     }
 
 }

@@ -37,7 +37,7 @@ public class UserTest {
 
     @Test
     public void findById() {
-        User user = userService.findById(1L);
+        User user = userService.findById(2L);
         assertEquals("Inathan", user.getName());
         assertEquals("inathan@gmail.com", user.getEmail());
     }
@@ -47,7 +47,7 @@ public class UserTest {
         List<User> users = userService.findByEmail("inathan@gmail.com");
         assertEquals("Inathan", users.get(0).getName());
         assertEquals("inathan@gmail.com", users.get(0).getEmail());
-        assertEquals(1L, users.get(0).getId());
+        assertEquals(2L, users.get(0).getId());
     }
 
     @Test
@@ -60,8 +60,9 @@ public class UserTest {
 
     @Test
     public void validationUserName() {
-        String userName = "Inathan";
-        assertTrue(Validation.validationUserName(userName));
+        assertTrue(Validation.validationUserName("Inathan"));
+        assertFalse(Validation.validationUserName("ad"));
+        assertFalse(Validation.validationUserName("Joaquim Ferreira de souza santos Bezerra da silva"));
     }
 
     @Test
@@ -72,13 +73,12 @@ public class UserTest {
 
     @Test
     void validationEmail() {
-        String emailEntrada = "ph@gmail.com";
-        assertTrue(Validation.validationEmail(emailEntrada));
+        assertTrue(Validation.validationEmail("ph@gmail.com"));
+        assertFalse(Validation.validationEmail("phsousa"));
     }
 
     @Test
     public void validationPassword() {
-        String password = "paulo";
-        assertFalse(Validation.validationPassword(password));
+        assertFalse(Validation.validationPassword("paulo"));
     }
 }
