@@ -27,12 +27,16 @@ public class Order {
     private BigDecimal totalValue;
     private boolean status;
 
-    @OneToOne
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
+    @JoinColumn(name = "order_id")
+    private List<OrderBook> orderBooks = new ArrayList<>();
+
+    @ManyToOne
     private User user;
 
-    @OneToMany(cascade = CascadeType.MERGE)
-    @JoinTable(name = "order_books_tb", joinColumns = @JoinColumn(name = "book_id"), inverseJoinColumns = @JoinColumn(name = "order_id"))
-    private List<Book> books = new ArrayList<Book>();
+//    @ManyToMany(cascade = CascadeType.MERGE)
+//    @JoinTable(name = "order_books_tb", joinColumns = @JoinColumn(name = "order_id"), inverseJoinColumns = @JoinColumn(name = "book_id"))
+//    private List<Book> books = new ArrayList<Book>();
 
     public Order(boolean status, User user, BigDecimal totalValue){
         this.setStatus(status);

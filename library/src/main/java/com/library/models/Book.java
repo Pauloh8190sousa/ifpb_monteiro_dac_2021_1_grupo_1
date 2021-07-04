@@ -46,11 +46,11 @@ public class Book {
     private String publicationDate;
 
     @ManyToMany
-    @JoinTable(name = "author_book_tb", joinColumns = @JoinColumn(name = "author_id"), inverseJoinColumns = @JoinColumn(name = "book_id"))
+    @JoinTable(name = "author_book_tb", joinColumns = @JoinColumn(name = "book_id"), inverseJoinColumns = @JoinColumn(name = "author_id"))
     private List<Author> authors;
 
     @ManyToMany
-    @JoinTable(name = "category_book_tb", joinColumns = @JoinColumn(name = "category_id"), inverseJoinColumns = @JoinColumn(name = "book_id"))
+    @JoinTable(name = "category_book_tb", joinColumns = @JoinColumn(name = "book_id"), inverseJoinColumns = @JoinColumn(name = "category_id"))
     private List<Category> categories;
 
     public Book(String title, BigDecimal price, String description, int nbOfPages, String isbn, boolean illustration){

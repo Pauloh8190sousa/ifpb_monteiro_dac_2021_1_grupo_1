@@ -2,6 +2,7 @@ package com.library.services;
 
 import com.library.models.Book;
 import com.library.models.Order;
+import com.library.models.OrderBook;
 import com.library.repositories.BookRepository;
 import com.library.repositories.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,18 +33,17 @@ public class OrderService {
     }
 
     //MÉTODO PARA ADICIONAR BOOKS AO ORDER
-    public void addOrderBook(Long orderId, List<Book> books) {
+    public void addOrderBook(Long orderId, List<OrderBook> orderBooks) {
         Order order = orderRepository.findById(orderId).orElseThrow();
 
-        order.setBooks(books);
+        order.setOrderBooks(orderBooks);
 
         orderRepository.save(order);
     }
 
-    //MÉTODO PARA LISTAR TODOS OS BOOKS EM UM ORDER
-    public List<Book> listAllBooks(Long orderId){
+    public List<OrderBook> listAllBooks(Long orderId){
         Order order = orderRepository.findById(orderId).orElseThrow();
-        return order.getBooks();
+        return order.getOrderBooks();
     }
 
     //MÉTODO PARA DELETAR UM ORDER PELO ID
