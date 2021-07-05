@@ -19,9 +19,9 @@
         </thead>
         <tbody>
             <tr th:each="book : ${books}">
-                <td><span th:text="${book.title}"></span></td>
-                <td><span th:text="${book.description}"></span></td>
-                <td><span th:text="${book.price}"></span></td>
+                <td><a href="http://localhost:8080//bookDetails" th:text="${book.title}"></a></td>
+                <td><a th:text="${book.description}"></a></td>
+                <td><a th:text="${book.price}"></a></td>
             </tr>
         </tbody>
     </table>

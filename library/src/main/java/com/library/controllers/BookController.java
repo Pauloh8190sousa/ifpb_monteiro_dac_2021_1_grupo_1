@@ -28,6 +28,11 @@ public class BookController {
         return "redirect:/Home";
     }
 
+    @RequestMapping(value = "/bookDetails", method = RequestMethod.GET)
+    public String BookDetails() {
+        return "Book/BookDetails";
+    }
+
 //    @GetMapping
 //    public List<Book> getBooks() {
 //        return bookService.findAll();
