@@ -8,5 +8,32 @@
 <body>
   <div th:replace = "layout :: navbarLayout"></div>
 
+  <div class="container">
+    <h4>Detalhes do Livro</h4>
+    <table class="table">
+      <thead>
+      <tr>
+        <th scope="col">Título</th>
+        <th scope="col">Descrição</th>
+        <th scope="col">Estoque</th>
+        <th scope="col">Número de páginas</th>
+        <th scope="col">ISBN</th>
+        <th scope="col">Ilustrações</th>
+        <th scope="col">Preço</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr th:each="book : ${book}">
+        <td><span th:text="${book.title}"></span></td>
+        <td><span th:text="${book.description}"></span></td>
+        <td><span th:text="${book.stock}"></span></td>
+        <td><span th:text="${book.nbOfPages}"></span></td>
+        <td><span th:text="${book.isbn}"></span></td>
+        <td><span th:text="${book.illustration}"></span></td>
+        <td><span th:text="${book.price}"></span></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
 </body>
 </html>

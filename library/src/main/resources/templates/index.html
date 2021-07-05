@@ -9,21 +9,23 @@
 <body>
     <div th:replace = "layout :: navbarLayout"></div>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th scope="col">Título</th>
-                <th scope="col">Descrição</th>
-                <th scope="col">Preço</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr th:each="book : ${books}">
-                <td><a href="http://localhost:8080//bookDetails" th:text="${book.title}"></a></td>
-                <td><a th:text="${book.description}"></a></td>
-                <td><a th:text="${book.price}"></a></td>
-            </tr>
-        </tbody>
-    </table>
+    <div class="container">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Título</th>
+                    <th scope="col">Descrição</th>
+                    <th scope="col">Preço</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="book : ${books}">
+                    <td><a th:href="${(#mvc.url('BC#BookDetails').arg(0, book.id)).build()}"><span th:text="${book.title}"></span></a></td>
+                    <td><span th:text="${book.description}"></span></td>
+                    <td><span th:text="${book.price}"></span></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </body>
 </html>

@@ -7,6 +7,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 //CLASSE CONTROLLER PARA BOOK(LIVRO)
 @Slf4j //Faz o log da classe para poder tratar erros
@@ -28,9 +29,14 @@ public class BookController {
         return "redirect:/Home";
     }
 
-    @RequestMapping(value = "/bookDetails", method = RequestMethod.GET)
-    public String BookDetails() {
-        return "Book/BookDetails";
+    @RequestMapping("/{id}")
+    public ModelAndView BookDetails(@PathVariable("id") long id) {
+        Book book = bookService.findById(id);
+
+        ModelAndView modelAndView = new ModelAndView("Book/BookDetails");
+        modelAndView.addObject("book", book);
+
+        return modelAndView;
     }
 
 //    @GetMapping
