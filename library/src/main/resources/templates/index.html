@@ -4,28 +4,34 @@
 
 <head th:replace = "layout :: headerLayout">
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
-</head>
+</head >
 <title>Livraria</title>
 <body>
     <div th:replace = "layout :: navbarLayout"></div>
 
-    <div class="container">
-        <table class="table">
-            <thead>
-                <tr>
-                    <th scope="col">Título</th>
-                    <th scope="col">Descrição</th>
-                    <th scope="col">Preço</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr th:each="book : ${books}">
-                    <td><a th:href="${(#mvc.url('BC#BookDetails').arg(0, book.id)).build()}"><span th:text="${book.title}"></span></a></td>
-                    <td><span th:text="${book.description}"></span></td>
-                    <td><span th:text="${book.price}"></span></td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
+<!--    <div class="container">-->
+<!--        <table class="table">-->
+<!--            <thead>-->
+<!--                <tr>-->
+<!--                    <th scope="col">Título</th>-->
+<!--                    <th scope="col">Descrição</th>-->
+<!--                    <th scope="col">Preço</th>-->
+<!--                    <th>-->
+<!--                        <form class="d-flex">-->
+<!--                            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">-->
+<!--                            <button class="btn btn-outline-success" type="submit">Search</button>-->
+<!--                        </form>-->
+<!--                    </th>-->
+<!--                </tr>-->
+<!--            </thead>-->
+<!--            <tbody>-->
+<!--                <tr th:each="book : ${books}">-->
+<!--                    <td><a th:href="${(#mvc.url('BC#BookDetails').arg(0, book.id)).build()}"><span th:text="${book.title}"></span></a></td>-->
+<!--                    <td><span th:text="${book.description}"></span></td>-->
+<!--                    <td><span th:text="${book.price}"></span></td>-->
+<!--                </tr>-->
+<!--            </tbody>-->
+<!--        </table>-->
+<!--    </div>-->
 </body>
 </html>

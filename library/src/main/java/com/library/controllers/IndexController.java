@@ -20,12 +20,12 @@ public class IndexController {
 
     //MÉTODO PARA RETORNAR PAGINA
     @RequestMapping("/Home")
-    public ModelAndView index() {
-        ModelAndView modelAndView = new ModelAndView("index");
-        List<Book> books = bookService.findAll();
-        modelAndView.addObject("books", books);
-
-        return modelAndView;
+    public void index() {
+//        ModelAndView modelAndView = new ModelAndView("index");
+//        List<Book> books = bookService.findAll();
+//        modelAndView.addObject("books", books);
+//
+//        return modelAndView;
     }
 
 }

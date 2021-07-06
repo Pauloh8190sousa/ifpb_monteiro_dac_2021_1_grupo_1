@@ -9,6 +9,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.List;
+
 //CLASSE CONTROLLER PARA BOOK(LIVRO)
 @Slf4j //Faz o log da classe para poder tratar erros
 @Controller
@@ -27,6 +29,14 @@ public class BookController {
         bookService.save(book);
 
         return "redirect:/Home";
+    }
+    @RequestMapping("/listBook")
+    public ModelAndView index() {
+        ModelAndView modelAndView = new ModelAndView("Book/BookList");
+        List<Book> books = bookService.findAll();
+        modelAndView.addObject("books", books);
+
+        return modelAndView;
     }
 
     @RequestMapping("/{id}")
