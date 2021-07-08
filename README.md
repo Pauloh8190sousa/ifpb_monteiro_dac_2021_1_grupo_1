@@ -8,6 +8,8 @@
 ## Descrição
 **Projeto referente a disciplina de Desenvolvimento de Aplicações Corporativas (DAC), que tem o intuito de desenvolvedor uma Livraria online com a contribuição dos alunos
 Paulo Henrique Pereira de Sousa e Inathan Moreira da Silva.**
+## Instruções
+**Execute a aplicação na porta https://localhost:8080**
 ## Etapas
 | **CAMADA DE DADOS** | **CAMADA DE APRESENTAÇÃO** | **CAMADA DE INTEGRAÇÃO** | **APRESENTAÇÃO DO PROJETO** |
 |---------------------|----------------------------|--------------------------|-----------------------------|
