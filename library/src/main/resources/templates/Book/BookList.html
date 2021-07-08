@@ -10,8 +10,8 @@
 
 <div class="container">
     <div class="form-group input-group">
-        <span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
-        <input name="consulta" id="txt_consulta" placeholder="Consultar" type="text" class="form-control" >
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success" type="submit">Search</button>
     </div>
     <table id="tabela" class="table table-hover">
         <thead>
@@ -29,9 +29,6 @@
         </tr>
         </tbody>
     </table>
-    <script>
-        $('input#txt_consulta').quicksearch('table#tabela tbody tr');
-    </script>
 </div>
 </body>
 </html>
