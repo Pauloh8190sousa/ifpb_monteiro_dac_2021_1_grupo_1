@@ -39,6 +39,8 @@ public class Book {
 
     private boolean illustration;
 
+    private String imageLink;
+
 //    @DateTimeFormat(pattern = "dd/MM/yyyy")
 //    @Temporal(TemporalType.DATE)
 //    private Date publicationDate;

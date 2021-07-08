@@ -9,29 +9,56 @@
 <body>
     <div th:replace = "layout :: navbarLayout"></div>
 
-<!--    <div class="container">-->
-<!--        <table class="table">-->
-<!--            <thead>-->
-<!--                <tr>-->
-<!--                    <th scope="col">Título</th>-->
-<!--                    <th scope="col">Descrição</th>-->
-<!--                    <th scope="col">Preço</th>-->
-<!--                    <th>-->
-<!--                        <form class="d-flex">-->
-<!--                            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">-->
-<!--                            <button class="btn btn-outline-success" type="submit">Search</button>-->
-<!--                        </form>-->
-<!--                    </th>-->
-<!--                </tr>-->
-<!--            </thead>-->
-<!--            <tbody>-->
-<!--                <tr th:each="book : ${books}">-->
-<!--                    <td><a th:href="${(#mvc.url('BC#BookDetails').arg(0, book.id)).build()}"><span th:text="${book.title}"></span></a></td>-->
-<!--                    <td><span th:text="${book.description}"></span></td>-->
-<!--                    <td><span th:text="${book.price}"></span></td>-->
-<!--                </tr>-->
-<!--            </tbody>-->
-<!--        </table>-->
-<!--    </div>-->
+    <div class=" mt-4 container">
+        <h4 class="mt-4 mb-3 fw-bold">Sugestões para você</h4>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col"></th>
+                    <th scope="col">Título</th>
+                    <th scope="col">Descrição</th>
+                    <th scope="col">Preço</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="book : ${books}">
+                    <td><img
+                        src= "https://images-na.ssl-images-amazon.com/images/I/61QHzVV4T5L._SX424_BO1,204,203,200_.jpg"
+                        width="80"
+                        height="110"
+                        />
+                    </td>
+                    <td><a th:href="${(#mvc.url('BC#BookDetails').arg(0, book.id)).build()}"><span th:text="${book.title}"></span></a></td>
+                    <td><span th:text="${book.description}"></span></td>
+                    <td><span th:text="${book.price}"></span></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+<!--    <main class="container">-->
+<!--        <h4 class="mt-4 mb-3 fw-bold">Sugestões para você</h4>-->
+
+<!--        <div class="row row-cols-2 row-cols-sm-3 row-cols-md-4 g-3">-->
+<!--            <div class="col">-->
+<!--                <div class="card">-->
+<!--                    <img-->
+<!--                                src="https://images-na.ssl-images-amazon.com/images/I/41XW6ajI2CL._SX370_BO1,204,203,200_.jpg"-->
+<!--                                height="225"-->
+<!--                                class="card-img-top img-fit-contain"-->
+<!--                    />-->
+
+<!--                    <div class="card-body">-->
+<!--                        <h5 class="card-title mb-3"><a th:href="${(#mvc.url('BC#BookDetails').arg(0, books[4].id)).build()}"><span th:text="${book[4].title}"></span></a></h5>-->
+
+<!--                        <h6 class="card-subtitle text-muted mb-2"><span th:text="${book.description}"></span></h6>-->
+
+<!--                        <p class="card-text fs-4 fw-bold"><span th:text="${book.price}"></span> R$</p>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </main>-->
+
 </body>
 </html>
