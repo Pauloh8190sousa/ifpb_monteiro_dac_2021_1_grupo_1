@@ -31,7 +31,7 @@ public class BookController {
         return "redirect:/Home";
     }
     @RequestMapping("/listBook")
-    public ModelAndView index() {
+    public ModelAndView index(String title) {
         ModelAndView modelAndView = new ModelAndView("Book/BookList");
         List<Book> books = bookService.findAll();
         modelAndView.addObject("books", books);
