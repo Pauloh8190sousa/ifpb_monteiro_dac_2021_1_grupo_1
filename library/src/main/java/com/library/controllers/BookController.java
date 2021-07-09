@@ -1,7 +1,9 @@
 package com.library.controllers;
 
+import com.library.models.Author;
 import com.library.models.Book;
 
+import com.library.services.AuthorService;
 import com.library.services.BookService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,8 +19,17 @@ import java.util.List;
 @Slf4j //Faz o log da classe para poder tratar erros
 @Controller
 public class BookController {
+
     @Autowired
-    BookService bookService;
+    private BookService bookService;
+
+    @Autowired
+    private AuthorService authorService;
+
+    @ModelAttribute("allAuthors")
+    public List<Author> authors(){
+        return authorService.findAll();
+    }
 
     @RequestMapping(value = "/createBook", method = RequestMethod.GET)
     public String createBook() {

@@ -13,6 +13,13 @@
             <label for="title" class="form-label">Título</label>
             <input type="text" class="form-control" id="title" name="title" placeholder="Digite um título"/>
         </div>
+        <div class="col-md-3">
+            <label for="authors"  class="form-label">Autor do Livro</label>
+            <select class="form-select">
+                <option id="authors" name="authors" th:each="author : ${allAuthors}" th:value="${author.id}"><span
+                        th:text="${author.name}"> Selecione... </span></option>
+            </select>
+        </div>
         <div class="mb-3">
             <label for="price" class="form-label">Preço</label>
             <input type="number" class="form-control" id="price" name="price" placeholder="Digite um preço"/>
