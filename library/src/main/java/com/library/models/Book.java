@@ -19,7 +19,7 @@ import static javax.persistence.GenerationType.IDENTITY;
 @Table(name = "book_tb")
 @Getter
 @Setter
-public class Book {
+public class Book implements Comparable<Book> {
 
     @Id
     @GeneratedValue(strategy = IDENTITY)
@@ -65,5 +65,10 @@ public class Book {
     }
     public Book(){
 
+    }
+
+    @Override
+    public int compareTo(Book book) {
+        return this.getTitle().compareTo(book.getTitle());
     }
 }

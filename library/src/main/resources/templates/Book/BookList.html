@@ -14,6 +14,8 @@
         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
         <button class="btn btn-outline-success" type="submit">Search</button>
     </form>
+    <a th:href="@{listBook(size=${5})}">
+    </a>
     <table id="tabela" class="table table-hover">
         <thead>
         <tr>
@@ -23,7 +25,7 @@
         </tr>
         </thead>
         <tbody>
-        <tr th:each="book : ${books}">
+        <tr th:each="book : ${books} ">
             <td><a th:href="${(#mvc.url('BC#BookDetails').arg(0, book.id)).build()}"><span th:text="${book.title}"></span></a></td>
             <td><span th:text="${book.description}"></span></td>
             <td><span th:text="${book.price}"></span></td>

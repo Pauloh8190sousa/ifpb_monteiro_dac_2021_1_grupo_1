@@ -9,6 +9,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 //CLASSE CONTROLLER PARA BOOK(LIVRO)
@@ -31,9 +33,10 @@ public class BookController {
         return "redirect:/Home";
     }
     @RequestMapping("/listBook")
-    public ModelAndView index(String title) {
+    public ModelAndView index() {
         ModelAndView modelAndView = new ModelAndView("Book/BookList");
         List<Book> books = bookService.findAll();
+        Collections.sort(books);
         modelAndView.addObject("books", books);
 
         return modelAndView;
