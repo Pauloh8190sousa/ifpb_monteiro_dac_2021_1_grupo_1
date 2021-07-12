@@ -69,18 +69,18 @@ public class Validation {
         return !date.after(currentDate);
     }
 
-    public boolean validationPassword(String password){
-        if(password.length()>4 && password.matches("[A-Za-z0-9]")){
-            return true;
+    public boolean validationPassword(String password) throws Exception {
+        if(password.length()<=4 || !password.matches("[A-Za-z0-9]")){
+            throw new Exception("Senha inválida");
         }
-        return false;
+        return true;
     }
 
-    public boolean validationUserName(String userName) {
-        if(userName.length() >= 3 && userName.length()<=20){
-            return true;
+    public boolean validationUserName(String userName) throws Exception {
+        if(userName.length() < 3 || userName.length() > 20){
+            throw new Exception("Nome inválido");
         }
-        return false;
+        return true;
     }
 
     public boolean duplicateEmail(User user, String userEmail) {

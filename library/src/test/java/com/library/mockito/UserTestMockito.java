@@ -15,6 +15,7 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
+import javax.naming.InvalidNameException;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -93,15 +94,15 @@ public class UserTestMockito {
     }
 
     @Test
-    public void validationUserName() {
+    public void validationUserName() throws Exception {
 
         when(validation.validationUserName("Inathan")).thenReturn(true);
-        when(validation.validationUserName("ad")).thenReturn(false);
-        when(validation.validationUserName("Joaquim Ferreira de souza santos Bezerra da silva")).thenReturn(false);
+        when(validation.validationUserName("ad")).thenThrow(new Exception());
+        when(validation.validationUserName("Joaquim Ferreira de souza santos Bezerra da silva")).thenThrow(new Exception());
 
         assertTrue(validation.validationUserName("Inathan"));
-        assertFalse(validation.validationUserName("ad"));
-        assertFalse(validation.validationUserName("Joaquim Ferreira de souza santos Bezerra da silva"));
+        assertThrows(Exception.class, () -> validation.validationUserName("ad"));
+        assertThrows(Exception.class, () -> validation.validationUserName("Joaquim Ferreira de souza santos Bezerra da silva"));
 
         verify(validation, times(1)).validationUserName("Inathan");
         verify(validation, times(1)).validationUserName("ad");
@@ -132,12 +133,12 @@ public class UserTestMockito {
     }
 
     @Test
-    public void validationPassword() {
-       when(validation.validationPassword("a@3#")).thenReturn(false);
-       when(validation.validationPassword("user123")).thenReturn(true);
+    public void validationPassword() throws Exception {
+        when(validation.validationPassword("a@3#")).thenThrow(new Exception());
+        when(validation.validationPassword("user123")).thenReturn(true);
 
         assertTrue(validation.validationPassword("user123"));
-        assertFalse(validation.validationPassword("a@3#"));
+        assertThrows(Exception.class, () -> validation.validationPassword("a@3#"));
 
         verify(validation, times(1)).validationPassword("user123");
         verify(validation, times(1)).validationPassword("a@3#");
