@@ -44,11 +44,13 @@ public class BookController {
         return "redirect:/Home";
     }
     @RequestMapping("/listBook")
-    public ModelAndView index() {
+    public ModelAndView BookList(@PathVariable("page") int page) {
         ModelAndView modelAndView = new ModelAndView("Book/BookList");
-        List<Book> books = bookService.findAll();
-        Collections.sort(books);
+        List<Book> books = bookService.listAllBooks(page);
+//        List<Book> books = listAllBooks(5);
+//        Collections.sort(books);
         modelAndView.addObject("books", books);
+
 
         return modelAndView;
     }
@@ -68,7 +70,7 @@ public class BookController {
 //        return bookService.findAll();
 //    }
 //
-//    //MÉTODO PARA LISTAR BOOKS DE FORMA PÁGINADA
+    //MÉTODO PARA LISTAR BOOKS DE FORMA PÁGINADA
 //    @GetMapping("/pages/{nbPage}")
 //    public List<Book> listAllBooks(@PathVariable(value = "nbPage") int nbPage) {
 //        return bookService.listAllBooks(nbPage);
