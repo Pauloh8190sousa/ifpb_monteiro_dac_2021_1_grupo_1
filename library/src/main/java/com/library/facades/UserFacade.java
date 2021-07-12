@@ -25,7 +25,7 @@ public class UserFacade {
         return null;
     }
 
-    public List<User> findByEmail(String emailUser) {
+    public User findByEmail(String emailUser) {
         return userService.findByEmail(emailUser);
     }
 

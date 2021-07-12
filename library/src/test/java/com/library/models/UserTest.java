@@ -44,10 +44,10 @@ public class UserTest {
 
     @Test
     public void findByEmail() {
-        List<User> users = userService.findByEmail("inathan@gmail.com");
-        assertEquals("Inathan", users.get(0).getName());
-        assertEquals("inathan@gmail.com", users.get(0).getEmail());
-        assertEquals(2L, users.get(0).getId());
+        User users = userService.findByEmail("inathan@gmail.com");
+        assertEquals("Inathan", users.getName());
+        assertEquals("inathan@gmail.com", users.getEmail());
+        assertEquals(2L, users.getId());
     }
 
     @Test
@@ -67,7 +67,7 @@ public class UserTest {
 
     @Test
     public void duplicateEmail() {
-        User user = userService.findByEmail("inathan@gmail.com").get(0);
+        User user = userService.findByEmail("inathan@gmail.com");
         assertFalse(Validation.duplicateEmail(user, "inathan@gmail.com"));
     }
 

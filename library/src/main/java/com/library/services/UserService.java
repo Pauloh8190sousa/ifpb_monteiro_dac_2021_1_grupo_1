@@ -27,7 +27,7 @@ public class UserService {
     }
 
     //MÉTODO PARA LISTAR USERS PELO EMAIL
-    public List<User> findByEmail(String emailUser) {
+    public User findByEmail(String emailUser) {
 
         return userRepository.findByEmail(emailUser);
     }

@@ -11,6 +11,6 @@ import java.util.List;
 public interface UserRepository extends JpaRepository<User, Long> {
 
     //MÉTODO PARA LISTAR USERS PELO EMAIL
-    public List<User> findByEmail(String emailUser);
+    public User findByEmail(String emailUser);
 
 }
