@@ -51,9 +51,27 @@ public class UserTestMockito {
 
     @Test
     public void findByEmail() {
-        User users = userService.findByEmail("inathan@gmail.com");
-        assertThat(users.getEmail()).isEqualTo("inathan@gmail.com");
+        when(userRepository.findByEmail("inathan@gmail.com")).thenReturn(user);
+
+        User user = userService.findByEmail("inathan@gmail.com");
+        assertThat(user.getEmail()).isEqualTo("inathan@gmail.com");
         verify(userRepository, times(1)).findByEmail("inathan@gmail.com");
+    }
+
+    @Test
+    public void findByName() {
+        when(userRepository.findByName("Inathan")).thenReturn(user);
+
+        User user = userService.findByName("Inathan");
+        assertThat(user.getName()).isEqualTo("Inathan");
+        verify(userRepository, times(1)).findByName("Inathan");
+    }
+
+    @Test
+    public void saveUser() {
+        assertNotNull(userService.save(user));
+
+        verify(userRepository, times(1)).save(user);
     }
 
 }

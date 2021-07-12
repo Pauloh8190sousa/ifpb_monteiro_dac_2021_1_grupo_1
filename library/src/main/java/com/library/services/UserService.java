@@ -32,6 +32,11 @@ public class UserService {
         return userRepository.findByEmail(emailUser);
     }
 
+    public User findByName(String nameUser) {
+
+        return userRepository.findByName(nameUser);
+    }
+
     //MÉTODO PARA CONSULTAR UM USER PELO ID
     public User findById(Long idUser) {
 
