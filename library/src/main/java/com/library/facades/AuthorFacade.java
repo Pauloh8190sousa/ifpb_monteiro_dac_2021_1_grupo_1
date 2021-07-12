@@ -15,6 +15,8 @@ public class AuthorFacade {
     @Autowired
     private AuthorService authorService;
 
+    Validation validation = new Validation();
+
     public void saveAuthor(String name, String bibliographicReference){
     //    if(Validation.validationBibliographicReference(bibliographicReference)){
         Author author = new Author(name,bibliographicReference);
@@ -27,7 +29,7 @@ public class AuthorFacade {
 
         Author author = findById(idAuthor);
         author.setName(name);
-        if(Validation.validationBibliographicReference(reference)){
+        if(validation.validationBibliographicReference(reference)){
             author.setBibliographicReference(reference);
         }else{
             System.out.println("Não foi possível mudar a referência bibliografica por que está inválida!");

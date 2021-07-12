@@ -38,7 +38,7 @@ public class UserService {
     }
 
     //MÉTODO PARA CONSULTAR UM USER PELO ID
-    public User findById(Long idUser) {
+    public User findById(Long idUser) throws Exception {
 
         return userRepository.findById(idUser).orElseThrow();
     }

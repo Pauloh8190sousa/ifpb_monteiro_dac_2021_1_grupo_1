@@ -17,9 +17,11 @@ public class BookFacade {
     @Autowired
     private BookService bookService;
 
+    Validation validation = new Validation();
+
 
     public Book saveBook(String title, BigDecimal price, String description, int nbOfPages, String isbn, boolean illustration){
-        if(Validation.validationISBN(isbn) && Validation.validationPrice(price)){
+        if(validation.validationISBN(isbn) && validation.validationPrice(price)){
             Book book = new Book(title, price, description, nbOfPages, isbn, illustration);
             return bookService.save(book);
         }else{
@@ -30,7 +32,7 @@ public class BookFacade {
     public void changeBook(Long id, String title, BigDecimal price, String description, int nbOfPages, String isbn, boolean illustration){
        Book book = findById(id);
        book.setTitle(title);
-       if(Validation.validationPrice(price) && Validation.validationISBN(isbn)){
+       if(validation.validationPrice(price) && validation.validationISBN(isbn)){
            book.setPrice(price);
            book.setIsbn(isbn);
        }else{

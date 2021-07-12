@@ -1,11 +1,13 @@
 package com.library.mockito;
 
 import com.library.models.User;
+import com.library.models.Validation;
 import com.library.repositories.UserRepository;
 import com.library.services.UserService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.junit.jupiter.api.function.Executable;
 import org.mockito.Spy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.TestConfiguration;
@@ -13,11 +15,12 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
+import java.util.LinkedList;
+import java.util.List;
+
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
-
-import java.util.List;
 
 @ExtendWith(SpringExtension.class)
 public class UserTestMockito {
@@ -40,13 +43,14 @@ public class UserTestMockito {
     @MockBean
     private UserRepository userRepository;
 
+    @MockBean
+    private Validation validation;
+
     @BeforeEach
     public void initial() {
+        user.setId(1L);
         user.setName("Inathan");
         user.setEmail("inathan@gmail.com");
-
-        when(userRepository.findByEmail("inathan@gmail.com")).thenReturn(user);
-        when(userRepository.save(user)).thenReturn(user);
     }
 
     @Test
@@ -68,10 +72,88 @@ public class UserTestMockito {
     }
 
     @Test
+    public void findById() throws Exception {
+        when(userRepository.findById(1L)).thenReturn(java.util.Optional.of(user));
+
+        User user = userService.findById(1L);
+        assertThat(user.getId()).isEqualTo(1L);
+
+        assertThrows(Exception.class, () -> userService.findById(7L));
+
+        verify(userRepository, times(1)).findById(1L);
+    }
+
+    @Test
     public void saveUser() {
+        when(userRepository.save(user)).thenReturn(user);
+
         assertNotNull(userService.save(user));
 
         verify(userRepository, times(1)).save(user);
+    }
+
+    @Test
+    public void validationUserName() {
+
+        when(validation.validationUserName("Inathan")).thenReturn(true);
+        when(validation.validationUserName("ad")).thenReturn(false);
+        when(validation.validationUserName("Joaquim Ferreira de souza santos Bezerra da silva")).thenReturn(false);
+
+        assertTrue(validation.validationUserName("Inathan"));
+        assertFalse(validation.validationUserName("ad"));
+        assertFalse(validation.validationUserName("Joaquim Ferreira de souza santos Bezerra da silva"));
+
+        verify(validation, times(1)).validationUserName("Inathan");
+        verify(validation, times(1)).validationUserName("ad");
+        verify(validation, times(1)).validationUserName("Joaquim Ferreira de souza santos Bezerra da silva");
+    }
+
+    @Test
+    public void duplicateEmail() {
+        List<String> mockedList = mock(List.class);
+
+        mockedList.add("inathan@gmail.com");
+        mockedList.add("inathan@gmail.com");
+
+        verify(mockedList, times(2)).add("inathan@gmail.com");
+
+    }
+
+    @Test
+    void validationEmail() {
+        when(validation.validationEmail("inathan@gmail.com")).thenReturn(true);
+        when(validation.validationEmail("inathangmail")).thenReturn(false);
+
+        assertTrue(validation.validationEmail("inathan@gmail.com"));
+        assertFalse(validation.validationEmail("inathangmail"));
+
+        verify(validation, times(1)).validationEmail("inathan@gmail.com");
+        verify(validation, times(1)).validationEmail("inathangmail");
+    }
+
+    @Test
+    public void validationPassword() {
+       when(validation.validationPassword("a@3#")).thenReturn(false);
+       when(validation.validationPassword("user123")).thenReturn(true);
+
+        assertTrue(validation.validationPassword("user123"));
+        assertFalse(validation.validationPassword("a@3#"));
+
+        verify(validation, times(1)).validationPassword("user123");
+        verify(validation, times(1)).validationPassword("a@3#");
+    }
+
+    //<---------- FUTURAS IMPLEMENTAÇÕES NO SISTEMA ---------->
+
+    @Test
+    public void emailAvailable() {
+        List<String> mockedList = mock(List.class);
+
+        mockedList.add("inathan@gmail.com");
+
+        String newEmail = "killmor@gmail.com";
+
+        verify(mockedList, never()).add(newEmail);
     }
 
 }

@@ -15,8 +15,10 @@ public class UserFacade {
     @Autowired
     private UserService userService;
 
+    Validation validation = new Validation();
+
     public User saveUser(String name, String email) {
-        if(Validation.validationEmail(email)){
+        if(validation.validationEmail(email)){
             User user = new User(name, email);
             return userService.save(user);
         }else{
@@ -41,7 +43,15 @@ public class UserFacade {
         System.out.println("Selecione um usuário pelo Id: ");
         Long userId = Long.parseLong(read.nextLine());
 
-        return userService.findById(userId);
+        User user = null;
+
+        try {
+            user = userService.findById(userId);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return user;
     }
 
 }
