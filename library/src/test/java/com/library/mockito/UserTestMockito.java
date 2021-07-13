@@ -157,4 +157,13 @@ public class UserTestMockito {
         verify(mockedList, never()).add(newEmail);
     }
 
+    @Test
+    public void recoverPassword() {
+        when(validation.recoverPassword("novaSenha")).thenReturn("Senha atualizada");
+
+        assertEquals("Senha atualizada", validation.recoverPassword("novaSenha"));
+
+        verify(validation, timeout(100000).times(1)).recoverPassword("novaSenha");
+    }
+
 }

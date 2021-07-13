@@ -118,4 +118,8 @@ public class Validation {
        return true;
     }
 
+    public String recoverPassword(String newPassword) {
+        return newPassword;
+    }
+
 }
