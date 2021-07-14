@@ -9,6 +9,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -65,18 +66,18 @@ public class BookService {
     }
 
     //MÉTODO PARA ALTERAR UM BOOK
-//    public void changeBook(Long idBook, String title, BigDecimal price, String description, int nbOfPages, int ISBN, boolean illustration) {
-//        Book updatedBook = bookRepository.findById(idBook).orElseThrow();
-//
-//        updatedBook.setTitle(title);
-//        updatedBook.setPrice(price);
-//        updatedBook.setDescription(description);
-//        updatedBook.setNbOfPages(nbOfPages);
-//        updatedBook.setISBN(ISBN);
-//        updatedBook.setIllustration(illustration);
-//
-//        save(updatedBook);
-//    }
+    public Book changeBook(Long idBook, String title, BigDecimal price, String description, int nbOfPages, String ISBN, boolean illustration) {
+        Book updatedBook = bookRepository.findById(idBook).orElseThrow();
+
+        updatedBook.setTitle(title);
+        updatedBook.setPrice(price);
+        updatedBook.setDescription(description);
+        updatedBook.setNbOfPages(nbOfPages);
+        updatedBook.setIsbn(ISBN);
+        updatedBook.setIllustration(illustration);
+
+        return save(updatedBook);
+    }
 
     //MÉTODO PARA LISTAR OS CINCO BOOKS MAIS BARATOS DISPONIVEIS NO STOCK
     public List<Book> listCheapBooksAvailable() {

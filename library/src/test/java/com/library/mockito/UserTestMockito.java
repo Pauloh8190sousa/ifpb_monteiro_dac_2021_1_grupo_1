@@ -163,7 +163,16 @@ public class UserTestMockito {
 
         assertEquals("Senha atualizada", validation.redefinePassword("novaSenha"));
 
-        verify(validation, timeout(100000).times(1)).redefinePassword("novaSenha");
+        verify(validation, timeout(100000).atLeast(1)).redefinePassword("novaSenha");
+    }
+
+    @Test
+    public void registrationLimit() {
+        when(userRepository.save(user)).thenReturn(user);
+
+        assertNotNull(userRepository.save(user));
+
+        verify(userRepository, atMost(1)).save(user);
     }
 
 }

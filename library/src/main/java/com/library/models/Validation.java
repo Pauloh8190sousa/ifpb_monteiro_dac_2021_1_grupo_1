@@ -122,4 +122,8 @@ public class Validation {
         return newPassword;
     }
 
+    public Book changeBookIfSaved(Book book) {
+        return book;
+    }
+
 }

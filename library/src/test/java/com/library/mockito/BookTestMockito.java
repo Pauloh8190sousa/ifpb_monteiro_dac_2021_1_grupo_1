@@ -66,22 +66,34 @@ public class BookTestMockito {
         book.setPublicationDate("10/07/2005");
     }
 
-    //<---------- VALIDAÇÃO ---------->
-
-
     @Test
     void validationISBN() throws Exception {
         when(validation.validationISBN("9858746623875")).thenReturn(true);
-        when(validation.validationISBN("98587465")).thenThrow(new Exception());
-        when(validation.validationISBN("9858746523569765212")).thenThrow(new Exception());
+        when(validation.validationISBN("98587465")).thenThrow(new Exception("ISBN menor que o esperado"));
+        when(validation.validationISBN("9858746523569765212")).thenThrow(new Exception("ISBN maior que o esperado"));
 
         assertTrue(validation.validationISBN("9858746623875"));
         assertThrows(Exception.class, () -> validation.validationISBN("98587465"));
         assertThrows(Exception.class, () -> validation.validationISBN("9858746523569765212"));
 
+        String errorMessage = "";
+        try {
+            validation.validationISBN("98587465");
+        } catch (Exception error) {
+            errorMessage = error.getMessage();
+        }
+        assertEquals("ISBN menor que o esperado", errorMessage);
+
+        try {
+            validation.validationISBN("9858746523569765212");
+        } catch (Exception error) {
+            errorMessage = error.getMessage();
+        }
+        assertEquals("ISBN maior que o esperado", errorMessage);
+
         verify(validation, times(1)).validationISBN("9858746623875");
-        verify(validation, times(1)).validationISBN("98587465");
-        verify(validation, times(1)).validationISBN("9858746523569765212");
+        verify(validation, times(2)).validationISBN("98587465");
+        verify(validation, times(2)).validationISBN("9858746523569765212");
     }
 
     @Test
@@ -96,16 +108,16 @@ public class BookTestMockito {
         verify(validation, times(1)).validationPrice(BigDecimal.valueOf(-20));
     }
 
-//    @Test
-//    public void validationDateOfBook() throws ParseException {
-//        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-//        Date date = sdf.parse("30/07/2007");
-//
-//        assertTrue(validation.validationDateOfBook(date));
-//
-//        date = sdf.parse("05/09/2050");
-//        assertFalse(validation.validationDateOfBook(date));
-//    }
+    @Test
+    public void validationDateOfBook() throws ParseException {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        Date date = sdf.parse("30/07/2007");
+
+        assertTrue(validation.validationDateOfBook(date));
+
+        date = sdf.parse("05/09/2050");
+        assertFalse(validation.validationDateOfBook(date));
+    }
 //
 //    @Test
 //    public void stockBook() {
@@ -133,4 +145,8 @@ public class BookTestMockito {
 //        assertTrue(validation.validationDescriptionBook("Um mundo de magia e mistério"));
 //        assertFalse(validation.validationDescriptionBook(""));
 //    }
+
+    //<---------- FUTURAS IMPLEMENTAÇÕES NO SISTEMA ---------->
+
+
 }
