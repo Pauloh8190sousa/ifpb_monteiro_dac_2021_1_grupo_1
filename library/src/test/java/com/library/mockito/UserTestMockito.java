@@ -158,12 +158,12 @@ public class UserTestMockito {
     }
 
     @Test
-    public void recoverPassword() {
-        when(validation.recoverPassword("novaSenha")).thenReturn("Senha atualizada");
+    public void redefinePassword() {
+        when(validation.redefinePassword("novaSenha")).thenReturn("Senha atualizada");
 
-        assertEquals("Senha atualizada", validation.recoverPassword("novaSenha"));
+        assertEquals("Senha atualizada", validation.redefinePassword("novaSenha"));
 
-        verify(validation, timeout(100000).times(1)).recoverPassword("novaSenha");
+        verify(validation, timeout(100000).times(1)).redefinePassword("novaSenha");
     }
 
 }

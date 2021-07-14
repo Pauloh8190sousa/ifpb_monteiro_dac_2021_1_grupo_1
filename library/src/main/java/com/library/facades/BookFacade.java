@@ -20,7 +20,7 @@ public class BookFacade {
     Validation validation = new Validation();
 
 
-    public Book saveBook(String title, BigDecimal price, String description, int nbOfPages, String isbn, boolean illustration){
+    public Book saveBook(String title, BigDecimal price, String description, int nbOfPages, String isbn, boolean illustration) throws Exception {
         if(validation.validationISBN(isbn) && validation.validationPrice(price)){
             Book book = new Book(title, price, description, nbOfPages, isbn, illustration);
             return bookService.save(book);
@@ -29,7 +29,7 @@ public class BookFacade {
         }
         return null;
     }
-    public void changeBook(Long id, String title, BigDecimal price, String description, int nbOfPages, String isbn, boolean illustration){
+    public void changeBook(Long id, String title, BigDecimal price, String description, int nbOfPages, String isbn, boolean illustration) throws Exception {
        Book book = findById(id);
        book.setTitle(title);
        if(validation.validationPrice(price) && validation.validationISBN(isbn)){

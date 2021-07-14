@@ -38,16 +38,16 @@ public class Validation {
         return false;
     }
 
-    public boolean validationISBN(String number){
+    public boolean validationISBN(String number) throws Exception {
         String numero = String.valueOf(number);
-        if(numero.length()==13){
-            return true;
+        if(numero.length()!=13){
+            throw new Exception("ISBN inválido");
         }
-        return false;
+        return true;
     }
-    public boolean validationPrice(BigDecimal price){
+    public boolean validationPrice(BigDecimal price) throws Exception {
         if(price.doubleValue() < 0){
-            return false;
+            throw new Exception("Preço inválido");
         }
         return true;
     }
@@ -118,7 +118,7 @@ public class Validation {
        return true;
     }
 
-    public String recoverPassword(String newPassword) {
+    public String redefinePassword(String newPassword) {
         return newPassword;
     }
 
