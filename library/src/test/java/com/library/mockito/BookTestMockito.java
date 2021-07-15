@@ -24,6 +24,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
@@ -111,40 +112,109 @@ public class BookTestMockito {
     @Test
     public void validationDateOfBook() throws ParseException {
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-        Date date = sdf.parse("30/07/2007");
 
-        assertTrue(validation.validationDateOfBook(date));
+        Date trueDate = sdf.parse("30/07/2007");
+        when(validation.validationDateOfBook(trueDate)).thenReturn(true);
+        assertTrue(validation.validationDateOfBook(trueDate));
 
-        date = sdf.parse("05/09/2050");
-        assertFalse(validation.validationDateOfBook(date));
+        Date falseDate = sdf.parse("05/09/2050");
+        when(validation.validationDateOfBook(falseDate)).thenReturn(false);
+        assertFalse(validation.validationDateOfBook(falseDate));
+
+        verify(validation, times(1)).validationDateOfBook(trueDate);
+        verify(validation, times(1)).validationDateOfBook(falseDate);
     }
-//
-//    @Test
-//    public void stockBook() {
-//        assertTrue(validation.validationStock(3));
-//        assertFalse(validation.validationStock(-10));
-//        assertFalse(validation.validationStock(1001));
-//    }
-//
-//    @Test
-//    public void pageLimit() {
-//        assertTrue(validation.pageLimit(327));
-//        assertFalse(validation.pageLimit(0));
-//    }
-//
-//    @Test
-//    public void validationTitle() {
-//        assertTrue(validation.validationTitle("Harry Potter"));
-//        assertFalse(validation.validationTitle(""));
-//        assertFalse(validation.validationTitle("kmdsk sdnksdn ndsnkdnks ndksndksn nksndknd knsdks" +
-//                "dmskdmks ndskndks ndksndk sndksnd cnjdnj fbdjbf jbfdjbfjd jbdfjbdjf jdsdknd"));
-//    }
-//
-//    @Test
-//    public void validationDescription() {
-//        assertTrue(validation.validationDescriptionBook("Um mundo de magia e mistério"));
-//        assertFalse(validation.validationDescriptionBook(""));
-//    }
+
+    @Test
+    public void stockBook() throws Exception {
+        when(validation.validationStock(3)).thenReturn(true);
+        when(validation.validationStock(-10)).thenThrow(new Exception("Número negativo não permitido"));
+        when(validation.validationStock(1001)).thenThrow(new Exception("Estoque maior que mil não permitido"));
+
+        assertThrows(Exception.class, () -> validation.validationStock(-10));
+        assertThrows(Exception.class, () -> validation.validationStock(1001));
+        assertTrue(validation.validationStock(3));
+
+        String errorMessage = "";
+        try {
+            validation.validationStock(-10);
+        } catch (Exception error) {
+            errorMessage = error.getMessage();
+        }
+        assertEquals("Número negativo não permitido", errorMessage);
+
+        try {
+            validation.validationStock(1001);
+        } catch (Exception error) {
+            errorMessage = error.getMessage();
+        }
+        assertEquals("Estoque maior que mil não permitido", errorMessage);
+
+        verify(validation, times(1)).validationStock(3);
+        verify(validation, times(2)).validationStock(-10);
+        verify(validation, times(2)).validationStock(1001);
+    }
+
+    @Test
+    public void pageLimit() throws Exception {
+        when(validation.pageLimit(327)).thenReturn(true);
+        when(validation.pageLimit(0)).thenThrow(new Exception("Número de páginas tem que ser maior que 0"));
+        when(validation.pageLimit(-15)).thenThrow(new Exception("Número de páginas tem que ser positivo"));
+
+        assertThrows(Exception.class, () -> validation.pageLimit(0));
+        assertThrows(Exception.class, () -> validation.pageLimit(-15));
+        assertTrue(validation.pageLimit(327));
+
+        String errorMessage = "";
+        try {
+            validation.pageLimit(0);
+        } catch (Exception error) {
+            errorMessage = error.getMessage();
+        }
+        assertEquals("Número de páginas tem que ser maior que 0", errorMessage);
+
+        try {
+            validation.pageLimit(-15);
+        } catch (Exception error) {
+            errorMessage = error.getMessage();
+        }
+        assertEquals("Número de páginas tem que ser positivo", errorMessage);
+
+        verify(validation, times(2)).pageLimit(0);
+        verify(validation, times(2)).pageLimit(-15);
+        verify(validation, times(1)).pageLimit(327);
+
+    }
+
+    @Test
+    public void validationTitle() {
+        when(validation.validationTitle("Harry Potter")).thenReturn(true);
+        when(validation.validationTitle("")).thenReturn(false);
+        when(validation.validationTitle("kmdsk sdnksdn ndsnkdnks ndksndksn nksndknd knsdks dmskdmks ndskndks ndksndk sndksnd cnjdnj fbdjbf jbfdjbfjd jbdfjbdjf jdsdknd"))
+                .thenReturn(false);
+
+        assertTrue(validation.validationTitle("Harry Potter"));
+        assertFalse(validation.validationTitle(""));
+        assertFalse(validation.validationTitle("kmdsk sdnksdn ndsnkdnks ndksndksn nksndknd knsdks" +
+                "dmskdmks ndskndks ndksndk sndksnd cnjdnj fbdjbf jbfdjbfjd jbdfjbdjf jdsdknd"));
+
+        verify(validation, times(1)).validationTitle("Harry Potter");
+        verify(validation, times(1)).validationTitle("");
+        verify(validation, times(1)).validationTitle("kmdsk sdnksdn ndsnkdnks ndksndksn nksndknd knsdks" +
+                "dmskdmks ndskndks ndksndk sndksnd cnjdnj fbdjbf jbfdjbfjd jbdfjbdjf jdsdknd");
+    }
+
+    @Test
+    public void validationDescription() {
+        when(validation.validationDescriptionBook("Um mundo de magia e mistério")).thenReturn(true);
+        when(validation.validationDescriptionBook("")).thenReturn(false);
+
+        assertThat(validation.validationDescriptionBook("Um mundo de magia e mistério")).isEqualTo(true);
+        assertThat(validation.validationDescriptionBook("")).isEqualTo(false);
+
+        verify(validation, times(1)).validationDescriptionBook("Um mundo de magia e mistério");
+        verify(validation, times(1)).validationDescriptionBook("");
+    }
 
     //<---------- FUTURAS IMPLEMENTAÇÕES NO SISTEMA ---------->
 

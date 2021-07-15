@@ -90,14 +90,14 @@ public class Validation {
         return true;
     }
 
-    public boolean validationStock(int stock) {
+    public boolean validationStock(int stock) throws Exception {
         if(stock <= 0 || stock > 1000) {
             return false;
         }
         return true;
     }
 
-    public boolean pageLimit(int nbOfPages) {
+    public boolean pageLimit(int nbOfPages) throws Exception {
         if(nbOfPages <= 0 || nbOfPages > 10000) {
             return false;
         }
