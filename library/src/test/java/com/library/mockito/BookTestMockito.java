@@ -216,7 +216,17 @@ public class BookTestMockito {
         verify(validation, times(1)).validationDescriptionBook("");
     }
 
-    //<---------- FUTURAS IMPLEMENTAÇÕES NO SISTEMA ---------->
 
+    @Test
+    public void validationCategory(){
+        when(validation.validationCategory("Terror")).thenReturn(true);
 
+        when(validation.validationCategory("Desconhecido")).thenReturn(false);
+
+        assertEquals(true, validation.validationCategory("Terror"));
+
+        assertEquals(false, validation.validationCategory("Desconhecido"));
+
+        verify(validation, times(1)).validationCategory("Terror");
+    }
 }

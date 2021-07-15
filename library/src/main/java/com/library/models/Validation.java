@@ -122,6 +122,18 @@ public class Validation {
         return newPassword;
     }
 
+    public boolean validationCategory(String bookCategory){
+        if(bookCategory.equals("Terror")){
+            return true;
+        }else if(bookCategory.equals("Suspense")){
+            return true;
+        }
+        else if(bookCategory.equals("Romance")){
+            return true;
+        }
+        return true;
+    }
+
     public Book changeBookIfSaved(Book book) {
         return book;
     }
