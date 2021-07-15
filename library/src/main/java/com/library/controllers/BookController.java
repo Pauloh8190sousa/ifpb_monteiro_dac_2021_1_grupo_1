@@ -44,9 +44,9 @@ public class BookController {
         return "redirect:/Home";
     }
     @RequestMapping("/listBook")
-    public ModelAndView BookList(@PathVariable("page") int page) {
+    public ModelAndView BookList() {
         ModelAndView modelAndView = new ModelAndView("Book/BookList");
-        List<Book> books = bookService.listAllBooks(page);
+        List<Book> books = bookService.listAllBooks(1);
 //        List<Book> books = listAllBooks(5);
 //        Collections.sort(books);
         modelAndView.addObject("books", books);
