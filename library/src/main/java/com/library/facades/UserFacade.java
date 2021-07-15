@@ -17,7 +17,7 @@ public class UserFacade {
 
     Validation validation = new Validation();
 
-    public User saveUser(String name, String email) {
+    public User saveUser(String name, String email) throws Exception {
         if(validation.validationEmail(email)){
             User user = new User(name, email);
             return userService.save(user);
