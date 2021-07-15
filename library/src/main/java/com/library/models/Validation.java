@@ -23,7 +23,7 @@ public class Validation {
 //        return validation;
 //    }
 
-    public boolean validationEmail(String email){
+    public boolean validationEmail(String email) throws Exception {
         String regex = "[A-Za-z0-9\\._-]+@[A-Za-z]+\\.[A-Za-z]+";
         String regex2 = "[A-Za-z0-9\\._-]+@[A-Za-z]+\\.[A-Za-z]+\\.[A-Za-z]+";
         String regex3 = "[A-Za-z0-9\\._-]+@[A-Za-z]+\\.[A-Za-z]+\\.[A-Za-z]+\\.[A-Za-z]+";

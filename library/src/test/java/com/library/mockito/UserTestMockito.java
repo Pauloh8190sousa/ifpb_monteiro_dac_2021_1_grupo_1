@@ -7,7 +7,6 @@ import com.library.services.UserService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.junit.jupiter.api.function.Executable;
 import org.mockito.Spy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.TestConfiguration;
@@ -15,8 +14,6 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-import javax.naming.InvalidNameException;
-import java.util.LinkedList;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -97,16 +94,32 @@ public class UserTestMockito {
     public void validationUserName() throws Exception {
 
         when(validation.validationUserName("Inathan")).thenReturn(true);
-        when(validation.validationUserName("ad")).thenThrow(new Exception());
-        when(validation.validationUserName("Joaquim Ferreira de souza santos Bezerra da silva")).thenThrow(new Exception());
+        when(validation.validationUserName("ad")).thenThrow(new Exception("Nome precisa ter ao menos 3 caracteres"));
+        when(validation.validationUserName("Joaquim Ferreira de souza santos Bezerra da silva")).
+                thenThrow(new Exception("Nome pode ter no máximo 20 caracteres"));
 
         assertTrue(validation.validationUserName("Inathan"));
         assertThrows(Exception.class, () -> validation.validationUserName("ad"));
         assertThrows(Exception.class, () -> validation.validationUserName("Joaquim Ferreira de souza santos Bezerra da silva"));
 
+        String errorMessage = "";
+        try {
+            validation.validationUserName("ad");
+        } catch (Exception error) {
+            errorMessage = error.getMessage();
+        }
+        assertEquals("Nome precisa ter ao menos 3 caracteres", errorMessage);
+
+        try {
+            validation.validationUserName("Joaquim Ferreira de souza santos Bezerra da silva");
+        } catch (Exception error) {
+            errorMessage = error.getMessage();
+        }
+        assertEquals("Nome pode ter no máximo 20 caracteres", errorMessage);
+
         verify(validation, times(1)).validationUserName("Inathan");
-        verify(validation, times(1)).validationUserName("ad");
-        verify(validation, times(1)).validationUserName("Joaquim Ferreira de souza santos Bezerra da silva");
+        verify(validation, times(2)).validationUserName("ad");
+        verify(validation, times(2)).validationUserName("Joaquim Ferreira de souza santos Bezerra da silva");
     }
 
     @Test
@@ -121,27 +134,63 @@ public class UserTestMockito {
     }
 
     @Test
-    void validationEmail() {
+    void validationEmail() throws Exception {
         when(validation.validationEmail("inathan@gmail.com")).thenReturn(true);
-        when(validation.validationEmail("inathangmail")).thenReturn(false);
+        when(validation.validationEmail("inathangmail")).thenThrow(new Exception("email inválido"));
 
         assertTrue(validation.validationEmail("inathan@gmail.com"));
-        assertFalse(validation.validationEmail("inathangmail"));
+        assertThrows(Exception.class, () -> validation.validationEmail("inathangmail"));
+
+        String errorMessage = "";
+        try {
+            validation.validationEmail("inathangmail");
+        } catch (Exception error) {
+            errorMessage = error.getMessage();
+        }
+        assertEquals("email inválido", errorMessage);
 
         verify(validation, times(1)).validationEmail("inathan@gmail.com");
-        verify(validation, times(1)).validationEmail("inathangmail");
+        verify(validation, times(2)).validationEmail("inathangmail");
     }
 
     @Test
     public void validationPassword() throws Exception {
-        when(validation.validationPassword("a@3#")).thenThrow(new Exception());
+        when(validation.validationPassword("a@3#")).thenThrow(new Exception("Caracteres inválidos"));
+        when(validation.validationPassword("432545")).thenThrow(new Exception("A senha deve conter letras"));
+        when(validation.validationPassword("user")).thenThrow(new Exception("A senha deve conter números"));
         when(validation.validationPassword("user123")).thenReturn(true);
 
         assertTrue(validation.validationPassword("user123"));
         assertThrows(Exception.class, () -> validation.validationPassword("a@3#"));
+        assertThrows(Exception.class, () -> validation.validationPassword("432545"));
+        assertThrows(Exception.class, () -> validation.validationPassword("user"));
+
+        String errorMessage = "";
+        try {
+            validation.validationPassword("a@3#");
+        } catch (Exception error) {
+            errorMessage = error.getMessage();
+        }
+        assertEquals("Caracteres inválidos", errorMessage);
+
+        try {
+            validation.validationPassword("432545");
+        } catch (Exception error) {
+            errorMessage = error.getMessage();
+        }
+        assertEquals("A senha deve conter letras", errorMessage);
+
+        try {
+            validation.validationPassword("user");
+        } catch (Exception error) {
+            errorMessage = error.getMessage();
+        }
+        assertEquals("A senha deve conter números", errorMessage);
 
         verify(validation, times(1)).validationPassword("user123");
-        verify(validation, times(1)).validationPassword("a@3#");
+        verify(validation, times(2)).validationPassword("a@3#");
+        verify(validation, times(2)).validationPassword("432545");
+        verify(validation, times(2)).validationPassword("user");
     }
 
     //<---------- FUTURAS IMPLEMENTAÇÕES NO SISTEMA ---------->
