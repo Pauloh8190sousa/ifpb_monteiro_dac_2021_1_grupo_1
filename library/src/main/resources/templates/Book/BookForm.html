@@ -8,63 +8,51 @@
 <body>
     <div th:replace = "layout :: navbarLayout"></div>
 
-    <form class="container" method="post">
-        <div class="mb-3">
-            <label for="title" class="form-label">Título</label>
-            <input type="text" class="form-control" id="title" name="title" placeholder="Digite um título"/>
-        </div>
-        <div class="col-md-3">
-            <label for="authors"  class="form-label">Autor do Livro</label>
-            <select class="form-select">
-                <option id="authors" name="authors" th:each="author : ${allAuthors}" th:value="${author.id}"><span
-                        th:text="${author.name}"> Selecione... </span></option>
-            </select>
-        </div>
-        <div class="mb-3">
-            <label for="price" class="form-label">Preço</label>
-            <input type="number" class="form-control" id="price" name="price" placeholder="Digite um preço"/>
-        </div>
-        <div class="mb-3">
-            <label for="description" class="form-label">Descrição</label>
-            <input type="text" class="form-control" id="description" name="description" placeholder="Digite uma descrição"/>
-        </div>
-        <div class="mb-3">
-            <label for="nbOfPages" class="form-label">Número de Páginas</label>
-            <input type="number" class="form-control" id="nbOfPages" name="nbOfPages" placeholder="Digite o número de páginas"/>
-        </div>
-        <div class="mb-3">
-            <label for="isbn" class="form-label">ISBN</label>
-            <input type="text" class="form-control" id="isbn" name="isbn" placeholder="Digite um ISBN"/>
-        </div>
-        <div class="mb-3">
-            <label for="illustration" class="form-label">Ilustração</label>
-            <input type="text" class="form-control" id="illustration" name="illustration" placeholder="true ou false"/>
-        </div>
-        <div class="mb-3">
-            <label for="publicationDate" class="form-label">Data de publicação</label>
-            <input type="date" class="form-control" id="publicationDate" name="publicationDate"/>
-        </div>
-        <div class="mb-3">
-            <label for="imageLink" class="form-label">Imagem</label>
-            <input type="text" class="form-control" id="imageLink" name="imageLink"/>
-        </div>
+    <div class="container-fluid">
+        <form id="bookForm" th:object="${book}" enctype="multipart/form-data" method="POST"
+              action="/createBook">
+            <div class="mb-3">
+                <label for="title" class="form-label">Título</label>
+                <input type="text" class="form-control" id="title" name="title" placeholder="Digite um título"/>
+            </div>
+            <div class="col-md-3">
+                <label for="authors" class="form-label">Autor do Livro</label>
+                <select id="authors" name="authors" class="form-select">
+                    <option th:each="author : ${allAuthors}" th:value="${author.id}"><span
+                            th:text="${author.name}"> Selecione... </span></option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="price" class="form-label">Preço</label>
+                <input type="number" class="form-control" id="price" name="price" placeholder="Digite um preço"/>
+            </div>
+            <div class="mb-3">
+                <label for="description" class="form-label">Descrição</label>
+                <input type="text" class="form-control" id="description" name="description" placeholder="Digite uma descrição"/>
+            </div>
+            <div class="mb-3">
+                <label for="nbOfPages" class="form-label">Número de Páginas</label>
+                <input type="number" class="form-control" id="nbOfPages" name="nbOfPages" placeholder="Digite o número de páginas"/>
+            </div>
+            <div class="mb-3">
+                <label for="isbn" class="form-label">ISBN</label>
+                <input type="text" class="form-control" id="isbn" name="isbn" placeholder="Digite um ISBN"/>
+            </div>
+            <div class="mb-3">
+                <label for="illustration" class="form-label">Ilustração</label>
+                <input type="text" class="form-control" id="illustration" name="illustration" placeholder="true ou false"/>
+            </div>
+            <div class="mb-3">
+                <label for="publicationDate" class="form-label">Data de publicação</label>
+                <input type="date" class="form-control" id="publicationDate" name="publicationDate"/>
+            </div>
+            <div class="mb-3">
+                <label for="imageLink" class="form-label">Imagem</label>
+                <input type="text" class="form-control" id="imageLink" name="imageLink"/>
+            </div>
 
-        <input class="btn btn-primary" type="submit" value="Cadastrar Livro">
-    </form>
-
-<!--    <h1>Cadastrar Livro:</h1>-->
-<!--    <form method="post">-->
-<!--        Titulo: <input type="text" value="" placeholder="digite o titulo do livro" name="title"/>-->
-<!--        Preço: <input type="number" value="" placeholder="informe o valor do livro" name="price"/>-->
-<!--        Descrição: <input type="text" value="" placeholder="informe a descrição do livro" name="description"/>-->
-<!--        Número de Páginas: <input type="number" value="" placeholder="digite o número de páginas" name="nbOfPages"/>-->
-<!--        ISBN: <input type="text" value="" placeholder="digite o código ISBN, exemplo: 1234567891011" name="isbn"/>-->
-<!--        Ilustração: <input type="text" value="" name="illustration"/>-->
-<!--        Data de Publicação: <input type="date" value="" name="publicationDate"/>-->
-
-<!--        <button type="submit">Cadastrar Livro</button>-->
-
-<!--    </form>-->
-
+            <input class="btn btn-primary" type="submit" value="Cadastrar Livro">
+        </form>
+    </div>
 </body>
 </html>
