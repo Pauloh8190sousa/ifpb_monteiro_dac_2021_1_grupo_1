@@ -8,7 +8,7 @@
 <body>
     <div th:replace = "layout :: navbarLayout"></div>
 
-    <div class="container-fluid">
+    <div class="container-fluid mt-4 mb-3">
         <form id="bookForm" th:object="${book}" enctype="multipart/form-data" method="POST"
               action="/createBook">
             <div class="mb-3">

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org/">
+<head th:replace = "layout :: headerLayout">
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+</head>
+<title>Detalhes do Livro</title>
+<body>
+<div th:replace = "layout :: navbarLayout"></div>
+
+    <div class="container mt-4 mb-3" >
+        <h2>Carrinho de Compras</h2>
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">Título</th>
+                <th scope="col">Descrição</th>
+                <th scope="col">Estoque</th>
+
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="order : ${order}">
+                <td><span th:text="${book.title}"></span></td>
+                <td><span th:text="${book.description}"></span></td>
+                <td><span th:text="${book.stock}"></span></td>
+            </tr>
+            </tbody>
+        </table>
+        <a class="btn btn-primary" href="/Home" role="button">Fechar Pedido</a>
+    </div>
+
+</body>
+</html>

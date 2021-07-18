@@ -16,11 +16,11 @@ import java.util.List;
 public class OrderController {
     @Autowired
     OrderService orderService;
-    @RequestMapping(value = "/createOrder", method = RequestMethod.GET)
+    @RequestMapping(value = "/Cart", method = RequestMethod.GET)
     public String createOrder(){
-        return "Order/OrderForm";
+        return "Order/Cart";
     }
-    @RequestMapping(value = "/createOrder", method = RequestMethod.POST)
+    @RequestMapping(value = "/Cart", method = RequestMethod.POST)
     public String createOrder(Order order){
 
         orderService.save(order);
