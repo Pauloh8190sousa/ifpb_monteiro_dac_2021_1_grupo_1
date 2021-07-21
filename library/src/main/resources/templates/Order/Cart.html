@@ -4,30 +4,80 @@
 <head th:replace = "layout :: headerLayout">
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
 </head>
-<title>Detalhes do Livro</title>
+<title>Carrinho</title>
 <body>
 <div th:replace = "layout :: navbarLayout"></div>
 
     <div class="container mt-4 mb-3" >
         <h2>Carrinho de Compras</h2>
-        <table class="table">
-            <thead>
-            <tr>
-                <th scope="col">Título</th>
-                <th scope="col">Descrição</th>
-                <th scope="col">Estoque</th>
 
-            </tr>
-            </thead>
-            <tbody>
-            <tr th:each="order : ${order}">
-                <td><span th:text="${book.title}"></span></td>
-                <td><span th:text="${book.description}"></span></td>
-                <td><span th:text="${book.stock}"></span></td>
-            </tr>
-            </tbody>
-        </table>
-        <a class="btn btn-primary" href="/Home" role="button">Fechar Pedido</a>
+        <div class="container mb-4">
+            <div class="row">
+                <div class="col-12">
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                            <tr>
+                                <th scope="col"> </th>
+                                <th scope="col">Produto</th>
+                                <th scope="col">Disponível</th>
+                                <th scope="col" class="text-center">Quantidade</th>
+                                <th scope="col" class="text-right">Preço</th>
+                                <th> </th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td><img src="https://dummyimage.com/50x50/55595c/fff" /> </td>
+                                <td>Product Name Dada</td>
+                                <td>In stock</td>
+                                <td>
+                                <button class="btn btn-sm btn-light"><i class="fa fa-plus"></i> </button>
+                                <button class="btn btn-sm btn-light"><i class="fa fa-minus"></i> </button>3
+                                </td>
+                                <td class="text-right">124,90 €</td>
+                                <td class="text-right"><button class="btn btn-sm btn-danger"><i class="fa fa-trash"></i> </button> </td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td>Sub-Total</td>
+                                <td class="text-right">255,90 R$</td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td>Frete</td>
+                                <td class="text-right">6,90 R$</td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td><strong>Total</strong></td>
+                                <td class="text-right"><strong>346,90 R$</strong></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="col mb-2">
+                    <div class="row">
+                        <div class="col-sm-12  col-md-6">
+                            <button class="btn btn-block btn-primary">Continue Comprando</button>
+                        </div>
+                        <div class="col-sm-12 col-md-6 text-right">
+                            <button type="button" class="btn btn-success">Finalizar Compra</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
 </body>

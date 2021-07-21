@@ -7,6 +7,10 @@ import com.library.services.AuthorService;
 import com.library.services.BookService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -36,22 +40,32 @@ public class BookController {
 
     @RequestMapping(value = "/createBook", method = RequestMethod.POST)
     public String createBook(Book book) {
-
         bookService.save(book);
 
         return "redirect:/Home";
     }
-    @RequestMapping("/listBook")
-    public ModelAndView BookList() {
-        ModelAndView modelAndView = new ModelAndView("Book/BookList");
-        List<Book> books = bookService.listAllBooks(1);
-//        List<Book> books = listAllBooks(5);
-//        Collections.sort(books);
-        modelAndView.addObject("books", books);
+//    @RequestMapping("/listBook")
+//    public ModelAndView BookList() {
+//        ModelAndView modelAndView = new ModelAndView("Book/BookList");
+//        List<Book> books = bookService.listAllBooks(1);
+////        List<Book> books = listAllBooks(5);
+////        Collections.sort(books);
+//        modelAndView.addObject("books", books);
+//
+//
+//        return modelAndView;
+//    }
 
+        @GetMapping("/listBook")
+        public ModelAndView listBookPageable(
+                @PageableDefault(sort = "title", direction = Sort.Direction.ASC, page = 0, size = 5) Pageable page) {
 
-        return modelAndView;
-    }
+            ModelAndView modelAndView = new ModelAndView("Book/BookList");
+            List<Book> books = bookService.listBookPageable(page);
+            modelAndView.addObject("books", books);
+            return modelAndView;
+        }
+
 
     @RequestMapping("/{id}")
     public ModelAndView BookDetails(@PathVariable("id") long id) {

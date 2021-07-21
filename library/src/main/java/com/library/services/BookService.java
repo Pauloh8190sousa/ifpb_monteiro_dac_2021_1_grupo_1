@@ -6,6 +6,7 @@ import com.library.repositories.AuthorRepository;
 import com.library.repositories.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
@@ -99,6 +100,11 @@ public class BookService {
         PageRequest pageRequest = PageRequest.of(pageNumber,5, Sort.Direction.ASC, "title");
         return bookRepository.findAll(pageRequest).getContent();
     }
+
+    public List<Book> listBookPageable(Pageable page) {
+        return bookRepository.findAll(page).getContent();
+    }
+
 
     //MÉTODO PARA LISTAR TODOS OS BOOKS
     public List<Book> findAll(){
