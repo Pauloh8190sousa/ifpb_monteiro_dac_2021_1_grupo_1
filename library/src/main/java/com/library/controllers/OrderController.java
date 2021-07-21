@@ -14,19 +14,24 @@ import java.util.List;
 @Controller
 
 public class OrderController {
-    @Autowired
-    OrderService orderService;
-    @RequestMapping(value = "/Cart", method = RequestMethod.GET)
-    public String createOrder(){
-        return "Order/Cart";
-    }
-    @RequestMapping(value = "/Cart", method = RequestMethod.POST)
-    public String createOrder(Order order){
 
-        orderService.save(order);
+//    @Autowired
+//    OrderService orderService;
+//    @RequestMapping(value = "/Cart", method = RequestMethod.GET)
+//    public String createOrder(){
+//        return "Order/Cart";
+//    }
+//    @RequestMapping(value = "/Cart", method = RequestMethod.POST)
+//    public String createOrder(Order order){
+//
+//        orderService.save(order);
+//
+//        return "redirect:/Home";
+//    }
 
-        return "redirect:/Home";
-    }
+
+
+
 //
 //    //MÉTODO PARA LISTAR ORDERS
 //    @GetMapping

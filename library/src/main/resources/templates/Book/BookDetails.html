@@ -20,6 +20,7 @@
         <th scope="col">ISBN</th>
         <th scope="col">Ilustrações</th>
         <th scope="col">Preço</th>
+        <th scope="col"></th>
       </tr>
       </thead>
       <tbody>
@@ -31,10 +32,10 @@
         <td><span th:text="${book.isbn}"></span></td>
         <td><span th:text="${book.illustration}"></span></td>
         <td><span th:text="${book.price}"></span></td>
+        <td><a class="btn btn-primary" th:href="@{/AddToCart/{id}(id=${book.id})}" role="button">Adicionar ao carrinho</a></td>
       </tr>
       </tbody>
     </table>
-    <a class="btn btn-primary" href="/Home" role="button">Adicionar ao carrinho</a>
   </div>
 </body>
 </html>
