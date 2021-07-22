@@ -27,15 +27,15 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr>
+                            <tr th:each="orderBook : ${orderBooks}">
                                 <td><img src="https://dummyimage.com/50x50/55595c/fff" /> </td>
-                                <td>Product Name Dada</td>
-                                <td>In stock</td>
-                                <td>
+                                <td th:text="${orderBook.book.title}"></td>
+                                <td th:text="${orderBook.book.stock}"></td>
+                                <td><span th:text="${orderBook.amount}"></span>
                                 <button class="btn btn-sm btn-light"><i class="fa fa-plus"></i> </button>
-                                <button class="btn btn-sm btn-light"><i class="fa fa-minus"></i> </button>3
+                                <button class="btn btn-sm btn-light"><i class="fa fa-minus"></i> </button>
                                 </td>
-                                <td class="text-right">124,90 €</td>
+                                <td class="text-right" th:text="${orderBook.totalValue}"></td>
                                 <td class="text-right"><button class="btn btn-sm btn-danger"><i class="fa fa-trash"></i> </button> </td>
                             </tr>
                             <tr>
