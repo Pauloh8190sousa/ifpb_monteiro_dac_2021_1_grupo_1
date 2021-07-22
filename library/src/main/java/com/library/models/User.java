@@ -24,12 +24,16 @@ public class User {
 
     private String email;
 
-    public User(String name, String email) {
+    private String password;
+
+    public User(String name, String email, String password) {
         this.setName(name);
         this.setEmail(email);
+        this.setPassword(password);
     }
 
     public User() {
+
     }
 
 }

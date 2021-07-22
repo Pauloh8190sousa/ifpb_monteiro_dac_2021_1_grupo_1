@@ -17,9 +17,9 @@ public class UserFacade {
 
     Validation validation = new Validation();
 
-    public User saveUser(String name, String email) throws Exception {
+    public User saveUser(String name, String email, String password) throws Exception {
         if(validation.validationEmail(email)){
-            User user = new User(name, email);
+            User user = new User(name, email, password);
             return userService.save(user);
         }else{
             System.out.println("E-mail inválido\nTente Novamente");
