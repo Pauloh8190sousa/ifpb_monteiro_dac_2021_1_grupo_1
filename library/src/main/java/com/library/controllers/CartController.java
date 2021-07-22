@@ -2,8 +2,11 @@ package com.library.controllers;
 import com.library.models.Book;
 import com.library.models.Order;
 import com.library.models.OrderBook;
+import com.library.models.User;
 import com.library.services.BookService;
+import com.library.services.OrderBookService;
 import com.library.services.OrderService;
+import com.library.services.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,10 +22,16 @@ import java.util.List;
 public class CartController {
 
     @Autowired
-    OrderService orderService;
+    private OrderService orderService;
 
     @Autowired
-    BookService bookService;
+    private BookService bookService;
+
+    @Autowired
+    private UserService userService;
+
+    @Autowired
+    private OrderBookService orderBookService;
 
     private ArrayList<OrderBook> orderBooks = new ArrayList<>();
 
@@ -39,12 +48,20 @@ public class CartController {
         Book book = bookService.findById(id);
         ModelAndView modelAndView = new ModelAndView("Order/Cart");
 
+        User user = userService.findAll().get(0);
+        Order order = new Order(true, user);
+        orderService.save(order);
+
         OrderBook orderBook = new OrderBook();
         orderBook.setBook(book);
-        orderBook.setAmount(orderBook.getAmount());
+        orderBook.setAmount(orderBook.getAmount().add(BigDecimal.valueOf(1)));
 
         orderBook.setTotalValue(book.getPrice());
+        orderBookService.save(orderBook);
+
         orderBooks.add(orderBook);
+
+        orderService.addOrderBook(order.getId(), orderBooks);
 
         modelAndView.addObject("orderBooks", orderBooks);
 

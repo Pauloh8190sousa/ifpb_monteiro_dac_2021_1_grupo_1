@@ -18,10 +18,10 @@ public class OrderFacade {
     private OrderService orderService;
 
 
-    public Order saveOrder(boolean status, User user, BigDecimal totalValue) {
-        Order order = new Order(status,user, totalValue);
-        return orderService.save(order);
-    }
+//    public Order saveOrder(boolean status, User user, BigDecimal totalValue) {
+//        Order order = new Order(status,user, totalValue);
+//        return orderService.save(order);
+//    }
 //    public void orderTotalValue(Long orderId) {
 //        Order order = orderService.findById(orderId);
 //

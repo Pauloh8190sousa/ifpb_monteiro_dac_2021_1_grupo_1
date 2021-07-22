@@ -24,10 +24,9 @@ public class Order {
     @Id
     @GeneratedValue (strategy = IDENTITY)
     private Long id;
-    private BigDecimal totalValue;
     private boolean status;
 
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
     @JoinColumn(name = "order_id")
     private List<OrderBook> orderBooks = new ArrayList<>();
 
@@ -38,10 +37,9 @@ public class Order {
 //    @JoinTable(name = "order_books_tb", joinColumns = @JoinColumn(name = "order_id"), inverseJoinColumns = @JoinColumn(name = "book_id"))
 //    private List<Book> books = new ArrayList<Book>();
 
-    public Order(boolean status, User user, BigDecimal totalValue){
+    public Order(boolean status, User user){
         this.setStatus(status);
         this.user = user;
-        this.setTotalValue(totalValue);
     }
     public Order(){
 

@@ -27,7 +27,7 @@ public class OrderBook {
 
     private BigDecimal totalValue;
 
-    private BigDecimal amount;
+    private BigDecimal amount = BigDecimal.valueOf(0);
 
     @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "book_id")
