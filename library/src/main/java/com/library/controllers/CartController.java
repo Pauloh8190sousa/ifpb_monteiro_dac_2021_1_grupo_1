@@ -34,6 +34,7 @@ public class CartController {
     private OrderBookService orderBookService;
 
     private ArrayList<OrderBook> orderBooks = new ArrayList<>();
+    private Order order;
 
     @GetMapping("/Cart")
     public ModelAndView createOrder(){
@@ -48,9 +49,12 @@ public class CartController {
         Book book = bookService.findById(id);
         ModelAndView modelAndView = new ModelAndView("Order/Cart");
 
-        User user = userService.findAll().get(0);
-        Order order = new Order(true, user);
-        orderService.save(order);
+        if(orderBooks.size() == 0) {
+            User user = userService.findAll().get(0);
+            order = new Order(true, user);
+            orderService.save(order);
+        }
+
 
         boolean repeatedBook = false;
         for (OrderBook orderBook: orderBooks) {
