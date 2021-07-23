@@ -24,6 +24,11 @@ public class OrderBookService {
         return orderBookRepository.save(orderBook);
     }
 
+    public OrderBook findById(Long orderBookId){
+
+        return orderBookRepository.findById(orderBookId).orElseThrow();
+    }
+
 
 
 //    //MÉTODO PARA LISTAR TODOS OS BOOKS EM UM ORDER
@@ -39,8 +44,8 @@ public class OrderBookService {
 //    }
 
 
-//    //MÉTODO PARA LISTAR TODOS OS ORDERS
-//    public List<Order> findAll(){
-//        return orderRepository.findAll();
-//    }
+    //MÉTODO PARA LISTAR TODOS OS ORDERSBOOKS
+    public List<OrderBook> findAll(){
+        return orderBookRepository.findAll();
+    }
 }

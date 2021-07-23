@@ -67,7 +67,7 @@ public class BookService {
     }
 
     //MÉTODO PARA ALTERAR UM BOOK
-    public Book changeBook(Long idBook, String title, BigDecimal price, String description, int nbOfPages, String ISBN, boolean illustration) {
+    public Book changeBook(Long idBook, String title, int price, String description, int nbOfPages, String ISBN, boolean illustration) {
         Book updatedBook = bookRepository.findById(idBook).orElseThrow();
 
         updatedBook.setTitle(title);

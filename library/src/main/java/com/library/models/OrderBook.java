@@ -25,9 +25,9 @@ public class OrderBook {
     @GeneratedValue (strategy = IDENTITY)
     private Long id;
 
-    private BigDecimal totalValue;
+    private float totalValue;
 
-    private BigDecimal amount = BigDecimal.valueOf(0);
+    private int amount = 0;
 
     @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "book_id")

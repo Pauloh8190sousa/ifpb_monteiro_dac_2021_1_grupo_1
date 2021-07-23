@@ -42,7 +42,7 @@ public class CartController {
         return modelAndView;
     }
 
-    //Depois tenho que mudar esse método!!!! Para adicionar um user ao pedido
+    //FALTA AJEITAR PARA ADICIONAR 2 PEDIDOS IGUAIS A QUANTIDADE NO BANCO
     @GetMapping("/AddToCart/{id}")
     public ModelAndView addToCart(@PathVariable("id") Long id) {
         Book book = bookService.findById(id);
@@ -52,16 +52,32 @@ public class CartController {
         Order order = new Order(true, user);
         orderService.save(order);
 
-        OrderBook orderBook = new OrderBook();
-        orderBook.setBook(book);
-        orderBook.setAmount(orderBook.getAmount().add(BigDecimal.valueOf(1)));
+        boolean repeatedBook = false;
+        for (OrderBook orderBook: orderBooks) {
+            if(orderBook.getBook().getId().equals(book.getId())) {
+                OrderBook orderBookSaved = orderBookService.findById(orderBook.getId());
+                orderBookSaved.setAmount(orderBookSaved.getAmount() +1);
+                orderBookSaved.setTotalValue(book.getPrice() * orderBookSaved.getAmount());
+                orderBookService.save(orderBookSaved);
+                orderBook.setAmount(orderBookSaved.getAmount());
+                orderBook.setTotalValue(orderBookSaved.getTotalValue());
+                repeatedBook = true;
+            }
+        }
 
-        orderBook.setTotalValue(book.getPrice());
-        orderBookService.save(orderBook);
+        if(!repeatedBook) {
+            OrderBook orderBook = new OrderBook();
+            orderBook.setBook(book);
+            orderBook.setAmount(orderBook.getAmount() + 1);
 
-        orderBooks.add(orderBook);
+            orderBook.setTotalValue(book.getPrice() * orderBook.getAmount());
+            orderBookService.save(orderBook);
 
-        orderService.addOrderBook(order.getId(), orderBooks);
+            orderBooks.add(orderBook);
+
+            orderService.addOrderBook(order.getId(), orderBooks);
+        }
+
 
         modelAndView.addObject("orderBooks", orderBooks);
 

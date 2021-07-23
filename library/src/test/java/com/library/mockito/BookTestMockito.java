@@ -60,7 +60,7 @@ public class BookTestMockito {
         book.setId(1L);
         book.setIllustration(true);
         book.setDescription("livro de Harry Potter");
-        book.setPrice(BigDecimal.valueOf(20));
+        book.setPrice(20);
         book.setTitle("A pedra filosofal");
         book.setNbOfPages(500);
         book.setStock(50);

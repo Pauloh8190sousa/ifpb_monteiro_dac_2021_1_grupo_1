@@ -29,7 +29,7 @@ public class Book implements Comparable<Book> {
 
     private int stock;
 
-    private BigDecimal price;
+    private float price;
 
     private String description;
 
@@ -55,7 +55,7 @@ public class Book implements Comparable<Book> {
     @JoinTable(name = "category_book_tb", joinColumns = @JoinColumn(name = "book_id"), inverseJoinColumns = @JoinColumn(name = "category_id"))
     private List<Category> categories;
 
-    public Book(String title, BigDecimal price, String description, int nbOfPages, String isbn, boolean illustration){
+    public Book(String title, float price, String description, int nbOfPages, String isbn, boolean illustration){
         this.title = title;
         this.price = price;
         this.description = description;
