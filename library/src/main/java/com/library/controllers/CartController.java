@@ -37,13 +37,59 @@ public class CartController {
     private Order order;
 
     @GetMapping("/Cart")
-    public ModelAndView createOrder(){
+    public ModelAndView createOrder() {
         ModelAndView modelAndView = new ModelAndView("Order/Cart");
-        modelAndView.addObject("orderBooks", orderBooks);
+        modelAndView.addObject("orderBooks", orderBookService.findAll());
         return modelAndView;
     }
 
-    //FALTA AJEITAR PARA ADICIONAR 2 PEDIDOS IGUAIS A QUANTIDADE NO BANCO
+    @GetMapping("/amountChange/{id}/{action}")
+    public ModelAndView amountChange (@PathVariable Long id, @PathVariable Integer action) {
+        ModelAndView modelAndView = new ModelAndView("Order/Cart");
+
+        for (OrderBook orderBook: orderBookService.findAll()) {
+            if(orderBook.getBook().getId().equals(id)) {
+                OrderBook orderBookSaved = orderBookService.findById(orderBook.getId());
+                if(action.equals(1)) {
+                    orderBookSaved.setAmount(orderBookSaved.getAmount() + 1);
+                }else if(action.equals(0)) {
+                    orderBookSaved.setAmount(orderBookSaved.getAmount() - 1);
+                }
+
+             //   orderBookSaved.setTotalValue(book.getPrice() * orderBookSaved.getAmount());
+                orderBookService.save(orderBookSaved);
+            //    orderBook.setAmount(orderBookSaved.getAmount());
+            //    orderBook.setTotalValue(orderBookSaved.getTotalValue());
+            }
+        }
+
+        modelAndView.addObject("orderBooks", orderBookService.findAll());
+
+        return modelAndView;
+    }
+
+    @GetMapping("/bookRemove/{id}")
+    public ModelAndView bookRemove (@PathVariable Long id) {
+        ModelAndView modelAndView = new ModelAndView("Order/Cart");
+
+        for (OrderBook orderBook: orderBookService.findAll()) {
+            if(orderBook.getBook().getId().equals(id)) {
+                OrderBook orderBookSaved = orderBookService.findById(orderBook.getId());
+            //    orderBooks.remove(orderBookSaved);
+                orderBookService.delete(orderBookSaved);
+
+            //    orderService.delete(order);
+
+            }
+        }
+
+        modelAndView.addObject("orderBooks", orderBookService.findAll());
+
+        return modelAndView;
+    }
+
+
+    //FALTA AJUSTAR A PARTE DE SE O PEDIDO AINDA ESTÁ EM ABERTO, OS ORDERBOOS TEM QUE SER ADIONADOS NESSE PEDIDO
     @GetMapping("/AddToCart/{id}")
     public ModelAndView addToCart(@PathVariable("id") Long id) {
         Book book = bookService.findById(id);
@@ -57,17 +103,19 @@ public class CartController {
 
 
         boolean repeatedBook = false;
-        for (OrderBook orderBook: orderBooks) {
+        for (OrderBook orderBook: orderBookService.findAll()) {
             if(orderBook.getBook().getId().equals(book.getId())) {
                 OrderBook orderBookSaved = orderBookService.findById(orderBook.getId());
-                orderBookSaved.setAmount(orderBookSaved.getAmount() +1);
+                orderBookSaved.setAmount(orderBookSaved.getAmount() + 1);
                 orderBookSaved.setTotalValue(book.getPrice() * orderBookSaved.getAmount());
                 orderBookService.save(orderBookSaved);
-                orderBook.setAmount(orderBookSaved.getAmount());
-                orderBook.setTotalValue(orderBookSaved.getTotalValue());
+                    //    orderBook.setAmount(orderBookSaved.getAmount());
+                    //    orderBook.setTotalValue(orderBookSaved.getTotalValue());
                 repeatedBook = true;
             }
         }
+
+
 
         if(!repeatedBook) {
             OrderBook orderBook = new OrderBook();
@@ -77,13 +125,13 @@ public class CartController {
             orderBook.setTotalValue(book.getPrice() * orderBook.getAmount());
             orderBookService.save(orderBook);
 
-            orderBooks.add(orderBook);
+            orderBookService.findAll().add(orderBook);
 
-            orderService.addOrderBook(order.getId(), orderBooks);
+            orderService.addOrderBook(order.getId(), orderBookService.findAll());
         }
 
 
-        modelAndView.addObject("orderBooks", orderBooks);
+        modelAndView.addObject("orderBooks", orderBookService.findAll());
 
         return modelAndView;
     }

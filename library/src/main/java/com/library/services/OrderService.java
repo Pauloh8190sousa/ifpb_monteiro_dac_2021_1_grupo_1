@@ -47,8 +47,7 @@ public class OrderService {
     }
 
     //MÉTODO PARA DELETAR UM ORDER PELO ID
-    public void delete(Long orderId){
-        Order order = orderRepository.findById(orderId).orElseThrow();
+    public void delete(Order order){
         orderRepository.delete(order);
     }
 

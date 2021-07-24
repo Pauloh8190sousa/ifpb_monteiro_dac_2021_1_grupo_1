@@ -29,6 +29,9 @@ public class OrderBookService {
         return orderBookRepository.findById(orderBookId).orElseThrow();
     }
 
+    public void delete(OrderBook orderBook){
+        orderBookRepository.delete(orderBook);
+    }
 
 
 //    //MÉTODO PARA LISTAR TODOS OS BOOKS EM UM ORDER
@@ -37,11 +40,7 @@ public class OrderBookService {
 //        return order.getBooks();
 //    }
 
-    //MÉTODO PARA DELETAR UM ORDER PELO ID
-//    public void delete(Long orderId){
-//        Order order = orderRepository.findById(orderId).orElseThrow();
-//        orderRepository.delete(order);
-//    }
+
 
 
     //MÉTODO PARA LISTAR TODOS OS ORDERSBOOKS

@@ -32,11 +32,24 @@
                                 <td th:text="${orderBook.book.title}"></td>
                                 <td th:text="${orderBook.book.stock}"></td>
                                 <td><span th:text="${orderBook.amount}"></span>
-                                <button class="btn btn-sm btn-light"><i class="fa fa-plus"></i> </button>
-                                <button class="btn btn-sm btn-light"><i class="fa fa-minus"></i> </button>
+
+                                <a class="btn btn-sm btn-light"
+                                   th:href="@{/amountChange/{id}/{action}(id=${orderBook.book.id}, action=${1})}"
+                                   role="button"><i class="fa fa-plus"></i>
+                                </a>
+                                <a class="btn btn-sm btn-light"
+                                   th:href="@{/amountChange/{id}/{action}(id=${orderBook.book.id}, action=${0})}"
+                                   role="button"><i class="fa fa-minus"></i>
+                                </a>
+
                                 </td>
                                 <td class="text-right" th:text="${orderBook.totalValue}"></td>
-                                <td class="text-right"><button class="btn btn-sm btn-danger"><i class="fa fa-trash"></i> </button> </td>
+                                <td class="text-right">
+                                <a class="btn btn-sm btn-danger"
+                                   th:href="@{/bookRemove/{id}(id=${orderBook.book.id})}"
+                                   role="button"><i class="fa fa-trash"></i>
+                                </a>
+                                </td>
                             </tr>
                             <tr>
                                 <td></td>
