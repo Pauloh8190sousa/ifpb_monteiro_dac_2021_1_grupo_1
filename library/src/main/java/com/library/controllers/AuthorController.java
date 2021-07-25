@@ -18,7 +18,7 @@ import java.util.List;
 public class AuthorController {
 
     @Autowired
-    AuthorService authorService;
+    private AuthorService authorService;
 
     @RequestMapping(value = "/createAuthor", method = RequestMethod.GET)
     public String createAuthor() {
@@ -30,28 +30,4 @@ public class AuthorController {
         return "redirect:/Home";
     }
 
-//    /**
-//     * MÉTODO PARA LISTAR TODOS OS AUTHORS
-//     */
-//    @GetMapping
-//    public List<Author> getAuthors() {
-//        return authorService.findAll();
-//    }
-//
-//    /**
-//     * MÉTODO PARA CRIAR AUTHORS
-//     */
-//    @PostMapping
-//    @ResponseStatus(HttpStatus.CREATED)
-//    public Author registerAuthor(@RequestBody Author author) {
-//        return authorService.save(author);
-//    }
-//
-//    /**
-//     * MÉTODO PARA ATUALIZAR AUTHORS
-//     */
-//    @PutMapping
-//    public Author changeAuthor(@RequestBody Author author) {
-//        return authorService.save(author);
-//    }
 }

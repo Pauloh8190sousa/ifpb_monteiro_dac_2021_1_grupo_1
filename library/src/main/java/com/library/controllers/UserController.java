@@ -16,7 +16,7 @@ import java.util.List;
 public class UserController {
 
     @Autowired
-    UserService userService;
+    private UserService userService;
 
     @RequestMapping(value = "/register", method = RequestMethod.GET)
     public String registerUser() {
@@ -43,24 +43,5 @@ public class UserController {
 
         return "redirect:/Home";
     }
-
-//   //MÉTODO PARA LISTAR USERS
-//    @GetMapping("/users")
-//    public List<User> getUsers() {
-//        return userService.findAll();
-//    }
-//
-//    //MÉTODO PARA LISTAR USERS PELO EMAIL
-//    @GetMapping("/byEmail")
-//    public List<User> getUserByEmail(String email) {
-//        return userService.findByEmail(email);
-//    }
-//
-//    //MÉTODO PARA CRIAR UM USER
-//    @PostMapping
-//    @ResponseStatus(HttpStatus.CREATED)
-//    public User registerUser(@RequestBody User user) {
-//        return userService.save(user);
-//    }
 
 }
