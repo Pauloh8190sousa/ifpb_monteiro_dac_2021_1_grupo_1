@@ -31,6 +31,19 @@ public class UserController {
         return "redirect:/Home";
     }
 
+    @RequestMapping(value = "/sign-in", method = RequestMethod.GET)
+    public String sign_inUser() {
+        return "User/UserSign_In";
+    }
+
+    @RequestMapping(value = "/sign-in", method = RequestMethod.POST)
+    public String sign_inUser(User user) {
+
+        userService.save(user);
+
+        return "redirect:/Home";
+    }
+
 //   //MÉTODO PARA LISTAR USERS
 //    @GetMapping("/users")
 //    public List<User> getUsers() {

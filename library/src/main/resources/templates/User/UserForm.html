@@ -5,7 +5,7 @@
 <head th:replace = "layout :: headerLayout">
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
 </head>
-<title>Sign-in</title>
+<title>Cadastrar-se</title>
 
 <body>
     <div th:replace = "layout :: navbarLayout"></div>
@@ -22,8 +22,11 @@
             <input type="password" class="form-control" id="passwordUser" name="passwordUser" placeholder="Digite sua senha"/>
         </div>
 
-        <input class="btn btn-primary" type="submit" value="Entrar"/>
         <input class="btn btn-primary" type="button" value="Cadastrar-se"/>
     </form>
+
+    <button type="button" value="Entrar">
+        <a href="http://localhost:8080//sign-in"></a>
+    </button>
 </body>
 </html>
