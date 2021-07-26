@@ -44,26 +44,30 @@ public class BookController {
 
         return "redirect:/Home";
     }
-//    @RequestMapping("/listBook")
-//    public ModelAndView BookList() {
-//        ModelAndView modelAndView = new ModelAndView("Book/BookList");
-//        List<Book> books = bookService.listAllBooks(1);
-////        List<Book> books = listAllBooks(5);
-////        Collections.sort(books);
-//        modelAndView.addObject("books", books);
-//
-//
-//        return modelAndView;
-//    }
+    @RequestMapping("/listBook/{action}")
+    public ModelAndView BookList(@PathVariable Integer action) {
+        ModelAndView modelAndView = new ModelAndView("Book/BookList");
+        List<Book> books;
+        if(action != null){
+            books = bookService.listAllBooks(action);
+
+        }else{
+            books = bookService.listAllBooks(0);
+        }
+
+        modelAndView.addObject("books", books);
+
+        return modelAndView;
+    }
 
         @GetMapping("/listBook")
-        public ModelAndView listBookPageable(
-                @PageableDefault(sort = "title", direction = Sort.Direction.ASC, page = 0, size = 5) Pageable page) {
+        public ModelAndView listBookPageable() {
+                ModelAndView modelAndView = new ModelAndView("Book/BookList");
+                List<Book> books = bookService.listAllBooks(0);
 
-            ModelAndView modelAndView = new ModelAndView("Book/BookList");
-            List<Book> books = bookService.listBookPageable(page);
-            modelAndView.addObject("books", books);
-            return modelAndView;
+                modelAndView.addObject("books", books);
+
+                return modelAndView;
         }
 
 
