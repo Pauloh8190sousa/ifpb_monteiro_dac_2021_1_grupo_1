@@ -4,6 +4,7 @@ import com.library.models.Book;
 import com.library.models.Order;
 import com.library.models.OrderBook;
 import com.library.repositories.BookRepository;
+import com.library.repositories.OrderBookRepository;
 import com.library.repositories.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,9 +17,6 @@ public class OrderService {
 
     @Autowired
     private OrderRepository orderRepository;
-
-    @Autowired
-    private BookRepository bookRepository;
 
     //MÉTODO PARA SALVAR UM ORDER
     public Order save(Order order){

@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.math.BigDecimal;
+import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.List;
 @Slf4j //Faz o log da classe para poder tratar erros
@@ -35,94 +36,103 @@ public class CartController {
 
     private ArrayList<OrderBook> orderBooks = new ArrayList<>();
     private Order order;
+    private Book book;
+
+    public void calculateTotalOrderPrice() {
+        order.setTotalOrderPrice(0);
+        for (OrderBook orderBook: orderBookService.findAll()) {
+            order.setTotalOrderPrice(order.getTotalOrderPrice() + orderBook.getTotalValue());
+            orderService.save(order);
+        }
+
+    }
 
     @GetMapping("/Cart")
     public ModelAndView createOrder() {
         ModelAndView modelAndView = new ModelAndView("Order/Cart");
+
+        if(order != null) {
+            calculateTotalOrderPrice();
+        } else if(order == null){
+            order = new Order();
+            order.setTotalOrderPrice(0);
+        }
+
+        modelAndView.addObject("order", order);
         modelAndView.addObject("orderBooks", orderBookService.findAll());
         return modelAndView;
     }
 
     @GetMapping("/amountChange/{id}/{action}")
-    public ModelAndView amountChange (@PathVariable Long id, @PathVariable Integer action) {
-        ModelAndView modelAndView = new ModelAndView("Order/Cart");
+    public String amountChange (@PathVariable Long id, @PathVariable Integer action) {
 
         for (OrderBook orderBook: orderBookService.findAll()) {
             if(orderBook.getBook().getId().equals(id)) {
                 OrderBook orderBookSaved = orderBookService.findById(orderBook.getId());
                 if(action.equals(1)) {
+                    orderBookSaved.setTotalValue(0);
                     orderBookSaved.setAmount(orderBookSaved.getAmount() + 1);
+                    orderBookSaved.setTotalValue(orderBookSaved.getTotalValue() + (book.getPrice() * orderBookSaved.getAmount()));
                 }else if(action.equals(0)) {
+                    orderBookSaved.setTotalValue(0);
                     orderBookSaved.setAmount(orderBookSaved.getAmount() - 1);
+                    orderBookSaved.setTotalValue(orderBookSaved.getTotalValue() + (book.getPrice() * orderBookSaved.getAmount()));
                 }
-
-             //   orderBookSaved.setTotalValue(book.getPrice() * orderBookSaved.getAmount());
                 orderBookService.save(orderBookSaved);
-            //    orderBook.setAmount(orderBookSaved.getAmount());
-            //    orderBook.setTotalValue(orderBookSaved.getTotalValue());
             }
         }
 
-        modelAndView.addObject("orderBooks", orderBookService.findAll());
-
-        return modelAndView;
+        return "redirect:/Cart";
     }
 
     @GetMapping("/bookRemove/{id}")
-    public ModelAndView bookRemove (@PathVariable Long id) {
-        ModelAndView modelAndView = new ModelAndView("Order/Cart");
+    public String bookRemove (@PathVariable Long id) {
 
         for (OrderBook orderBook: orderBookService.findAll()) {
             if(orderBook.getBook().getId().equals(id)) {
                 OrderBook orderBookSaved = orderBookService.findById(orderBook.getId());
-            //    orderBooks.remove(orderBookSaved);
                 orderBookService.delete(orderBookSaved);
-
-            //    orderService.delete(order);
-
             }
         }
 
-        modelAndView.addObject("orderBooks", orderBookService.findAll());
-
-        return modelAndView;
+        return "redirect:/Cart";
     }
 
 
-    //FALTA AJUSTAR A PARTE DE SE O PEDIDO AINDA ESTÁ EM ABERTO, OS ORDERBOOS TEM QUE SER ADIONADOS NESSE PEDIDO
+    //FALTA TERMINAR A PARTE DE CRIAR MAIS DE UM PEDIDO
     @GetMapping("/AddToCart/{id}")
-    public ModelAndView addToCart(@PathVariable("id") Long id) {
-        Book book = bookService.findById(id);
-        ModelAndView modelAndView = new ModelAndView("Order/Cart");
+    public String addToCart(@PathVariable("id") Long id) {
+        book = bookService.findById(id);
 
-        if(orderBooks.size() == 0) {
+        if(orderBookService.findAll().size() == 0 ) {
             User user = userService.findAll().get(0);
             order = new Order(true, user);
             orderService.save(order);
         }
-
+//        } else if(order.isOpen()) {
+//            orderService.save(order);
+//        } else if(!order.isOpen()) {
+//
+//        }
 
         boolean repeatedBook = false;
         for (OrderBook orderBook: orderBookService.findAll()) {
             if(orderBook.getBook().getId().equals(book.getId())) {
                 OrderBook orderBookSaved = orderBookService.findById(orderBook.getId());
+                orderBookSaved.setTotalValue(0);
                 orderBookSaved.setAmount(orderBookSaved.getAmount() + 1);
-                orderBookSaved.setTotalValue(book.getPrice() * orderBookSaved.getAmount());
+                orderBookSaved.setTotalValue(orderBookSaved.getTotalValue() + (book.getPrice() * orderBookSaved.getAmount()));
                 orderBookService.save(orderBookSaved);
-                    //    orderBook.setAmount(orderBookSaved.getAmount());
-                    //    orderBook.setTotalValue(orderBookSaved.getTotalValue());
                 repeatedBook = true;
             }
         }
-
-
 
         if(!repeatedBook) {
             OrderBook orderBook = new OrderBook();
             orderBook.setBook(book);
             orderBook.setAmount(orderBook.getAmount() + 1);
 
-            orderBook.setTotalValue(book.getPrice() * orderBook.getAmount());
+            orderBook.setTotalValue(orderBook.getTotalValue() + (book.getPrice() * orderBook.getAmount()));
             orderBookService.save(orderBook);
 
             orderBookService.findAll().add(orderBook);
@@ -130,10 +140,7 @@ public class CartController {
             orderService.addOrderBook(order.getId(), orderBookService.findAll());
         }
 
-
-        modelAndView.addObject("orderBooks", orderBookService.findAll());
-
-        return modelAndView;
+        return "redirect:/Cart";
     }
 
 }

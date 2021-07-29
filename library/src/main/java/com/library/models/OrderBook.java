@@ -25,7 +25,7 @@ public class OrderBook {
     @GeneratedValue (strategy = IDENTITY)
     private Long id;
 
-    private float totalValue;
+    private float totalValue = 0;
 
     private int amount = 0;
 
