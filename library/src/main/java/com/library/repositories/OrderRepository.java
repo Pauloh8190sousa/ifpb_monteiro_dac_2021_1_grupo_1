@@ -11,5 +11,5 @@ import java.util.List;
 public interface OrderRepository extends JpaRepository<Order, Long> {
 
     //MÉTODO PARA LISTAR ORDERS PELO STATUS
-    public List<Order> findByStatus(boolean status);
+    public List<Order> findByOpen(boolean status);
 }

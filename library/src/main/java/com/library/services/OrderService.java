@@ -52,7 +52,7 @@ public class OrderService {
     //MÉTODO PARA LISTAR ORDERS PELO STATUS
     public List<Order> findByStatus(boolean status){
 
-        return orderRepository.findByStatus(status);
+        return orderRepository.findByOpen(status);
     }
 
     //MÉTODO PARA LISTAR TODOS OS ORDERS

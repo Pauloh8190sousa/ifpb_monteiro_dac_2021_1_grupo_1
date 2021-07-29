@@ -92,6 +92,7 @@ public class CartController {
             if(orderBook.getBook().getId().equals(id)) {
                 OrderBook orderBookSaved = orderBookService.findById(orderBook.getId());
                 orderBookService.delete(orderBookSaved);
+                orderService.save(order);
             }
         }
 
