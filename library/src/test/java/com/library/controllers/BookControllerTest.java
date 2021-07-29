@@ -18,6 +18,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
+import java.net.InetSocketAddress;
+
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class BookControllerTest {
 
@@ -43,7 +45,11 @@ public class BookControllerTest {
 
     }
 
+    @Test
+    public void listBookSuccess() throws Exception{
+        ResponseEntity<String> result = template.getForEntity("/listBook", String.class);
+        assertNotEquals(HttpStatus.NOT_FOUND, result.getStatusCode());
 
-
+    }
 
 }
