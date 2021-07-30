@@ -17,6 +17,7 @@ public class UserRestController {
 
    //MÉTODO PARA LISTAR USERS
     @GetMapping("/users")
+    @ResponseStatus(HttpStatus.OK)
     public List<User> getUsers() {
         return userService.findAll();
     }
