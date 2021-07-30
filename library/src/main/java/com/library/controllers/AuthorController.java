@@ -1,6 +1,7 @@
 package com.library.controllers;
 
 import com.library.models.Author;
+import com.library.models.Validation;
 import com.library.services.AuthorService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,9 +22,15 @@ public class AuthorController {
     public String createAuthor() {
         return "Author/AuthorForm";
     }
+
+
     @RequestMapping(value = "/createAuthor", method = RequestMethod.POST)
     public String createAuthor(Author author) {
-        authorService.save(author);
+        Validation validation = new Validation();
+        if(validation.validationBibliographicReference(author.getBibliographicReference())){
+            authorService.save(author);
+        }
+
         return "redirect:/Home";
     }
 

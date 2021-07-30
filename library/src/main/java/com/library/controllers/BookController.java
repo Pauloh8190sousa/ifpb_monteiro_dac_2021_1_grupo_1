@@ -3,6 +3,7 @@ package com.library.controllers;
 import com.library.models.Author;
 import com.library.models.Book;
 
+import com.library.models.Validation;
 import com.library.services.AuthorService;
 import com.library.services.BookService;
 import lombok.extern.slf4j.Slf4j;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 //CLASSE CONTROLLER PARA BOOK(LIVRO)
@@ -36,7 +38,19 @@ public class BookController {
 
     @RequestMapping(value = "/createBook", method = RequestMethod.POST)
     public String createBook(Book book) {
-        bookService.save(book);
+        Validation validation = new Validation();
+        try {
+            if(validation.validationPrice(BigDecimal.valueOf(book.getPrice())) &&
+            validation.validationISBN(book.getIsbn()) &&
+            validation.validationTitle(book.getTitle())){
+
+                bookService.save(book);
+            }
+
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
+
 
         return "redirect:/Home";
     }
