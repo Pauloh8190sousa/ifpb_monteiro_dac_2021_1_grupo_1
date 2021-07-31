@@ -42,7 +42,10 @@ public class BookController {
         try {
             if(validation.validationPrice(BigDecimal.valueOf(book.getPrice())) &&
             validation.validationISBN(book.getIsbn()) &&
-            validation.validationTitle(book.getTitle())){
+            validation.validationTitle(book.getTitle()) &&
+            validation.pageLimit(book.getNbOfPages()) &&
+            validation.validationStock(book.getStock()) &&
+            validation.validationDescriptionBook(book.getDescription())){
 
                 bookService.save(book);
             }

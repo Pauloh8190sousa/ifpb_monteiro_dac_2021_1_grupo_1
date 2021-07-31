@@ -1,6 +1,7 @@
 package com.library.controllers;
 
 import com.library.models.User;
+import com.library.models.Validation;
 import com.library.services.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,8 +36,20 @@ public class UserController {
 
     @RequestMapping(value = "/sign-in", method = RequestMethod.POST)
     public String sign_inUser(User user) {
+        Validation validation = new Validation();
 
-        userService.save(user);
+        try{
+            if(validation.validationEmail(user.getEmail()) &&
+                validation.validationPassword(user.getPassword()) &&
+                validation.validationUserName(user.getName())){
+
+
+                userService.save(user);
+            }
+
+        }catch(Exception e){
+            e.printStackTrace();
+        }
 
         return "redirect:/Home";
     }
