@@ -1,8 +1,11 @@
 package com.library.services;
 
 import com.library.models.Author;
+import com.library.models.Book;
 import com.library.repositories.AuthorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -17,6 +20,11 @@ public class AuthorService {
     //MÉTODO PARA SALVAR UM AUTHOR
     public Author save(Author author) {
         return authorRepository.save(author);
+    }
+
+    public List<Author> listAllAuthors(int pageNumber) {
+        PageRequest pageRequest = PageRequest.of(pageNumber,5, Sort.Direction.ASC, "name");
+        return authorRepository.findAll(pageRequest).getContent();
     }
 
     //MÉTODO PARA DELETAR UM AUTHOR PELO ID

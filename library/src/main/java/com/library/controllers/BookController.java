@@ -57,6 +57,7 @@ public class BookController {
 
         return "redirect:/Home";
     }
+
     @RequestMapping("/listBook/{action}")
     public ModelAndView BookList(@PathVariable Integer action) {
         ModelAndView modelAndView = new ModelAndView("Book/BookList");
@@ -73,15 +74,15 @@ public class BookController {
         return modelAndView;
     }
 
-        @GetMapping("/listBook")
-        public ModelAndView listBookPageable() {
-                ModelAndView modelAndView = new ModelAndView("Book/BookList");
-                List<Book> books = bookService.listAllBooks(0);
+    @GetMapping("/listBook")
+    public ModelAndView listBookPageable() {
+        ModelAndView modelAndView = new ModelAndView("Book/BookList");
+        List<Book> books = bookService.listAllBooks(0);
 
-                modelAndView.addObject("books", books);
+        modelAndView.addObject("books", books);
 
-                return modelAndView;
-        }
+        return modelAndView;
+    }
 
 
     @RequestMapping("/{id}")

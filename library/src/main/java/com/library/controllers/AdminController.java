@@ -13,7 +13,7 @@ public class AdminController {
 
     @RequestMapping(value = "/AdminPanel", method = RequestMethod.GET)
     public String createCategory() {
-        return "Admin/AdminPanel";
+        return "AdminPanel";
     }
 
 }
