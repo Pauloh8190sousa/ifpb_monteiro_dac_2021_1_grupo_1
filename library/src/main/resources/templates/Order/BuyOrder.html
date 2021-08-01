@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org/">
+
+<head th:replace = "layout :: headerLayout">
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+</head>
+<title>Forma de pagamento</title>
+<body>
+<div th:replace = "layout :: navbarLayout"></div>
+
+<form>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="inputEmail4">Email</label>
+            <input type="email" class="form-control" id="inputEmail4" placeholder="Email">
+        </div>
+        <div class="form-group col-md-6">
+            <label for="inputPassword4">Senha</label>
+            <input type="password" class="form-control" id="inputPassword4" placeholder="Senha">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="inputAddress">Endereço</label>
+        <input type="text" class="form-control" id="inputAddress" placeholder="Rua dos Bobos, nº 0">
+    </div>
+    <div class="form-group">
+        <label for="inputAddress2">Endereço 2</label>
+        <input type="text" class="form-control" id="inputAddress2" placeholder="Apartamento, hotel, casa, etc.">
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="inputCity">Cidade</label>
+            <input type="text" class="form-control" id="inputCity">
+        </div>
+        <div class="form-group col-md-4">
+            <label for="inputEstado">Estado</label>
+            <select id="inputEstado" class="form-control">
+                <option selected>Escolher...</option>
+                <option>...</option>
+            </select>
+        </div>
+        <div class="form-group col-md-2">
+            <label for="inputCEP">CEP</label>
+            <input type="text" class="form-control" id="inputCEP">
+        </div>
+    </div>
+    <hr />
+    <div class="form-group">
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="gridCheck">
+            <label class="form-check-label" for="gridCheck">
+                Endereço de entrega é o mesmo que o de cobrança.
+            </label>
+        </div>
+    </div>
+    <hr />
+    <h2>Pagamentos</h2>
+    <div class="form-check">
+        <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="opcao1" checked>
+        <label class="form-check-label" for="gridRadios1">
+            Cartão de Crédito
+        </label>
+    </div>
+    <div class="form-check">
+        <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="opcao2">
+        <label class="form-check-label" for="gridRadios2">
+            Cartão de Débito
+        </label>
+    </div>
+    <div class="form-check">
+        <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios3" value="opcao3">
+        <label class="form-check-label" for="gridRadios3">
+            PayPal
+        </label>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="nameCart">Nome no Cartão</label>
+            <input type="text" class="form-control" id="nameCart" placeholder="Nome no Cartão">
+        </div>
+        <div class="form-group col-md-6">
+            <label for="numberCart">Número do Cartão</label>
+            <input type="number" class="form-control" id="numberCart" placeholder="Número do cartão">
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="dateCart">Data de expiração</label>
+            <input type="date" class="form-control" id="dateCart" placeholder="Date do cartão">
+        </div>
+        <div class="form-group col-md-6">
+            <label for="CVV">CVV</label>
+            <input type="number" class="form-control" id="CVV" placeholder="CVV do cartão">
+        </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Confirmar Pagamento</button>
+</form>
+</body>
+</html>
