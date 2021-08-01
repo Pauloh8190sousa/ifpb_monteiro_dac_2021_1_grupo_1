@@ -1,8 +1,7 @@
 package com.library.controllers;
 
 import com.library.models.Author;
-import com.library.models.Book;
-import com.library.models.Validation;
+import com.library.services.Validation;
 import com.library.services.AuthorService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +10,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
-import java.util.Optional;
 
 /**
  * CLASSE CONTROLLER PARA AUTHOR(AUTOR)
@@ -30,13 +28,13 @@ public class AuthorController {
 
 
     @PostMapping("/createAuthor")
-    public ModelAndView createAuthor(Author author) {
+    public String createAuthor(Author author) {
         Validation validation = new Validation();
         if(validation.validationBibliographicReference(author.getBibliographicReference())){
             authorService.save(author);
         }
 
-        return new ModelAndView("Admin/AuthorConfig");
+        return "redirect:/listAuthor";
     }
 
     @PostMapping("/listAuthor/{id}")
@@ -59,7 +57,7 @@ public class AuthorController {
         return modelAndView;
     }
 
-    @GetMapping("/delete/{id}")
+    @GetMapping("/deleteAuthor/{id}")
     public String deleteAuthor(@PathVariable("id") long id) {
 
         authorService.deleteById(id);

@@ -1,8 +1,11 @@
 package com.library.services;
 
+import com.library.models.Author;
 import com.library.models.Category;
 import com.library.repositories.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -34,6 +37,11 @@ public class CategoryService {
     public Category findById(Long id) {
 
         return categoryRepository.findById(id).orElseThrow();
+    }
+
+    public List<Category> listAllCategories(int pageNumber) {
+        PageRequest pageRequest = PageRequest.of(pageNumber,5, Sort.Direction.ASC, "type");
+        return categoryRepository.findAll(pageRequest).getContent();
     }
 
     //MÉTODO PARA LISTAR TODOS OS USERS

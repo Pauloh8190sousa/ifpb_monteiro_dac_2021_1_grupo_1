@@ -1,7 +1,7 @@
 package com.library.mockito;
 
 import com.library.models.User;
-import com.library.models.Validation;
+import com.library.services.Validation;
 import com.library.repositories.UserRepository;
 import com.library.services.UserService;
 import org.junit.jupiter.api.BeforeEach;

@@ -21,7 +21,7 @@ public class Category {
     @GeneratedValue(strategy = IDENTITY)
     private Long id;
 
-    private Type type;
+    private String type;
 
     @ManyToMany(mappedBy = "categories", cascade = CascadeType.MERGE)
     private List<Book> books;
