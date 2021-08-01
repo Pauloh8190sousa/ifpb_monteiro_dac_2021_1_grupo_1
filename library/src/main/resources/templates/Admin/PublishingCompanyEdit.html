@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org/">
+
+<head th:replace = "layout :: headerLayout">
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+</head>
+<title>Cadastrar Editora</title>
+
+<body>
+<div th:replace = "layout :: navbarLayout"></div>
+
+<form class="container" id="categoriesForm" th:object="${publishingCompany}" method="POST">
+  <input type="hidden" th:field="*{id}" />
+  <div class=" mt-4 mb-3">
+    <label for="name" class="form-label">Categoria</label>
+    <input type="text" class="form-control" id="name" th:field="*{name}" placeholder="Nome da editora"/>
+  </div>
+  <div class=" mt-4 mb-3">
+    <label for="city" class="form-label">Categoria</label>
+    <input type="text" class="form-control" id="city" th:field="*{city}" placeholder="Cidade da editora"/>
+  </div>
+
+  <input class="btn btn-primary" type="submit" value="Criar categoria">
+</form>
+</body>
+</html>

@@ -35,15 +35,13 @@ public class CategoryController {
 
     @PostMapping("/listCategory/{id}")
     public ModelAndView editCategory(Category category) {
-        Validation validation = new Validation();
-
         categoryService.save(category);
 
         return new ModelAndView("Admin/CategoryConfig");
     }
 
     @GetMapping("/listCategory/{id}")
-    public ModelAndView editAuthor(@PathVariable("id") Long id) {
+    public ModelAndView editCategory(@PathVariable("id") Long id) {
         ModelAndView modelAndView = new ModelAndView("Admin/CategoryEdit");
         Category category = categoryService.findById(id);
 

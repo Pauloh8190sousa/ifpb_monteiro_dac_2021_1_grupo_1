@@ -10,7 +10,7 @@
 <body>
 <div th:replace = "layout :: navbarLayout"></div>
 
-<form class="container" id="authorsForm" th:object="${category}" method="POST">
+<form class="container" id="categoriesForm" th:object="${category}" method="POST">
   <input type="hidden" th:field="*{id}" />
   <div class=" mt-4 mb-3">
     <label for="type" class="form-label">Categoria</label>
