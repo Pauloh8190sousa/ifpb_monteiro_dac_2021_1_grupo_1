@@ -37,6 +37,18 @@
             <tr th:each="author : ${authors} ">
                 <td><span th:text="${author.name}"></span></td>
                 <td><span th:text="${author.bibliographicReference}"></span></td>
+                <td class="text-right">
+                    <a class="btn btn-sm btn-primary"
+                       th:href="@{/listAuthor/{id}(id=${author.id})}"
+                       role="button"><i class="fa fa-edit"></i>
+                    </a>
+                </td>
+                <td class="text-right">
+                    <a class="btn btn-sm btn-danger"
+                       th:href="@{/delete/{id}(id=${author.id})}"
+                       role="button"><i class="fa fa-trash"></i>
+                    </a>
+                </td>
             </tr>
             </tbody>
         </table>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org/">
+
+<head th:replace = "layout :: headerLayout">
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+</head>
+<title>Cadastrar Autor</title>
+
+<body>
+<div th:replace = "layout :: navbarLayout"></div>
+
+<form class="container" id="authorsForm" th:object="${author}" method="POST">
+  <input type="hidden" th:field="*{id}" />
+  <div class=" mt-4 mb-3 ">
+    <label for="name" class="form-label">Nome</label>
+    <input type="text" class="form-control" id="name" th:field="*{name}" placeholder="Digite um nome"/>
+  </div>
+  <div class="mb-3">
+    <label for="bibliographicReference" class="form-label">Referência Bibliográfica</label>
+    <input type="text" class="form-control" id="bibliographicReference" th:field="*{bibliographicReference}" placeholder="Digite uma referência bibliográfica"/>
+  </div>
+
+  <input class="btn btn-primary" type="submit" value="Cadastrar Autor">
+</form>
+
+<!--<h1>Cadastrar Autor:</h1>-->
+<!--<form method="post">-->
+<!--  Nome: <input type="text" value="" placeholder="digite o nome do autor" name="name"/>-->
+<!--  Referência Bibliográfica: <input type="text" value="" placeholder="digite a referência bibliografica, exemplo: Paulo P.H" name="bibliographicReference"/>-->
+
+<!--  <button type="submit">Cadastrar Autor</button>-->
+
+<!--</form>-->
+
+</body>
+</html>

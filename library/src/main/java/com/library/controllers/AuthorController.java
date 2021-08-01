@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * CLASSE CONTROLLER PARA AUTHOR(AUTOR)
@@ -28,15 +29,44 @@ public class AuthorController {
     }
 
 
-    @RequestMapping(value = "/createAuthor", method = RequestMethod.POST)
-    public String createAuthor(Author author) {
+    @PostMapping("/createAuthor")
+    public ModelAndView createAuthor(Author author) {
         Validation validation = new Validation();
         if(validation.validationBibliographicReference(author.getBibliographicReference())){
             authorService.save(author);
         }
 
-        return "redirect:/Home";
+        return new ModelAndView("Admin/AuthorConfig");
     }
+
+    @PostMapping("/listAuthor/{id}")
+    public ModelAndView editAuthor(Author author) {
+        Validation validation = new Validation();
+        if(validation.validationBibliographicReference(author.getBibliographicReference())){
+            authorService.save(author);
+        }
+
+        return new ModelAndView("Admin/AuthorConfig");
+    }
+
+    @GetMapping("/listAuthor/{id}")
+    public ModelAndView editAuthor(@PathVariable("id") Long id) {
+        ModelAndView modelAndView = new ModelAndView("Admin/AuthorEdit");
+        Author author = authorService.findById(id);
+
+        modelAndView.addObject("author", author);
+
+        return modelAndView;
+    }
+
+    @GetMapping("/delete/{id}")
+    public String deleteAuthor(@PathVariable("id") long id) {
+
+        authorService.deleteById(id);
+
+        return "redirect:/listAuthor";
+    }
+
 
     @RequestMapping("/listAuthor/{action}")
     public ModelAndView AuthorList(@PathVariable Integer action) {
