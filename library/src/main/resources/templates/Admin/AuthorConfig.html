@@ -3,8 +3,8 @@
       xmlns:th="http://www.thymeleaf.org/">
 <head th:replace = "AdminPanel :: AdminPanelLayout">
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-    <title>Listagem de Autores</title>
 </head>
+<title>Listagem de Autores</title>
 <body>
 <div th:replace = "AdminPanel :: AdminLayout"></div>
     <nav aria-label="Page navigation example">
@@ -45,7 +45,7 @@
                 </td>
                 <td class="text-right">
                     <a class="btn btn-sm btn-danger"
-                       th:href="@{/delete/{id}(id=${author.id})}"
+                       th:href="@{/deleteAuthor/{id}(id=${author.id})}"
                        role="button"><i class="fa fa-trash"></i>
                     </a>
                 </td>

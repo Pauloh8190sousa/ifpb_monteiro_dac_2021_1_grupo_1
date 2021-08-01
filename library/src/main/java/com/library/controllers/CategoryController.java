@@ -1,12 +1,16 @@
 package com.library.controllers;
 
+import com.library.models.Author;
 import com.library.models.Category;
 import com.library.services.CategoryService;
+import com.library.services.Validation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
+
+import java.util.List;
 
 //CLASSE CONTROLLER DE CATEGORY(CATEGORIA)
 @Slf4j //Faz o log da classe para poder tratar erros
@@ -26,6 +30,60 @@ public class CategoryController {
 
         categoryService.save(category);
 
-        return "redirect:/Home";
+        return "redirect:/listCategory";
+    }
+
+    @PostMapping("/listCategory/{id}")
+    public ModelAndView editCategory(Category category) {
+        Validation validation = new Validation();
+
+        categoryService.save(category);
+
+        return new ModelAndView("Admin/CategoryConfig");
+    }
+
+    @GetMapping("/listCategory/{id}")
+    public ModelAndView editAuthor(@PathVariable("id") Long id) {
+        ModelAndView modelAndView = new ModelAndView("Admin/CategoryEdit");
+        Category category = categoryService.findById(id);
+
+        modelAndView.addObject("category", category);
+
+        return modelAndView;
+    }
+
+    @GetMapping("/deleteCategory/{id}")
+    public String deleteAuthor(@PathVariable("id") long id) {
+
+        categoryService.delete(id);
+
+        return "redirect:/listCategory";
+    }
+
+
+    @RequestMapping("/listCategory/{action}")
+    public ModelAndView AuthorList(@PathVariable Integer action) {
+        ModelAndView modelAndView = new ModelAndView("Admin/CategoryConfig");
+        List<Category> categories;
+        if(action != null) {
+            categories = categoryService.listAllCategories(action);
+
+        }else{
+            categories = categoryService.listAllCategories(0);
+        }
+
+        modelAndView.addObject("categories", categories);
+
+        return modelAndView;
+    }
+
+    @GetMapping("/listCategory")
+    public ModelAndView listAuthorPageable() {
+        ModelAndView modelAndView = new ModelAndView("Admin/CategoryConfig");
+        List<Category> categories = categoryService.listAllCategories(0);
+
+        modelAndView.addObject("categories", categories);
+
+        return modelAndView;
     }
 }

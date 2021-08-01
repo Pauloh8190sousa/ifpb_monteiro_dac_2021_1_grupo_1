@@ -1,7 +1,7 @@
 package com.library.controllers;
 
 import com.library.models.User;
-import com.library.models.Validation;
+import com.library.services.Validation;
 import com.library.services.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

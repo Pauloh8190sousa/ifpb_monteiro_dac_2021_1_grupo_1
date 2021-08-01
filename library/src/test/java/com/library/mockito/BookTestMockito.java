@@ -1,14 +1,11 @@
 package com.library.mockito;
 
 import com.library.models.Book;
-import com.library.models.User;
-import com.library.models.Validation;
+import com.library.services.Validation;
 import com.library.repositories.AuthorRepository;
 import com.library.repositories.BookRepository;
-import com.library.repositories.UserRepository;
 import com.library.services.BookService;
 
-import com.library.services.UserService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -23,7 +20,7 @@ import java.math.BigDecimal;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.List;
+
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;

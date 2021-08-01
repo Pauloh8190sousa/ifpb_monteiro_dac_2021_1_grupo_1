@@ -3,7 +3,7 @@ package com.library.controllers;
 import com.library.models.Author;
 import com.library.models.Book;
 
-import com.library.models.Validation;
+import com.library.services.Validation;
 import com.library.services.AuthorService;
 import com.library.services.BookService;
 import lombok.extern.slf4j.Slf4j;

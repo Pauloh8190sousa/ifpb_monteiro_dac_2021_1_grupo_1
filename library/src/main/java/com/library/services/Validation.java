@@ -1,5 +1,7 @@
-package com.library.models;
+package com.library.services;
 
+import com.library.models.Book;
+import com.library.models.User;
 import com.library.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
