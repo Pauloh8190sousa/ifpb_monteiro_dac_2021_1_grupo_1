@@ -44,7 +44,6 @@ public class BookController {
             validation.validationISBN(book.getIsbn()) &&
             validation.validationTitle(book.getTitle()) &&
             validation.pageLimit(book.getNbOfPages()) &&
-            validation.validationStock(book.getStock()) &&
             validation.validationDescriptionBook(book.getDescription())){
 
                 bookService.save(book);
@@ -55,9 +54,61 @@ public class BookController {
         }
 
 
-        return "redirect:/Home";
+        return "redirect:/listBookConfig";
     }
 
+    @PostMapping("/listBook/{id}")
+    public ModelAndView editBook(Book book) {
+        Validation validation = new Validation();
+
+        bookService.save(book);
+
+        return new ModelAndView("Admin/BookConfig");
+    }
+
+    @GetMapping("/listBook/{id}")
+    public ModelAndView editBook(@PathVariable("id") Long id) {
+        ModelAndView modelAndView = new ModelAndView("Admin/BookEdit");
+        Book book = bookService.findById(id);
+
+        modelAndView.addObject("book", book);
+
+        return modelAndView;
+    }
+
+    @GetMapping("/deleteBook/{id}")
+    public String deleteBook(@PathVariable("id") long id) {
+
+        bookService.deleteById(id);
+
+        return "redirect:/listBookConfig";
+    }
+
+    @GetMapping("/listBookConfig")
+    public ModelAndView listBookPageableConfig() {
+        ModelAndView modelAndView = new ModelAndView("Admin/BookConfig");
+        List<Book> books = bookService.listAllBooks(0);
+
+        modelAndView.addObject("books", books);
+
+        return modelAndView;
+    }
+
+    @RequestMapping("/listBookConfig/{action}")
+    public ModelAndView listBookPageableConfig(@PathVariable Integer action) {
+        ModelAndView modelAndView = new ModelAndView("Admin/BookConfig");
+        List<Book> books;
+        if(action != null){
+            books = bookService.listAllBooks(action);
+
+        }else{
+            books = bookService.listAllBooks(0);
+        }
+
+        modelAndView.addObject("books", books);
+
+        return modelAndView;
+    }
 
     @RequestMapping("/listBook/{action}")
     public ModelAndView BookList(@PathVariable Integer action) {

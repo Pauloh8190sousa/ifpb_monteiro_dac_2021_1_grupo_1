@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org/">
+
+<head th:replace = "layout :: headerLayout">
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+</head>
+<title>Cadastrar Autor</title>
+
+<body>
+  <div th:replace = "layout :: navbarLayout"></div>
+
+  <form class="container" id="authorsForm" th:object="${book}" method="POST">
+    <input type="hidden" th:field="*{id}" />
+    <div class=" mt-4 mb-3 ">
+      <label for="name" class="form-label">Título</label>
+      <input type="text" class="form-control" id="name" th:field="*{title}" placeholder="Digite um título"/>
+    </div>
+    <div class="mb-3">
+      <label for="price" class="form-label">Preço</label>
+      <input type="number" class="form-control" id="price" th:field="*{price}" placeholder="Digite um preço"/>
+    </div>
+    <div class="mb-3">
+      <label for="description" class="form-label">Descrição</label>
+      <input type="text" class="form-control" id="description" th:field="*{description}" placeholder="Digite uma descrição"/>
+    </div>
+    <div class="mb-3">
+      <label for="nbOfPages" class="form-label">Número de Páginas</label>
+      <input type="number" class="form-control" id="nbOfPages" th:field="*{nbOfPages}" placeholder="Digite o número de páginas"/>
+    </div>
+    <div class="mb-3">
+      <label for="isbn" class="form-label">ISBN</label>
+      <input type="text" class="form-control" id="isbn" th:field="*{isbn}" placeholder="Digite um ISBN"/>
+    </div>
+    <div class="mb-3">
+      <label for="illustration" class="form-label">Ilustração</label>
+      <input type="text" class="form-control" id="illustration" th:field="*{illustration}" placeholder="true ou false"/>
+    </div>
+    <div class="mb-3">
+      <label for="publicationDate" class="form-label">Data de publicação</label>
+      <input type="date" class="form-control" id="publicationDate" th:field="*{publicationDate}"/>
+    </div>
+    <div class="mb-3">
+      <label for="imageLink" class="form-label">Imagem</label>
+      <input type="text" class="form-control" id="imageLink" th:field="*{imageLink}"/>
+    </div>
+
+    <input class="btn btn-primary" type="submit" value="Cadastrar Livro">
+  </form>
+
+</body>
+</html>
