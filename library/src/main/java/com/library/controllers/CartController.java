@@ -141,9 +141,5 @@ public class CartController {
         return "redirect:/Cart";
     }
 
-    @RequestMapping(value = "/finishOrderCart", method = RequestMethod.GET)
-    public String finishOrderCart() {
-        return "Order/BuyOrder";
-    }
 
 }

@@ -9,7 +9,7 @@
 <body>
 <div th:replace = "layout :: navbarLayout"></div>
 
-<form>
+<form method="post">
     <div class="form-row">
         <div class="form-group col-md-6">
             <label for="inputEmail4">Email</label>
@@ -37,12 +37,14 @@
             <label for="inputEstado">Estado</label>
             <select id="inputEstado" class="form-control">
                 <option selected>Escolher...</option>
+                <option>Súme</option>
+                <option>Monteiro</option>
                 <option>...</option>
             </select>
         </div>
         <div class="form-group col-md-2">
             <label for="inputCEP">CEP</label>
-            <input type="text" class="form-control" id="inputCEP">
+            <input type="number" class="form-control" id="inputCEP">
         </div>
     </div>
     <hr />

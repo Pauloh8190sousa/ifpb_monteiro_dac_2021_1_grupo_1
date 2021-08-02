@@ -8,10 +8,7 @@ import com.library.services.Validation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.math.BigDecimal;
@@ -40,4 +37,16 @@ public class PaymentController {
 
         return modelAndView;
     }
+
+    @RequestMapping(value = "/finishOrderCart", method = RequestMethod.GET)
+    public String finishOrderCart() {
+        return "Order/BuyOrder";
+    }
+
+    @PostMapping("/finishOrderCart")
+    public String finishOrderCart(Payment payment) {
+        paymentService.save(payment);
+        return "redirect:/Cart";
+    }
+
 }

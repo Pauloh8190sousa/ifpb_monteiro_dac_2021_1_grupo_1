@@ -42,8 +42,10 @@ public class Payment {
 
     private String expirationDate;
 
+    private Long CVV;
+
     public Payment(String email, String name, String address, String city, String estate, Long CEP, String deliveryAddress,
-                   String paymentCard, Long numberCard, String expirationDate){
+                   String paymentCard, Long numberCard, String expirationDate, Long CVV){
 
         this.email = email;
         this.name = name;
@@ -55,6 +57,7 @@ public class Payment {
         this.paymentCard = paymentCard;
         this.numberCard = numberCard;
         this.expirationDate = expirationDate;
+        this.CVV = CVV;
 
     }
 
