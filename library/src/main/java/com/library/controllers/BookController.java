@@ -58,15 +58,6 @@ public class BookController {
         return "redirect:/Home";
     }
 
-    @PostMapping(value = "/listBook")
-    public ModelAndView BookListSearch(String search) {
-        ModelAndView modelAndView = new ModelAndView("Book/BookList");
-        List<Book> books = bookService.findByTitle(search);
-
-        modelAndView.addObject("books", books);
-
-        return modelAndView;
-    }
 
     @RequestMapping("/listBook/{action}")
     public ModelAndView BookList(@PathVariable Integer action) {
