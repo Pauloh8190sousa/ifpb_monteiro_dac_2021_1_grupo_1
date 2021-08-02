@@ -6,6 +6,8 @@ import lombok.Setter;
 
 import javax.persistence.*;
 
+import java.util.List;
+
 import static javax.persistence.GenerationType.IDENTITY;
 
 @Data
@@ -22,5 +24,8 @@ public class PublishingCompany {
     private String name;
 
     private String city;
+
+    @ManyToMany(mappedBy = "publishingCompanies", cascade = CascadeType.MERGE)
+    private List<Book> books;
 
 }

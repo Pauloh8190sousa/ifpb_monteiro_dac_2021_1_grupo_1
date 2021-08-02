@@ -3,9 +3,9 @@ package com.library.controllers;
 import com.library.models.Author;
 import com.library.models.Book;
 
-import com.library.services.Validation;
-import com.library.services.AuthorService;
-import com.library.services.BookService;
+import com.library.models.Category;
+import com.library.models.PublishingCompany;
+import com.library.services.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -26,9 +26,25 @@ public class BookController {
     @Autowired
     private AuthorService authorService;
 
+    @Autowired
+    private CategoryService categoryService;
+
+    @Autowired
+    private PublishingCompanyService publishingCompanyService;
+
     @ModelAttribute("allAuthors")
-    public List<Author> authors(){
+    public List<Author> authors() {
         return authorService.findAll();
+    }
+
+    @ModelAttribute("allCategories")
+    public List<Category> categories() {
+        return categoryService.findAll();
+    }
+
+    @ModelAttribute("allPublishingCompanies")
+    public List<PublishingCompany> publishingCompanies() {
+        return publishingCompanyService.findAll();
     }
 
     @RequestMapping(value = "/createBook", method = RequestMethod.GET)

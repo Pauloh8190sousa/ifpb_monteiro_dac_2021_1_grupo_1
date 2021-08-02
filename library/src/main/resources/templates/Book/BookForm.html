@@ -22,6 +22,20 @@
                             th:text="${author.name}"> Selecione... </span></option>
                 </select>
             </div>
+            <div class="col-md-3">
+                <label for="publishingCompanies" class="form-label">Categoria</label>
+                <select id="publishingCompanies" name="publishingCompanies" class="form-select">
+                    <option th:each="publishingCompany : ${allPublishingCompanies}" th:value="${publishingCompany.id}"><span
+                            th:text="${publishingCompany.name}"> Selecione... </span></option>
+                </select>
+            </div>
+            <div class="col-md-3">
+                <label for="categories" class="form-label">Categoria</label>
+                <select id="categories" name="categories" class="form-select">
+                    <option th:each="category : ${allCategories}" th:value="${category.id}"><span
+                            th:text="${category.type}"> Selecione... </span></option>
+                </select>
+            </div>
             <div class="mb-3">
                 <label for="price" class="form-label">Preço</label>
                 <input type="number" class="form-control" id="price" name="price" placeholder="Digite um preço"/>

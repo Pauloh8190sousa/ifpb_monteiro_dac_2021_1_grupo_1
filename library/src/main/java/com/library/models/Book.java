@@ -55,6 +55,10 @@ public class Book implements Comparable<Book> {
     @JoinTable(name = "category_book_tb", joinColumns = @JoinColumn(name = "book_id"), inverseJoinColumns = @JoinColumn(name = "category_id"))
     private List<Category> categories;
 
+    @ManyToMany
+    @JoinTable(name = "publishingCompany_book_tb", joinColumns = @JoinColumn(name = "book_id"), inverseJoinColumns = @JoinColumn(name = "publishingCompany_id"))
+    private List<PublishingCompany> publishingCompanies;
+
     public Book(String title, float price, String description, int nbOfPages, String isbn, boolean illustration){
         this.title = title;
         this.price = price;
