@@ -4,10 +4,7 @@ import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 import static javax.persistence.GenerationType.IDENTITY;
 
@@ -44,8 +41,11 @@ public class Payment {
 
     private Long CVV;
 
+    @ManyToOne
+    private User user;
+
     public Payment(String email, String name, String address, String city, String estate, Long CEP, String deliveryAddress,
-                   String paymentCard, Long numberCard, String expirationDate, Long CVV){
+                   String paymentCard, Long numberCard, String expirationDate, Long CVV, User user){
 
         this.email = email;
         this.name = name;
@@ -58,6 +58,7 @@ public class Payment {
         this.numberCard = numberCard;
         this.expirationDate = expirationDate;
         this.CVV = CVV;
+        this.user = user;
 
     }
 
