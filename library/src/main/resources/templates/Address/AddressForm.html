@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org/">
+
+<head th:replace = "layout :: headerLayout">
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+</head>
+<title>Cadastrar Endereço</title>
+<body>
+
+    <div th:replace = "layout :: navbarLayout"></div>
+
+    <div class="container-fluid">
+        <section class="container">
+            <div class="row">
+                <h3 class="dark-grey">Cadastrar Endereço</h3>
+                <div class="col-md-6">
+                    <div class="form-group col-lg-9">
+                        <label>País</label>
+                        <input type="text" name="" class="form-control" id="nation" value="">
+                    </div>
+
+                    <div class="form-group col-lg-9 mt-4">
+                        <label>Estado</label>
+                        <input type="text" name="" class="form-control" id="state" value="">
+                    </div>
+
+                    <div class="form-group col-lg-9 mt-4">
+                        <label>Cidade</label>
+                        <input type="text" name="" class="form-control" id="city" value="">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group col-lg-9">
+                        <label>CEP</label>
+                        <input type="number" name="" class="form-control" id="ZipCode" value="">
+                    </div>
+
+                    <div class="form-group col-lg-9 mt-4">
+                        <label>Bairro</label>
+                        <input type="text" name="" class="form-control" id="Neighborhood" value="">
+                    </div>
+                </div>
+            </div>
+            <input class="btn btn-primary mt-4" type="submit" value="Cadastrar Endereço">
+        </section>
+    </div>
+</body>
+</html>
