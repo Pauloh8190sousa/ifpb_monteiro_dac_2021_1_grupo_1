@@ -26,6 +26,9 @@ public class User {
 
     private String password;
 
+    @OneToOne(cascade = CascadeType.PERSIST)
+    private Address address;
+
     public User(String name, String email, String password) {
         this.setName(name);
         this.setEmail(email);
