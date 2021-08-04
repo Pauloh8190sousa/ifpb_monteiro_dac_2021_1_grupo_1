@@ -163,4 +163,16 @@ public class BookController {
         return modelAndView;
     }
 
+    @GetMapping("/listSearch")
+    public ModelAndView listBook(@RequestParam(defaultValue = "") String title) {
+
+        List<Book> books = bookService.findByTitleContaining(title);
+
+        ModelAndView mv = new ModelAndView("Book/BookList");
+
+        mv.addObject("books",books);
+
+        return mv;
+    }
+
 }
