@@ -38,6 +38,14 @@ public class PaymentController {
         return modelAndView;
     }
 
+    @GetMapping("/deletePayment/{id}")
+    public String deletePayment(@PathVariable("id") long id) {
+
+        paymentService.deleteById(id);
+
+        return "redirect:/paymentList";
+    }
+
     @RequestMapping(value = "/finishOrderCart", method = RequestMethod.GET)
     public String finishOrderCart() {
         return "Order/BuyOrder";

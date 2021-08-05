@@ -22,10 +22,6 @@
 </nav>
 <div class="container">
 
-    <form class="form-group input-group" >
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Search</button>
-    </form>
     <table id="tabela" class="table table-hover">
         <thead>
         <tr>
@@ -45,7 +41,18 @@
             <td><span th:text="${payment.email}"></span></td>
             <td><span th:text="${payment.CEP}"></span></td>
             <td><span th:text="${payment.estate}"></span></td>
-
+            <td class="text-right">
+                <a class="btn btn-sm btn-primary"
+                   th:href="@{/listPayment}"
+                   role="button"><i class="fa fa-edit"></i>
+                </a>
+            </td>
+            <td class="text-right">
+                <a class="btn btn-sm btn-danger"
+                   th:href="@{/deletePayment/{id}(id=${payment.id})}"
+                   role="button"><i class="fa fa-trash"></i>
+                </a>
+            </td>
         </tr>
         </tbody>
     </table>
