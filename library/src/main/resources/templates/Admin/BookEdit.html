@@ -33,6 +33,10 @@
       <input type="text" class="form-control" id="isbn" th:field="*{isbn}" placeholder="Digite um ISBN"/>
     </div>
     <div class="mb-3">
+      <label for="isbn" class="form-label">Estoque</label>
+      <input type="number" class="form-control" id="stock" th:field="*{stock}" placeholder="Quantidade em estoque"/>
+    </div>
+    <div class="mb-3">
       <label for="illustration" class="form-label">Ilustração</label>
       <input type="text" class="form-control" id="illustration" th:field="*{illustration}" placeholder="true ou false"/>
     </div>

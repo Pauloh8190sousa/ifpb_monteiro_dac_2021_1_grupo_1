@@ -79,7 +79,7 @@ public class BookController {
 
         bookService.save(book);
 
-        return new ModelAndView("Admin/BookConfig");
+        return new ModelAndView("redirect:/listBookConfig");
     }
 
     @GetMapping("/listBook/{id}")
