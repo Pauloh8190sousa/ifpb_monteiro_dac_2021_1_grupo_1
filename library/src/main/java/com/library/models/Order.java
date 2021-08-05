@@ -34,6 +34,9 @@ public class Order {
     @ManyToOne
     private User user;
 
+    @ManyToOne
+    private Payment payment;
+
 //    @ManyToMany(cascade = CascadeType.MERGE)
 //    @JoinTable(name = "order_books_tb", joinColumns = @JoinColumn(name = "order_id"), inverseJoinColumns = @JoinColumn(name = "book_id"))
 //    private List<Book> books = new ArrayList<Book>();

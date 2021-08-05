@@ -27,10 +27,6 @@ public class PaymentService {
         paymentRepository.delete(payment);
     }
 
-    public List<Payment> findByEmail(String emailPayment){
-        return paymentRepository.findByEmail(emailPayment);
-    }
-
     public Payment findById(Long idPayment){
         return paymentRepository.findById(idPayment).orElseThrow();
     }

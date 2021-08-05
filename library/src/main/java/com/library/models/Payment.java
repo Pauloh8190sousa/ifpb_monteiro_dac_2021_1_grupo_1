@@ -19,46 +19,18 @@ public class Payment {
     @GeneratedValue(strategy = IDENTITY)
     private Long id;
 
-    private String email;
-
-    private String name;
-
-    private String address;
-
-    private String city;
-
-    private String estate;
-
-    private Long CEP;
-
-    private String deliveryAddress;
-
     private String paymentCard;
 
     private Long numberCard;
 
-    private String expirationDate;
-
     private Long CVV;
 
-    @ManyToOne
-    private User user;
 
-    public Payment(String email, String name, String address, String city, String estate, Long CEP, String deliveryAddress,
-                   String paymentCard, Long numberCard, String expirationDate, Long CVV, User user){
+    public Payment(String paymentCard, Long numberCard, Long CVV, User user){
 
-        this.email = email;
-        this.name = name;
-        this.address = address;
-        this.city = city;
-        this. estate = estate;
-        this.CEP = CEP;
-        this.deliveryAddress = deliveryAddress;
         this.paymentCard = paymentCard;
         this.numberCard = numberCard;
-        this.expirationDate = expirationDate;
         this.CVV = CVV;
-        this.user = user;
 
     }
 
