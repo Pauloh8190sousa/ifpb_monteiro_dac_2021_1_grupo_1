@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org/">
+
+<head th:replace = "layout :: headerLayout">
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+</head>
+<title>Editar Payment</title>
+
+<body>
+<div th:replace = "layout :: navbarLayout"></div>
+
+  <form class="container" id="paymentsForm" th:object="${payment}" method="POST">
+      <input type="hidden" th:field="*{id}" />
+      <section class="container">
+    <h2>Pagamentos</h2>
+    <div class="form-row">
+      <div class="form-group col-lg-9 mt-4">
+        <label for="nameCart">Tipo de Cartão</label>
+        <input type="text" class="form-control" id="typeCart" th:field="*{typeCart}" placeholder="Tipo de Cartão">
+      </div>
+      <div class="form-group col-lg-9 mt-4">
+        <label for="nameCart">Nome no Cartão</label>
+        <input type="text" class="form-control" id="nameCart" th:field="*{nameCard}" placeholder="Nome no Cartão">
+      </div>
+      <div class="form-group col-lg-9 mt-4">
+        <label for="numberCart">Número do Cartão</label>
+        <input type="number" class="form-control" id="numberCart" th:field="*{numberCard}" placeholder="Número do cartão">
+      </div>
+    </div>
+    <div class="form-group col-lg-9 mt-4">
+      <div class="form-group col-md-6">
+        <label for="CVV">CVV</label>
+        <input type="number" class="form-control" id="CVV" th:field="*{CVV}" placeholder="CVV do cartão">
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary mt-4">Confirmar Pagamento</button>
+  </section>
+  </form>
+
+</body>
+</html>

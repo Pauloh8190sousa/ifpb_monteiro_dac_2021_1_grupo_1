@@ -1,8 +1,7 @@
 package com.library.controllers;
 
-import com.library.models.Author;
-import com.library.models.Book;
-import com.library.models.Payment;
+import com.library.models.*;
+import com.library.services.OrderService;
 import com.library.services.PaymentService;
 import com.library.services.Validation;
 import lombok.extern.slf4j.Slf4j;
@@ -23,17 +22,31 @@ public class PaymentController {
     @Autowired
     private PaymentService paymentService;
 
-    @RequestMapping(value = "/paymentList", method = RequestMethod.GET)
-    public String listPayment() {
-        return "Order/BuyOrder";
+
+    @RequestMapping(value = "/createPayment", method = RequestMethod.GET)
+    public String finishOrderCart() {
+        return "Payment/PaymentForm";
     }
 
-    @GetMapping("/listPayment")
-    public ModelAndView editAuthor() {
-        ModelAndView modelAndView = new ModelAndView("Admin/BuyOrderConfig");
-        List<Payment> payments = paymentService.findAll();
+    @PostMapping("/createPayment")
+    public String finishOrderCart(Payment payment) {
+        paymentService.save(payment);
+        return "redirect:/listPayment";
+    }
 
-        modelAndView.addObject("payments", payments);
+    @PostMapping("/listPayment/{id}")
+    public ModelAndView editPayment(Payment payment) {
+        paymentService.save(payment);
+
+        return new ModelAndView("Admin/PaymentConfig");
+    }
+
+    @GetMapping("/listPayment/{id}")
+    public ModelAndView editPayment(@PathVariable("id") Long id) {
+        ModelAndView modelAndView = new ModelAndView("Admin/PaymentEdit");
+        Payment payment = paymentService.findById(id);
+
+        modelAndView.addObject("payment", payment);
 
         return modelAndView;
     }
@@ -43,18 +56,33 @@ public class PaymentController {
 
         paymentService.deleteById(id);
 
-        return "redirect:/paymentList";
+        return "redirect:/listPayment";
     }
 
-    @RequestMapping(value = "/finishOrderCart", method = RequestMethod.GET)
-    public String finishOrderCart() {
-        return "Order/BuyOrder";
+    @RequestMapping("/listPayment/{action}")
+    public ModelAndView PaymentList(@PathVariable Integer action) {
+        ModelAndView modelAndView = new ModelAndView("Admin/PaymentConfig");
+        List<Payment> payments;
+        if(action != null) {
+            payments = paymentService.listAllPayments(action);
+
+        }else{
+            payments = paymentService.listAllPayments(0);
+        }
+
+        modelAndView.addObject("payments", payments);
+
+        return modelAndView;
     }
 
-    @PostMapping("/finishOrderCart")
-    public String finishOrderCart(Payment payment) {
-        paymentService.save(payment);
-        return "redirect:/Cart";
+    @GetMapping("/listPayment")
+    public ModelAndView listPaymentPageable() {
+        ModelAndView modelAndView = new ModelAndView("Admin/PaymentConfig");
+        List<Payment> payments = paymentService.listAllPayments(0);
+
+        modelAndView.addObject("payments", payments);
+
+        return modelAndView;
     }
 
 }

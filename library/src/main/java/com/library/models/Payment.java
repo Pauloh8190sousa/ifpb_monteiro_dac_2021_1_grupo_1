@@ -19,7 +19,9 @@ public class Payment {
     @GeneratedValue(strategy = IDENTITY)
     private Long id;
 
-    private String paymentCard;
+    private String typeCard;
+
+    private String nameCard;
 
     private Long numberCard;
 
@@ -28,7 +30,7 @@ public class Payment {
 
     public Payment(String paymentCard, Long numberCard, Long CVV, User user){
 
-        this.paymentCard = paymentCard;
+        this.typeCard = paymentCard;
         this.numberCard = numberCard;
         this.CVV = CVV;
 

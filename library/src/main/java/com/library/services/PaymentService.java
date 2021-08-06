@@ -1,8 +1,11 @@
 package com.library.services;
 
+import com.library.models.Author;
 import com.library.models.Payment;
 import com.library.repositories.PaymentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,6 +19,11 @@ public class PaymentService {
     public Payment save(Payment payment){
 
         return paymentRepository.save(payment);
+    }
+
+    public List<Payment> listAllPayments(int pageNumber) {
+        PageRequest pageRequest = PageRequest.of(pageNumber,5, Sort.Direction.ASC, "nameCard");
+        return paymentRepository.findAll(pageRequest).getContent();
     }
 
     public List<Payment> findAll(){

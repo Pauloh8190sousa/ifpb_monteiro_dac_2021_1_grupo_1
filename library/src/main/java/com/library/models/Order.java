@@ -34,7 +34,7 @@ public class Order {
     @ManyToOne
     private User user;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     private Payment payment;
 
 //    @ManyToMany(cascade = CascadeType.MERGE)
