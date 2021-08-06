@@ -28,9 +28,9 @@ public class Payment {
     private Long CVV;
 
 
-    public Payment(String paymentCard, Long numberCard, Long CVV, User user){
+    public Payment(String typeCard, Long numberCard, Long CVV){
 
-        this.typeCard = paymentCard;
+        this.typeCard = typeCard;
         this.numberCard = numberCard;
         this.CVV = CVV;
 

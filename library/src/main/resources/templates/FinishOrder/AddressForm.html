@@ -5,7 +5,7 @@
 <head th:replace = "layout :: headerLayout">
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
 </head>
-<title>Cadastrar Endereço de Entrega</title>
+<title>Finalizar Pedido</title>
 <body>
 
     <div th:replace = "layout :: navbarLayout"></div>
@@ -13,7 +13,7 @@
     <form class="container-fluid"  id="addressForm" method="POST">
         <section class="container">
             <div class="row">
-                <h3 class="dark-grey">Cadastrar Endereço</h3>
+                <h3 class="dark-grey">Finalizar Pedido</h3>
                 <div class="col-md-6">
                     <div class="form-group col-lg-9">
                         <label>País</label>
@@ -46,7 +46,7 @@
                     </div>
                 </div>
             </div>
-            <a type="button" href="http://localhost:8080//finishOrderCart" class="btn btn-success">Prosseguir</a>
+            <input class="btn btn-primary mt-4" type="submit" value="Cadastrar Livro">
         </section>
     </form>
 </body>

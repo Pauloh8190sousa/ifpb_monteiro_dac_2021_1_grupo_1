@@ -22,7 +22,6 @@ public class PaymentController {
     @Autowired
     private PaymentService paymentService;
 
-
     @RequestMapping(value = "/createPayment", method = RequestMethod.GET)
     public String finishOrderCart() {
         return "Payment/PaymentForm";
