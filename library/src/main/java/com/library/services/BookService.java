@@ -10,6 +10,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
@@ -23,6 +25,9 @@ public class BookService {
 
     @Autowired
     private AuthorRepository authorRepository;
+
+    @PersistenceContext
+    private EntityManager manager;
 
     //MÉTODO PARA SALVAR UM BOOK
     public Book save(Book book) {
@@ -113,6 +118,12 @@ public class BookService {
 
     public List<Book> findByTitleContaining(String bookTitle) {
         return bookRepository.findByTitleContaining(bookTitle);
+    }
+
+
+    //MÉTODO PARA LISTAR TODOS OS LIVROS POR CATEGORIA
+    public List<Book> findCategory(String type) {
+        return manager.createQuery("select book case when type="+type+" from category_book_tb",Book.class).getResultList();
     }
 
 }

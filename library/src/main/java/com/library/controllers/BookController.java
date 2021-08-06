@@ -175,4 +175,14 @@ public class BookController {
         return mv;
     }
 
+    @GetMapping("/listBookCategory")
+    public ModelAndView listBookCategory(@RequestParam(defaultValue = "") String type) {
+
+        List<Book> books = bookService.findCategory(type);
+        ModelAndView mv = new ModelAndView("Book/BookListCategory");
+        mv.addObject("booksCategory", books);
+        return mv;
+
+    }
+
 }
