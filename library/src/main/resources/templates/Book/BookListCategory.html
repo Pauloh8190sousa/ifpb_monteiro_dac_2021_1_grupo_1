@@ -22,10 +22,18 @@
 </nav>
 <div class="container">
 
-    <form class="row" action="/listSearch">
-        <div class="col-md-6">
-            <input type="text" class="form-control" id="title" name="title" placeholder="Título do livro...">
-        </div>
+    <form class="row" action="/listBookCategory">
+        <select class="form-select" aria-label="Default select example">
+            <option selected>Selecione a categoria de livro</option>
+            <option value="1">Terror</option>
+            <option value="2">Drama</option>
+            <option value="3">Suspense</option>
+            <option value="4">Romance</option>
+            <option value="5">Ação</option>
+            <option value="6">Fantasia</option>
+            <option value="7">Comédia</option>
+            <option value="8">Ficção Cientifica</option>
+        </select>
         <div class="col-md-6">
             <button type="submit" class="btn btn-primary">Pesquisar</button>
         </div>
