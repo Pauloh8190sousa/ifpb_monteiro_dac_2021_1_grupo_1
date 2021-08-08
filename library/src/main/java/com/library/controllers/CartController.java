@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @Slf4j //Faz o log da classe para poder tratar erros
 @Controller
@@ -54,9 +55,10 @@ public class CartController {
             order = new Order();
             order.setTotalOrderPrice(0);
         }
+        List<OrderBook> orderBooks = orderService.findAll().get(orderService.findAll().size() - 1).getOrderBooks();
 
         modelAndView.addObject("order", order);
-        modelAndView.addObject("orderBooks", orderBookService.findAll());
+        modelAndView.addObject("orderBooks", orderBooks);
         return modelAndView;
     }
 
@@ -97,34 +99,38 @@ public class CartController {
     }
 
 
-    //FALTA TERMINAR A PARTE DE CRIAR MAIS DE UM PEDIDO
     @GetMapping("/AddToCart/{id}")
     public String addToCart(@PathVariable("id") Long id) {
         book = bookService.findById(id);
 
-        if(orderBookService.findAll().size() == 0 ) {
+        if(orderService.findAll().size() == 0 ) {
+            User user = userService.findAll().get(0);
+            order = new Order(true, user);
+            orderService.save(order);
+        } else if(orderService.findAll().size() > 0 && orderService.findAll().get(orderService.findAll().size() - 1).isOpen()) {
+            orderService.save(order);
+        } else if(orderService.findAll().size() > 0 && !orderService.findAll().get(orderService.findAll().size() - 1).isOpen()) {
             User user = userService.findAll().get(0);
             order = new Order(true, user);
             orderService.save(order);
         }
-//        } else if(order.isOpen()) {
-//            orderService.save(order);
-//        } else if(!order.isOpen()) {
-//
-//        }
 
         boolean repeatedBook = false;
-        for (OrderBook orderBook: orderBookService.findAll()) {
-            if(orderBook.getBook().getId().equals(book.getId())) {
+        for (OrderBook orderBook: orderService.findAll().get(orderService.findAll().size() - 1).getOrderBooks() ) {
+            if(orderBook.getBook().getId().equals(book.getId()) && orderService.findAll().get(orderService.findAll().size() - 1).isOpen()) {
                 OrderBook orderBookSaved = orderBookService.findById(orderBook.getId());
                 orderBookSaved.setTotalValue(0);
                 orderBookSaved.setAmount(orderBookSaved.getAmount() + 1);
                 orderBookSaved.setTotalValue(orderBookSaved.getTotalValue() + (book.getPrice() * orderBookSaved.getAmount()));
+
+                orderBookService.findAll().add(orderBookSaved);
                 orderBookService.save(orderBookSaved);
+                orderService.addOrderBook(order.getId(), orderBookService.findAll());
+                orderService.save(order);
                 repeatedBook = true;
             }
         }
-
+        //O PROBLEMA TÁ NESSE IF
         if(!repeatedBook) {
             OrderBook orderBook = new OrderBook();
             orderBook.setBook(book);
@@ -136,6 +142,8 @@ public class CartController {
             orderBookService.findAll().add(orderBook);
 
             orderService.addOrderBook(order.getId(), orderBookService.findAll());
+            orderService.save(order);
+
         }
 
         return "redirect:/Cart";
