@@ -10,6 +10,8 @@ import com.library.services.UserService;
 import com.library.services.Validation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -33,14 +35,23 @@ public class AddressController {
     }
 
     @PostMapping("/createAddress")
-    public String createAddress(Address address) {
-        User userLogged = userService.findAll().get(0);
+    public String createAddress(@Validated Address address, BindingResult bindingResult) {
 
-        addressService.save(address);
+        if(bindingResult.hasErrors()) {
+            System.out.println("Erro campo");
+            return "redirect:/createAddress";
+        }
+        else {
 
-        userLogged.setAddress(address);
+            User userLogged = userService.findAll().get(0);
 
-        userService.save(userLogged);
+            addressService.save(address);
+
+            userLogged.setAddress(address);
+
+            userService.save(userLogged);
+        }
+
 
         return "redirect:/FinishOrder";
     }

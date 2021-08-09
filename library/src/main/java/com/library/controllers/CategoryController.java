@@ -7,6 +7,8 @@ import com.library.services.Validation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -26,9 +28,16 @@ public class CategoryController {
     }
 
     @RequestMapping(value = "/createCategory", method = RequestMethod.POST)
-    public String createCategory(Category category) {
+    public String createCategory(@Validated Category category, BindingResult bindingResult) {
 
-        categoryService.save(category);
+        if(bindingResult.hasErrors()) {
+            System.out.println("Erro no campo");
+            return "redirect:/createCategory";
+
+        }else{
+            categoryService.save(category);
+        }
+
 
         return "redirect:/listCategory";
     }

@@ -6,6 +6,8 @@ import com.library.services.AuthorService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -28,9 +30,14 @@ public class AuthorController {
 
 
     @PostMapping("/createAuthor")
-    public String createAuthor(Author author) {
+    public String createAuthor(@Validated Author author, BindingResult bindingResult) {
         Validation validation = new Validation();
-        if(validation.validationBibliographicReference(author.getBibliographicReference())){
+        if(bindingResult.hasErrors()){
+            System.out.println("Erro no campo");
+            return "redirect:/createAuthor";
+        }
+
+        else if(validation.validationBibliographicReference(author.getBibliographicReference())){
             authorService.save(author);
         }
 

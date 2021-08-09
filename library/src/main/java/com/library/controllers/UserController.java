@@ -6,6 +6,8 @@ import com.library.services.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 //CLASSE CONTROLLER DE USER(USUARIO)
@@ -22,9 +24,14 @@ public class UserController {
     }
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
-    public String registerUser(User user) {
+    public String registerUser(@Validated User user, BindingResult bindingResult) {
 
-        userService.save(user);
+        if(bindingResult.hasErrors()){
+            System.out.println("Erro no campo");
+            return "redirect:/register";
+        }else{
+            userService.save(user);
+        }
 
         return "redirect:/Home";
     }
