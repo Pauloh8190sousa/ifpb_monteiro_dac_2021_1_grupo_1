@@ -51,7 +51,7 @@ public class CartController {
 
         if(order != null) {
             calculateTotalOrderPrice();
-        } else if(order == null){
+        } else if(order == null) {
             order = new Order();
             order.setTotalOrderPrice(0);
         }
@@ -101,6 +101,14 @@ public class CartController {
 
     @GetMapping("/AddToCart/{id}")
     public String addToCart(@PathVariable("id") Long id) {
+
+//        if (orderBookService.findAll().size() > 1) {
+//            for (OrderBook orderBook: orderBookService.findAll()) {
+//                OrderBook orderBookSaved = orderBookService.findById(orderBook.getId());
+//                orderBookService.delete(orderBookSaved);
+//            }
+//        }
+
         book = bookService.findById(id);
 
         if(orderService.findAll().size() == 0 ) {
@@ -122,11 +130,6 @@ public class CartController {
                 orderBookSaved.setTotalValue(0);
                 orderBookSaved.setAmount(orderBookSaved.getAmount() + 1);
                 orderBookSaved.setTotalValue(orderBookSaved.getTotalValue() + (book.getPrice() * orderBookSaved.getAmount()));
-
-                orderBookService.findAll().add(orderBookSaved);
-                orderBookService.save(orderBookSaved);
-                orderService.addOrderBook(order.getId(), orderBookService.findAll());
-                orderService.save(order);
                 repeatedBook = true;
             }
         }
@@ -139,9 +142,10 @@ public class CartController {
             orderBook.setTotalValue(orderBook.getTotalValue() + (book.getPrice() * orderBook.getAmount()));
             orderBookService.save(orderBook);
 
-            orderBookService.findAll().add(orderBook);
+            orderService.findAll().get(orderService.findAll().size() - 1).getOrderBooks().add(orderBook);
+          //  orderBookService.findAll().add(orderBook);
 
-            orderService.addOrderBook(order.getId(), orderBookService.findAll());
+            orderService.addOrderBook(order.getId(), orderService.findAll().get(orderService.findAll().size() - 1).getOrderBooks());
             orderService.save(order);
 
         }
