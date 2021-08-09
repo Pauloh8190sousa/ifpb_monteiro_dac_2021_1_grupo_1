@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org/">
+
+<head th:replace = "layout :: headerLayout">
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+</head>
+<title>Cadastrar-se</title>
+
+<body>
+<div th:replace = "layout :: navbarLayout"></div>
+
+<form class="container" id="authorsForm" th:object="${user}" method="POST">
+  <input type="hidden" th:field="*{id}" />
+  <div class="mb-3">
+    <label for="name" class="form-label">Nome</label>
+    <input type="text" class="form-control" id="name" th:field="*{name}" placeholder="Digite um nome"/>
+
+  </div>
+
+  <div class="mb-3">
+    <label for="email" class="form-label">E-mail</label>
+    <input type="email" class="form-control" id="email" th:field="*{email}" placeholder="Digite um e-mail"/>
+  </div>
+
+  <div class="mb-3">
+    <label for="password" class="form-label">Senha</label>
+    <input type="password" class="form-control" id="password" th:field="*{password}" placeholder="Digite sua senha"/>
+  </div>
+  <input class="btn btn-primary" type="submit" value="Cadastrar-se"/>
+</form>
+
+</body>
+</html>

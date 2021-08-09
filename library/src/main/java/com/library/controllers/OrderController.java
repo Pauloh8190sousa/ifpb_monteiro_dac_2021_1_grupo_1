@@ -1,6 +1,15 @@
 package com.library.controllers;
+import com.library.models.Author;
+import com.library.models.Order;
+import com.library.services.OrderService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.servlet.ModelAndView;
+
+import java.util.List;
 
 //
 ////CLASSE CONTROLLER DE ORDER(PEDIDO)
@@ -9,8 +18,29 @@ import org.springframework.stereotype.Controller;
 
 public class OrderController {
 
-//    @Autowired
-//    OrderService orderService;
+    @Autowired
+    private OrderService orderService;
+
+    @GetMapping("/listOrder")
+    public ModelAndView listOrderPageable() {
+        ModelAndView modelAndView = new ModelAndView("Order/OrderList");
+        List<Order> orders = orderService.findAll();
+
+        modelAndView.addObject("orders", orders);
+
+        return modelAndView;
+    }
+
+    @GetMapping("/deleteOrder/{id}")
+    public String deleteAuthor(@PathVariable("id") long id) {
+
+        orderService.delete(orderService.findById(id));
+
+        return "redirect:/listOrder";
+    }
+
+
+
 //    @RequestMapping(value = "/Cart", method = RequestMethod.GET)
 //    public String createOrder(){
 //        return "Order/Cart";

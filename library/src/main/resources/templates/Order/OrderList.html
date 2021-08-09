@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org/">
+<head th:replace = "AdminPanel :: AdminPanelLayout">
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+</head>
+<title>Listagem de Autores</title>
+<body>
+<div th:replace = "AdminPanel :: AdminLayout"></div>
+
+    <div class="container">
+
+        <table id="tabela" class="table table-hover">
+            <thead>
+            <tr>
+                <th scope="col">Número do Pedido</th>
+                <th scope="col">Status</th>
+                <th scope="col">Valor Total</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="order : ${orders} ">
+                <td><span th:text="${order.id}"></span></td>
+                <td><span th:text="${order.open}"></span></td>
+                <td><span th:text="${order.totalOrderPrice}"></span></td>
+                <td class="text-right">
+                    <a class="btn btn-sm btn-danger"
+                       th:href="@{/deleteOrder/{id}(id=${order.id})}"
+                       role="button"> Cancelar Pedido
+                    </a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
