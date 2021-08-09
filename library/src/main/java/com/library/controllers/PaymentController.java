@@ -7,6 +7,8 @@ import com.library.services.Validation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -28,8 +30,16 @@ public class PaymentController {
     }
 
     @PostMapping("/createPayment")
-    public String finishOrderCart(Payment payment) {
-        paymentService.save(payment);
+    public String finishOrderCart(@Validated Payment payment, BindingResult bindingResult) {
+
+        if(bindingResult.hasErrors()){
+            System.out.println("Erro campo");
+            return "redirect:/createPayment";
+
+        }else{
+            paymentService.save(payment);
+        }
+
         return "redirect:/listPayment";
     }
 

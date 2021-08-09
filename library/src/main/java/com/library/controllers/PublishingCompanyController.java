@@ -8,6 +8,8 @@ import com.library.services.AuthorService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -27,8 +29,15 @@ public class PublishingCompanyController {
 
 
     @PostMapping("/createPublishingCompany")
-    public String createPublishingCompany(PublishingCompany publishingCompany) {
-        publishingCompanyService.save(publishingCompany);
+    public String createPublishingCompany(@Validated PublishingCompany publishingCompany, BindingResult bindingResult) {
+
+        if(bindingResult.hasErrors()){
+            System.out.println("Erro no campo");
+            return "redirect:/createPublishingCompany";
+        }else {
+            publishingCompanyService.save(publishingCompany);
+        }
+
 
         return "redirect:/listPublishingCompany";
     }

@@ -13,7 +13,8 @@
               action="/createBook">
             <div class="mb-3">
                 <label for="title" class="form-label">Título</label>
-                <input type="text" class="form-control" id="title" name="title" placeholder="Digite um título"/>
+                <label th:if="${#fields.hasErrors('title')}" th:errors="*{title}">Titulo Error</label>
+                <input type="text" th:field="*{title}" class="form-control" id="title" name="title" placeholder="Digite um título"/>
             </div>
             <div class="col-md-3">
                 <label for="authors" class="form-label">Autor do Livro</label>
@@ -38,38 +39,47 @@
             </div>
             <div class="mb-3">
                 <label for="price" class="form-label">Preço</label>
-                <input type="number" class="form-control" id="price" name="price" placeholder="Digite um preço"/>
+                <label th:if="${#fields.hasErrors('price')}" th:errors="*{price}">Preço Error</label>
+                <input type="number" th:field="*{price}" class="form-control" id="price" name="price" placeholder="Digite um preço"/>
             </div>
             <div class="mb-3">
                 <label for="description" class="form-label">Descrição</label>
-                <input type="text" class="form-control" id="description" name="description" placeholder="Digite uma descrição"/>
+                <label th:if="${#fields.hasErrors('description')}" th:errors="*{description}">Descrição Error</label>
+                <input type="text" th:field="*{description}" class="form-control" id="description" name="description" placeholder="Digite uma descrição"/>
             </div>
             <div class="mb-3">
                 <label for="nbOfPages" class="form-label">Número de Páginas</label>
-                <input type="number" class="form-control" id="nbOfPages" name="nbOfPages" placeholder="Digite o número de páginas"/>
+                <label th:if="${#fields.hasErrors('nbOfPages')}" th:errors="*{nbOfPages}">Número Error</label>
+                <input type="number" th:field="*{nbOfPages}" class="form-control" id="nbOfPages" name="nbOfPages" placeholder="Digite o número de páginas"/>
             </div>
             <div class="mb-3">
                 <label for="isbn" class="form-label">ISBN</label>
-                <input type="text" class="form-control" id="isbn" name="isbn" placeholder="Digite um ISBN"/>
+                <label th:if="${#fields.hasErrors('isbn')}" th:errors="*{isbn}">ISBN Error</label>
+                <input type="text" th:field="*{isbn}" class="form-control" id="isbn" name="isbn" placeholder="Digite um ISBN"/>
             </div>
             <div class="mb-3">
-                <label for="isbn" class="form-label">Estoque</label>
-                <input type="number" class="form-control" id="stock" name="stock" placeholder="Quantidade em estoque"/>
+                <label for="stock" class="form-label">Estoque</label>
+                <label th:if="${#fields.hasErrors('stock')}" th:errors="*{stock}">Estoque Error</label>
+                <input type="number" th:field="*{stock}" class="form-control" id="stock" name="stock" placeholder="Quantidade em estoque"/>
             </div>
             <div class="mb-3">
                 <label for="illustration" class="form-label">Ilustração</label>
-                <input type="text" class="form-control" id="illustration" name="illustration" placeholder="true ou false"/>
+                <label th:if="${#fields.hasErrors('illustration')}" th:errors="*{illustration}">Ilustração Error</label>
+                <input type="text" th:field="*{illustration}" class="form-control" id="illustration" name="illustration" placeholder="true ou false"/>
             </div>
             <div class="mb-3">
                 <label for="publicationDate" class="form-label">Data de publicação</label>
-                <input type="date" class="form-control" id="publicationDate" name="publicationDate"/>
+                <label th:if="${#fields.hasErrors('publicationDate')}" th:errors="*{publicationDate}">Data de publicação Error</label>
+                <input type="date" th:field="*{publicationDate}" class="form-control" id="publicationDate" name="publicationDate"/>
             </div>
             <div class="mb-3">
                 <label for="imageLink" class="form-label">Imagem</label>
-                <input type="text" class="form-control" id="imageLink" name="imageLink"/>
+                <label th:if="${#fields.hasErrors('imageLink')}" th:errors="*{imageLink}">Imagem Error</label>
+                <input type="text" th:field="*{imageLink}" class="form-control" id="imageLink" name="imageLink"/>
             </div>
 
             <input class="btn btn-primary" type="submit" value="Cadastrar Livro">
+            <label><span th:text="${erro}"></span> </label>
         </form>
     </div>
 </body>

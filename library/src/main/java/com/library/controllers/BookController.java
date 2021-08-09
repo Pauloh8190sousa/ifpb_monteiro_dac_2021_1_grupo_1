@@ -9,6 +9,8 @@ import com.library.services.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -53,21 +55,25 @@ public class BookController {
     }
 
     @RequestMapping(value = "/createBook", method = RequestMethod.POST)
-    public String createBook(Book book) {
+    public String createBook(@Validated Book book, BindingResult bindingResult) {
         Validation validation = new Validation();
         try {
-            if(validation.validationPrice(BigDecimal.valueOf(book.getPrice())) &&
-            validation.validationISBN(book.getIsbn()) &&
-            validation.validationTitle(book.getTitle()) &&
-            validation.pageLimit(book.getNbOfPages()) &&
-            validation.validationDescriptionBook(book.getDescription())){
+            if(bindingResult.hasErrors()){
+                System.out.println("Erro campo");
+                return "redirect:/createBook";
+            }
+            else if(validation.validationPrice(BigDecimal.valueOf(book.getPrice())) &&
+                    validation.validationISBN(book.getIsbn()) &&
+                    validation.validationTitle(book.getTitle()) &&
+                    validation.pageLimit(book.getNbOfPages()) &&
+                    validation.validationDescriptionBook(book.getDescription())){
 
                 bookService.save(book);
             }
-
-        }catch (Exception e) {
+        }catch(Exception e){
             e.printStackTrace();
         }
+
 
 
         return "redirect:/listBookConfig";

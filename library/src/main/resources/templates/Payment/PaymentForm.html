@@ -15,24 +15,29 @@
             <div class="form-row">
                 <div class="form-group col-lg-9 mt-4">
                     <label for="typeCart">Tipo de Cartão</label>
-                    <input type="text" class="form-control" id="typeCart" name="typeCard" placeholder="Tipo de Cartão">
+                    <label th:if="${#fields.hasErrors('typeCart')}" th:errors="*{typeCart}">Tipo de Cartão Error</label>
+                    <input type="text" th:field="*{typeCart}" class="form-control" id="typeCart" name="typeCard" placeholder="Tipo de Cartão">
                 </div>
                 <div class="form-group col-lg-9 mt-4">
                     <label for="nameCart">Nome no Cartão</label>
-                    <input type="text" class="form-control" id="nameCart" name="nameCard" placeholder="Nome no Cartão">
+                    <label th:if="${#fields.hasErrors('nameCart')}" th:errors="*{nameCart}">Nome no Cartão Error</label>
+                    <input type="text" th:field="*{nameCart}" class="form-control" id="nameCart" name="nameCard" placeholder="Nome no Cartão">
                 </div>
                 <div class="form-group col-lg-9 mt-4">
                     <label for="numberCart">Número do Cartão</label>
-                    <input type="number" class="form-control" id="numberCart" name="numberCard" placeholder="Número do cartão">
+                    <label th:if="${#fields.hasErrors('numberCart')}" th:errors="*{numberCart}">Número do Cartão Error</label>
+                    <input type="number" th:field="*{nameCart}" class="form-control" id="numberCart" name="numberCard" placeholder="Número do cartão">
                 </div>
             </div>
             <div class="form-group col-lg-9 mt-4">
                 <div class="form-group col-md-6">
                     <label for="CVV">CVV</label>
-                    <input type="number" class="form-control" id="CVV" name="CVV" placeholder="CVV do cartão">
+                    <label th:if="${#fields.hasErrors('CVV')}" th:errors="*{CVV}">CVV Error</label>
+                    <input type="number" th:field="*{CVV}" class="form-control" id="CVV" name="CVV" placeholder="CVV do cartão">
                 </div>
             </div>
             <button type="submit" class="btn btn-primary mt-4">Confirmar Pagamento</button>
+            <label><span th:text="${erro}"></span> </label>
         </section>
     </form>
 </body>
