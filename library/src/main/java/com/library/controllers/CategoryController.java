@@ -28,16 +28,9 @@ public class CategoryController {
     }
 
     @RequestMapping(value = "/createCategory", method = RequestMethod.POST)
-    public String createCategory(@Validated Category category, BindingResult bindingResult) {
+    public String createCategory(Category category) {
 
-        if(bindingResult.hasErrors()) {
-            System.out.println("Erro no campo");
-            return "redirect:/createCategory";
-
-        }else{
-            categoryService.save(category);
-        }
-
+        categoryService.save(category);
 
         return "redirect:/listCategory";
     }

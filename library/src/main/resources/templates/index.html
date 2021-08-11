@@ -23,7 +23,8 @@
             <tbody>
                 <tr th:each="book : ${books}">
                     <td><img
-                        src= "https://images-na.ssl-images-amazon.com/images/I/61QHzVV4T5L._SX424_BO1,204,203,200_.jpg"
+                        alt="Image"
+                        th:src="|/imagens/${book.id}|"
                         width="80"
                         height="110"
                         />

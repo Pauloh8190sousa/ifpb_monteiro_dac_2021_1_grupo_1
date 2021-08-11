@@ -9,9 +9,9 @@ import com.library.services.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.annotation.Validated;
+
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.math.BigDecimal;
@@ -55,19 +55,16 @@ public class BookController {
     }
 
     @RequestMapping(value = "/createBook", method = RequestMethod.POST)
-    public String createBook(@Validated Book book, BindingResult bindingResult) {
+    public String createBook(Book book, @RequestParam("image") MultipartFile file) {
         Validation validation = new Validation();
         try {
-            if(bindingResult.hasErrors()){
-                System.out.println("Erro campo");
-                return "redirect:/createBook";
-            }
-            else if(validation.validationPrice(BigDecimal.valueOf(book.getPrice())) &&
+
+            if(validation.validationPrice(BigDecimal.valueOf(book.getPrice())) &&
                     validation.validationISBN(book.getIsbn()) &&
                     validation.validationTitle(book.getTitle()) &&
                     validation.pageLimit(book.getNbOfPages()) &&
                     validation.validationDescriptionBook(book.getDescription())){
-
+                book.setImageLink(file.getBytes());
                 bookService.save(book);
             }
         }catch(Exception e){
@@ -77,6 +74,13 @@ public class BookController {
 
 
         return "redirect:/listBookConfig";
+    }
+
+    @GetMapping("/imagens/{idbook}")
+    @ResponseBody
+    public byte[] exibirImage(@PathVariable("idbook") Long idbook){
+        Book book = bookService.findById(idbook);
+        return book.getImageLink();
     }
 
     @PostMapping("/listBook/{id}")

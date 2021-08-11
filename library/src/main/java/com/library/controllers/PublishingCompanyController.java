@@ -29,15 +29,9 @@ public class PublishingCompanyController {
 
 
     @PostMapping("/createPublishingCompany")
-    public String createPublishingCompany(@Validated PublishingCompany publishingCompany, BindingResult bindingResult) {
+    public String createPublishingCompany( PublishingCompany publishingCompany) {
 
-        if(bindingResult.hasErrors()){
-            System.out.println("Erro no campo");
-            return "redirect:/createPublishingCompany";
-        }else {
-            publishingCompanyService.save(publishingCompany);
-        }
-
+        publishingCompanyService.save(publishingCompany);
 
         return "redirect:/listPublishingCompany";
     }

@@ -14,24 +14,20 @@
 
         <div class="mb-3">
             <label for="name" class="form-label">Nome</label>
-            <label th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</label>
-            <input type="text" th:field="*{name}" class="form-control" id="name" name="name" placeholder="Digite um nome"/>
+            <input type="text" class="form-control" id="name" name="name" placeholder="Digite um nome"/>
 
         </div>
 
         <div class="mb-3">
             <label for="email" class="form-label">E-mail</label>
-            <label th:if="${#fields.hasErrors('email')}" th:errors="*{email}">E-mail Error</label>
-            <input type="email" th:field="*{email}" class="form-control" id="email" name="email" placeholder="Digite um e-mail"/>
+            <input type="email" class="form-control" id="email" name="email" placeholder="Digite um e-mail"/>
         </div>
 
         <div class="mb-3">
             <label for="password" class="form-label">Senha</label>
-            <label th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Password Error</label>
-            <input type="password" th:field="*{password}" class="form-control" id="password" name="password" placeholder="Digite sua senha"/>
+            <input type="password" class="form-control" id="password" name="password" placeholder="Digite sua senha"/>
         </div>
         <input class="btn btn-primary" type="submit" value="Cadastrar-se"/>
-        <label><span th:text="${erro}"></span> </label>
         <a class="btn btn-outline-success" href="http://localhost:8080//sign-in">Já sou cliente</a>
     </form>
 

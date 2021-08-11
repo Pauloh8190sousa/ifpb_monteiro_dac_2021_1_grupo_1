@@ -39,7 +39,8 @@ public class Book implements Comparable<Book> {
 
     private boolean illustration;
 
-    private String imageLink;
+    @Lob
+    private byte[] imageLink;
 
 //    @DateTimeFormat(pattern = "dd/MM/yyyy")
 //    @Temporal(TemporalType.DATE)
