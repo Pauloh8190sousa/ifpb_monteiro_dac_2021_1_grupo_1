@@ -10,67 +10,158 @@
 
     <div class="container-fluid mt-4 mb-3">
         <form id="bookForm" th:object="${book}" enctype="multipart/form-data" method="POST"
-              action="/createBook">
+              action="/createBook" class="needs-validation" novalidate>
             <div class="mb-3">
                 <label for="title" class="form-label">Título</label>
-                <input type="text" class="form-control" id="title" name="title" placeholder="Digite um título"/>
-            </div>
+                <input type="text" class="form-control" id="title" name="title" placeholder="Digite um título" required/>
+                <div class="valid-feedback">
+                        Tudo certo!
+                    </div>
+                    <div class="invalid-feedback">
+                        Por favor, preencha o campo.
+                    </div>
+                </div>
             <div class="col-md-3">
                 <label for="authors" class="form-label">Autor do Livro</label>
-                <select id="authors" name="authors" class="form-select">
+                <select id="authors" name="authors" class="form-select" required>
                     <option th:each="author : ${allAuthors}" th:value="${author.id}"><span
                             th:text="${author.name}"> Selecione... </span></option>
                 </select>
+                <div class="valid-feedback">
+                    Tudo certo!
+                </div>
+                <div class="invalid-feedback">
+                    Por favor, preencha o campo.
+                </div>
             </div>
             <div class="col-md-3">
                 <label for="publishingCompanies" class="form-label">Editora</label>
-                <select id="publishingCompanies" name="publishingCompanies" class="form-select">
+                <select id="publishingCompanies" name="publishingCompanies" class="form-select" required>
                     <option th:each="publishingCompany : ${allPublishingCompanies}" th:value="${publishingCompany.id}"><span
                             th:text="${publishingCompany.name}"> Selecione... </span></option>
                 </select>
+                <div class="valid-feedback">
+                    Tudo certo!
+                </div>
+                <div class="invalid-feedback">
+                    Por favor, preencha o campo.
+                </div>
             </div>
             <div class="col-md-3">
                 <label for="categories" class="form-label">Categoria</label>
-                <select id="categories" name="categories" class="form-select">
+                <select id="categories" name="categories" class="form-select" required>
                     <option th:each="category : ${allCategories}" th:value="${category.id}"><span
                             th:text="${category.type}"> Selecione... </span></option>
                 </select>
+                <div class="valid-feedback">
+                    Tudo certo!
+                </div>
+                <div class="invalid-feedback">
+                    Por favor, preencha o campo.
+                </div>
             </div>
             <div class="mb-3">
                 <label for="price" class="form-label">Preço</label>
-                <input type="number" class="form-control" id="price" name="price" placeholder="Digite um preço"/>
+                <input type="number" class="form-control" id="price" name="price" placeholder="Digite um preço" required/>
+                <div class="valid-feedback">
+                    Tudo certo!
+                </div>
+                <div class="invalid-feedback">
+                    Por favor, preencha o campo.
+                </div>
             </div>
             <div class="mb-3">
                 <label for="description" class="form-label">Descrição</label>
-                <input type="text" class="form-control" id="description" name="description" placeholder="Digite uma descrição"/>
+                <input type="text" class="form-control" id="description" name="description" placeholder="Digite uma descrição" required/>
+                <div class="valid-feedback">
+                    Tudo certo!
+                </div>
+                <div class="invalid-feedback">
+                    Por favor, preencha o campo.
+                </div>
             </div>
             <div class="mb-3">
                 <label for="nbOfPages" class="form-label">Número de Páginas</label>
-                <input type="number" class="form-control" id="nbOfPages" name="nbOfPages" placeholder="Digite o número de páginas"/>
+                <input type="number" class="form-control" id="nbOfPages" name="nbOfPages" placeholder="Digite o número de páginas" required/>
+                <div class="valid-feedback">
+                    Tudo certo!
+                </div>
+                <div class="invalid-feedback">
+                    Por favor, preencha o campo.
+                </div>
             </div>
             <div class="mb-3">
                 <label for="isbn" class="form-label">ISBN</label>
-                <input type="text" class="form-control" id="isbn" name="isbn" placeholder="Digite um ISBN"/>
+                <input type="text" class="form-control" id="isbn" name="isbn" placeholder="Digite um ISBN" required/>
+                <div class="valid-feedback">
+                    Tudo certo!
+                </div>
+                <div class="invalid-feedback">
+                    Por favor, preencha o campo.
+                </div>
             </div>
             <div class="mb-3">
                 <label for="stock" class="form-label">Estoque</label>
-                <input type="number" class="form-control" id="stock" name="stock" placeholder="Quantidade em estoque"/>
+                <input type="number" class="form-control" id="stock" name="stock" placeholder="Quantidade em estoque" required/>
+                <div class="valid-feedback">
+                    Tudo certo!
+                </div>
+                <div class="invalid-feedback">
+                    Por favor, preencha o campo.
+                </div>
             </div>
             <div class="mb-3">
                 <label for="illustration" class="form-label">Ilustração</label>
-                <input type="text" class="form-control" id="illustration" name="illustration" placeholder="true ou false"/>
+                <input type="text" class="form-control" id="illustration" name="illustration" placeholder="true ou false" required/>
+                <div class="valid-feedback">
+                    Tudo certo!
+                </div>
+                <div class="invalid-feedback">
+                    Por favor, preencha o campo.
+                </div>
             </div>
             <div class="mb-3">
                 <label for="publicationDate" class="form-label">Data de publicação</label>
-                <input type="date" class="form-control" id="publicationDate" name="publicationDate"/>
+                <input type="date" class="form-control" id="publicationDate" name="publicationDate" required/>
+                <div class="valid-feedback">
+                    Tudo certo!
+                </div>
+                <div class="invalid-feedback">
+                    Por favor, preencha o campo.
+                </div>
             </div>
             <div class="mb-3">
                 <label for="imageLink" class="form-label">Imagem</label>
-                <input type="file" class="form-control" id="imageLink" name="image"/>
+                <input type="file" class="form-control" id="imageLink" name="image" required/>
+                <div class="valid-feedback">
+                    Tudo certo!
+                </div>
+                <div class="invalid-feedback">
+                    Por favor, preencha o campo.
+                </div>
             </div>
 
             <input class="btn btn-primary" type="submit" value="Cadastrar Livro">
         </form>
     </div>
+    <script>
+    (function() {
+      'use strict';
+      window.addEventListener('load', function() {
+        // Pega todos os formulários que nós queremos aplicar estilos de validação Bootstrap personalizados.
+        var forms = document.getElementsByClassName('needs-validation');
+        // Faz um loop neles e evita o envio
+        var validation = Array.prototype.filter.call(forms, function(form) {
+          form.addEventListener('submit', function(event) {
+            if (form.checkValidity() === false) {
+              event.preventDefault();
+              event.stopPropagation();
+            }
+            form.classList.add('was-validated');
+          }, false);
+        });
+      }, false);
+    })();
+</script>
 </body>
 </html>

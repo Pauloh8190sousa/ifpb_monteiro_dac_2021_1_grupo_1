@@ -10,13 +10,39 @@
 <body>
   <div th:replace = "layout :: navbarLayout"></div>
 
-  <form class="container" method="post">
+  <form class="container" method="post" class="needs-validation" novalidate>
     <div class=" mt-4 mb-3">
       <label for="type" class="form-label">Categoria</label>
-      <input type="text"class="form-control" id="type" name="type" placeholder="Digite um tipo de categoria"/>
+      <input type="text"class="form-control" id="type" name="type" placeholder="Digite um tipo de categoria" required/>
+      <div class="valid-feedback">
+        Tudo certo!
+      </div>
+      <div class="invalid-feedback">
+        Por favor, preencha o campo.
+      </div>
     </div>
 
     <input class="btn btn-primary" type="submit" value="Criar categoria">
   </form>
+
+  <script>
+    (function() {
+      'use strict';
+      window.addEventListener('load', function() {
+        // Pega todos os formulários que nós queremos aplicar estilos de validação Bootstrap personalizados.
+        var forms = document.getElementsByClassName('needs-validation');
+        // Faz um loop neles e evita o envio
+        var validation = Array.prototype.filter.call(forms, function(form) {
+          form.addEventListener('submit', function(event) {
+            if (form.checkValidity() === false) {
+              event.preventDefault();
+              event.stopPropagation();
+            }
+            form.classList.add('was-validated');
+          }, false);
+        });
+      }, false);
+    })();
+</script>
 </body>
 </html>
