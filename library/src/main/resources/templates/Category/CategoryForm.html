@@ -13,12 +13,10 @@
   <form class="container" method="post">
     <div class=" mt-4 mb-3">
       <label for="type" class="form-label">Categoria</label>
-      <label th:if="${#fields.hasErrors('type')}" th:errors="*{type}">Tipo Error</label>
-      <input type="text" th:field="*{type}" class="form-control" id="type" name="type" placeholder="Digite um tipo de categoria"/>
+      <input type="text"class="form-control" id="type" name="type" placeholder="Digite um tipo de categoria"/>
     </div>
 
     <input class="btn btn-primary" type="submit" value="Criar categoria">
-    <label><span th:text="${erro}"></span> </label>
   </form>
 </body>
 </html>

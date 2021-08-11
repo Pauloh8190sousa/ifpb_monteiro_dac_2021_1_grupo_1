@@ -35,6 +35,7 @@
         <thead>
         <tr>
             <th scope="col">Título</th>
+            <th scope="col">...</th>
             <th scope="col">Descrição</th>
             <th scope="col">Preço</th>
         </tr>
@@ -42,6 +43,9 @@
         <tbody>
         <tr th:each="book : ${books} ">
             <td><a th:href="${(#mvc.url('BC#BookDetails').arg(0, book.id)).build()}"><span th:text="${book.title}"></span></a></td>
+            <td>
+                <img alt="Image" width="80" height="110" th:src="|/imagens/${book.id}|"/>
+            </td>
             <td><span th:text="${book.description}"></span></td>
             <td><span th:text="${book.price}"></span></td>
         </tr>

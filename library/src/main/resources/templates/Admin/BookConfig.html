@@ -30,6 +30,7 @@
     <thead>
     <tr>
       <th scope="col">Título</th>
+      <th scope="col">...</th>
       <th scope="col">Descrição</th>
       <th scope="col">Preço</th>
     </tr>
@@ -37,6 +38,9 @@
     <tbody>
     <tr th:each="book : ${books} ">
       <td><span th:text="${book.title}"></span></td>
+      <td>
+        <img alt="Image" width="80" height="110" th:src="|/imagens/${book.id}|"/>
+      </td>
       <td><span th:text="${book.description}"></span></td>
       <td><span th:text="${book.price}"></span></td>
       <td class="text-right">

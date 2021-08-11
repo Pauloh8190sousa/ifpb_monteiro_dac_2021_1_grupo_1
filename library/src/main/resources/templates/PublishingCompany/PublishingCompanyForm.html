@@ -13,17 +13,14 @@
 <form class="container" method="post">
   <div class=" mt-4 mb-3">
     <label for="name" class="form-label">Nome</label>
-    <label th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</label>
-    <input type="text" th:field="*{name}" class="form-control" id="name" name="name" placeholder="Nome da editora"/>
+    <input type="text" class="form-control" id="name" name="name" placeholder="Nome da editora"/>
   </div>
   <div class=" mt-4 mb-3">
     <label for="city" class="form-label">Cidade</label>
-    <label th:if="${#fields.hasErrors('city')}" th:errors="*{city}">Cidade Error</label>
-    <input type="text" th:field="*{city}" class="form-control" id="city" name="city" placeholder="Cidade da editora"/>
+    <input type="text" class="form-control" id="city" name="city" placeholder="Cidade da editora"/>
   </div>
 
   <input class="btn btn-primary" type="submit" value="Criar editora">
-  <label><span th:text="${erro}"></span> </label>
 </form>
 </body>
 </html>

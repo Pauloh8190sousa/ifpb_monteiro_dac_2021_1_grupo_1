@@ -13,17 +13,14 @@
   <form class="container" id="authorsForm" method="POST">
     <div class=" mt-4 mb-3 ">
       <label for="name" class="form-label">Nome</label>
-      <label th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</label>
-      <input type="text" th:field="*{name}" class="form-control" id="name" name="name" placeholder="Digite um nome"/>
+      <input type="text" class="form-control" id="name" name="name" placeholder="Digite um nome"/>
     </div>
     <div class="mb-3">
       <label for="bibliographicReference" class="form-label">Referência Bibliográfica</label>
-      <label th:if="${#fields.hasErrors('bibliographicReference')}" th:errors="*{bibliographicReference}">Error</label>
-      <input type="text" th:field="*{bibliographicReference}" class="form-control" id="bibliographicReference" name="bibliographicReference" placeholder="Digite uma referência bibliográfica"/>
+      <input type="text" class="form-control" id="bibliographicReference" name="bibliographicReference" placeholder="Digite uma referência bibliográfica"/>
     </div>
 
     <input class="btn btn-primary" type="submit" value="Cadastrar Autor">
-    <label><span th:text="${erro}"></span> </label>
   </form>
 
 <!--<h1>Cadastrar Autor:</h1>-->
