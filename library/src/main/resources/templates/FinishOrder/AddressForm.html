@@ -17,43 +17,43 @@
                 <div class="col-md-6">
                     <div class="form-group col-lg-9">
                         <label for="nation">País</label>
-                        <label th:if="${#fields.hasErrors('nation')}" th:errors="*{nation}">País Error</label>
-                        <input type="text" th:field="*{nation}" name="nation" class="form-control" id="nation" value="">
+<!--                        <label th:if="${#fields.hasErrors('nation')}" th:errors="*{nation}">País Error</label>-->
+                        <input type="text"  name="nation" class="form-control" id="nation" value="">
                     </div>
 
                     <div class="form-group col-lg-9 mt-4">
                         <label for="state">Estado</label>
-                        <label th:if="${#fields.hasErrors('state')}" th:errors="*{state}">Estado Error</label>
-                        <input type="text" th:field="*{state}" name="state" class="form-control" id="state" value="">
+<!--                        <label th:if="${#fields.hasErrors('state')}" th:errors="*{state}">Estado Error</label>-->
+                        <input type="text"  name="state" class="form-control" id="state" value="">
                     </div>
 
                     <div class="form-group col-lg-9 mt-4">
                         <label for="city">Cidade</label>
-                        <label th:if="${#fields.hasErrors('city')}" th:errors="*{city}">Cidade Error</label>
-                        <input type="text" th:field="*{city}" name="city" class="form-control" id="city" value="">
+<!--                        <label th:if="${#fields.hasErrors('city')}" th:errors="*{city}">Cidade Error</label>-->
+                        <input type="text"  name="city" class="form-control" id="city" value="">
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group col-lg-9">
                         <label for="ZipCode">CEP</label>
-                        <label th:if="${#fields.hasErrors('ZipCode')}" th:errors="*{ZipCode}">CEP Error</label>
-                        <input type="number" th:field="*{ZipCode}" name="ZipCode" class="form-control" id="ZipCode" value="">
+<!--                        <label th:if="${#fields.hasErrors('ZipCode')}" th:errors="*{ZipCode}">CEP Error</label>-->
+                        <input type="number"  name="ZipCode" class="form-control" id="ZipCode" value="">
                     </div>
 
                     <div class="form-group col-lg-9 mt-4">
                         <label for="Neighborhood">Bairro</label>
-                        <label th:if="${#fields.hasErrors('Neighborhood')}" th:errors="*{Neighborhood}">Bairro Error</label>
-                        <input type="text" th:field="*{Neighborhood}" name="Neighborhood" class="form-control" id="Neighborhood" value="">
+<!--                        <label th:if="${#fields.hasErrors('Neighborhood')}" th:errors="*{Neighborhood}">Bairro Error</label>-->
+                        <input type="text"  name="Neighborhood" class="form-control" id="Neighborhood" value="">
                     </div>
                     <div class="form-group col-lg-9 mt-4">
                         <label for="Road">Rua</label>
-                        <label th:if="${#fields.hasErrors('Road')}" th:errors="*{Road}">Rua Error</label>
-                        <input type="text" th:field="*{Road}" name="Road" class="form-control" id="Road" value="">
+<!--                        <label th:if="${#fields.hasErrors('Road')}" th:errors="*{Road}">Rua Error</label>-->
+                        <input type="text" name="Road" class="form-control" id="Road" value="">
                     </div>
                 </div>
             </div>
             <input class="btn btn-primary mt-4" type="submit" value="Cadastrar Livro">
-            <label><span th:text="${erro}"></span> </label>
+<!--            <label><span th:text="${erro}"></span> </label>-->
         </section>
     </form>
 </body>

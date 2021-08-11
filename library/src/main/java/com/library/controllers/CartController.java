@@ -142,10 +142,12 @@ public class CartController {
             orderBook.setTotalValue(orderBook.getTotalValue() + (book.getPrice() * orderBook.getAmount()));
             orderBookService.save(orderBook);
 
-            orderService.findAll().get(orderService.findAll().size() - 1).getOrderBooks().add(orderBook);
+           // orderService.findAll().get(orderService.findAll().size() - 1).getOrderBooks().add(orderBook);
           //  orderBookService.findAll().add(orderBook);
 
-            orderService.addOrderBook(order.getId(), orderService.findAll().get(orderService.findAll().size() - 1).getOrderBooks());
+            order.getOrderBooks().add(orderBook);
+
+            orderService.addOrderBook(order.getId(), order.getOrderBooks());
             orderService.save(order);
 
         }
