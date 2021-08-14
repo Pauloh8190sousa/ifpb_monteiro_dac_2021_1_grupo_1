@@ -23,7 +23,7 @@ import org.openqa.selenium.Keys;
 import java.util.*;
 import java.net.MalformedURLException;
 import java.net.URL;
-public class RegisterUserTest {
+public class RegisterPaymentTest {
   private WebDriver driver;
   private Map<String, Object> vars;
   JavascriptExecutor js;
@@ -39,24 +39,31 @@ public class RegisterUserTest {
     driver.quit();
   }
   @Test
-  public void registerUserTest() {
-      try {
-          driver.get("http://localhost:8080//register");
-          Thread.sleep(300);
-          driver.manage().window().setSize(new Dimension(1382, 744));
-          Thread.sleep(300);
-          driver.findElement(By.id("name")).click();
-          driver.findElement(By.id("name")).sendKeys("Inathan");
-          Thread.sleep(300);
-          driver.findElement(By.id("email")).click();
-          driver.findElement(By.id("email")).sendKeys("inathan@gmail.com");
-          Thread.sleep(300);
-          driver.findElement(By.id("password")).click();
-          driver.findElement(By.id("password")).sendKeys("user123");
-          Thread.sleep(1000);
-          driver.findElement(By.cssSelector(".btn-primary")).click();
-      } catch (InterruptedException error) {
+  public void registerpayment() {
+    try {
+      driver.get("http://localhost:8080//createPayment");
+      Thread.sleep(500);
+      driver.manage().window().setSize(new Dimension(1382, 744));
+      Thread.sleep(500);
+      driver.findElement(By.id("typeCart")).click();
+      driver.findElement(By.id("typeCart")).sendKeys("Crédito");
+      Thread.sleep(500);
+      driver.findElement(By.id("addressForm")).click();
+      driver.findElement(By.id("nameCart")).click();
+      driver.findElement(By.id("nameCart")).sendKeys("Nubank");
+      Thread.sleep(500);
+      driver.findElement(By.id("addressForm")).click();
+      driver.findElement(By.id("numberCart")).click();
+      driver.findElement(By.id("numberCart")).sendKeys("324");
+      Thread.sleep(500);
+      driver.findElement(By.id("CVV")).click();
+      driver.findElement(By.id("CVV")).sendKeys("569");
+      driver.findElement(By.id("addressForm")).click();
+      Thread.sleep(1000);
+      driver.findElement(By.cssSelector(".btn-primary")).click();
+    } catch (InterruptedException error) {
         error.printStackTrace();
     }
+
   }
 }

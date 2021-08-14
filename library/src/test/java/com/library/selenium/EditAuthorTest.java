@@ -1,5 +1,4 @@
 package com.library.selenium;
-
 import org.junit.Test;
 import org.junit.Before;
 import org.junit.After;
@@ -23,7 +22,7 @@ import org.openqa.selenium.Keys;
 import java.util.*;
 import java.net.MalformedURLException;
 import java.net.URL;
-public class RegisterUserTest {
+public class EditAuthorTest {
   private WebDriver driver;
   private Map<String, Object> vars;
   JavascriptExecutor js;
@@ -39,24 +38,24 @@ public class RegisterUserTest {
     driver.quit();
   }
   @Test
-  public void registerUserTest() {
-      try {
-          driver.get("http://localhost:8080//register");
-          Thread.sleep(300);
-          driver.manage().window().setSize(new Dimension(1382, 744));
-          Thread.sleep(300);
-          driver.findElement(By.id("name")).click();
-          driver.findElement(By.id("name")).sendKeys("Inathan");
-          Thread.sleep(300);
-          driver.findElement(By.id("email")).click();
-          driver.findElement(By.id("email")).sendKeys("inathan@gmail.com");
-          Thread.sleep(300);
-          driver.findElement(By.id("password")).click();
-          driver.findElement(By.id("password")).sendKeys("user123");
-          Thread.sleep(1000);
-          driver.findElement(By.cssSelector(".btn-primary")).click();
-      } catch (InterruptedException error) {
-        error.printStackTrace();
+  public void editAuthor() {
+    try {
+      driver.get("http://localhost:8080//listAuthor");
+      Thread.sleep(500);
+      driver.manage().window().setSize(new Dimension(1382, 744));
+      Thread.sleep(500);
+      driver.findElement(By.cssSelector("tr:nth-child(4) .btn-primary > .fa")).click();
+      Thread.sleep(500);
+      driver.findElement(By.id("name")).click();
+      driver.findElement(By.id("name")).sendKeys("Joane Rowling");
+      Thread.sleep(500);
+      driver.findElement(By.id("bibliographicReference")).click();
+      driver.findElement(By.id("bibliographicReference")).sendKeys("J.K Rowling");
+      Thread.sleep(1000);
+      driver.findElement(By.cssSelector(".btn-primary")).click();
+    } catch (InterruptedException error) {
+      error.printStackTrace();
     }
+
   }
 }
