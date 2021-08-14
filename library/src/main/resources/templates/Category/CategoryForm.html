@@ -11,7 +11,7 @@
   <div th:replace = "layout :: navbarLayout"></div>
 
   <div class="container-fluid mt-4 mb-3">
-  <form method="post" class="needs-validation" novalidate>
+  <form method="post" enctype="multipart/form-data" class="needs-validation" novalidate>
     <div class=" mt-4 mb-3">
       <label for="type" class="form-label">Categoria</label>
       <input type="text"class="form-control" id="type" name="type" placeholder="Digite um tipo de categoria" required/>

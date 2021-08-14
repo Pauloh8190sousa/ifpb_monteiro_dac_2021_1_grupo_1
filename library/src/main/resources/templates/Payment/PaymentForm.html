@@ -8,32 +8,76 @@
 <title>Forma de pagamento</title>
 <body>
     <div th:replace = "layout :: navbarLayout"></div>
-
-    <form class="container-fluid"  id="addressForm" method="POST">
+    <div class="container-fluid mt-4 mb-3">
+    <form id="addressForm" method="POST" enctype="multipart/form-data" class="needs-validation" novalidate >
         <section class="container">
             <h2>Pagamentos</h2>
             <div class="form-row">
                 <div class="form-group col-lg-9 mt-4">
                     <label for="typeCart">Tipo de Cartão</label>
-                    <input type="text" class="form-control" id="typeCart" name="typeCard" placeholder="Tipo de Cartão">
+                    <input type="text" class="form-control" id="typeCart" name="typeCard" placeholder="Tipo de Cartão" required>
+                    <div class="valid-feedback">
+                        Tudo certo!
+                    </div>
+                    <div class="invalid-feedback">
+                        Por favor, preencha o campo.
+                    </div>
                 </div>
                 <div class="form-group col-lg-9 mt-4">
                     <label for="nameCart">Nome no Cartão</label>
-                    <input type="text" class="form-control" id="nameCart" name="nameCard" placeholder="Nome no Cartão">
+                    <input type="text" class="form-control" id="nameCart" name="nameCard" placeholder="Nome no Cartão" required>
+                    <div class="valid-feedback">
+                        Tudo certo!
+                    </div>
+                    <div class="invalid-feedback">
+                        Por favor, preencha o campo.
+                    </div>
                 </div>
                 <div class="form-group col-lg-9 mt-4">
                     <label for="numberCart">Número do Cartão</label>
-                    <input type="number" class="form-control" id="numberCart" name="numberCard" placeholder="Número do cartão">
+                    <input type="number" class="form-control" id="numberCart" name="numberCard" placeholder="Número do cartão" required>
+                    <div class="valid-feedback">
+                        Tudo certo!
+                    </div>
+                    <div class="invalid-feedback">
+                        Por favor, preencha o campo.
+                    </div>
                 </div>
             </div>
             <div class="form-group col-lg-9 mt-4">
                 <div class="form-group col-md-6">
                     <label for="CVV">CVV</label>
-                    <input type="number" class="form-control" id="CVV" name="CVV" placeholder="CVV do cartão">
+                    <input type="number" class="form-control" id="CVV" name="CVV" placeholder="CVV do cartão" required>
+                    <div class="valid-feedback">
+                        Tudo certo!
+                    </div>
+                    <div class="invalid-feedback">
+                        Por favor, preencha o campo.
+                    </div>
                 </div>
             </div>
             <button type="submit" class="btn btn-primary mt-4">Confirmar Pagamento</button>
         </section>
     </form>
+    </div>
+    <script>
+    (function() {
+      'use strict';
+      window.addEventListener('load', function() {
+        // Pega todos os formulários que nós queremos aplicar estilos de validação Bootstrap personalizados.
+        var forms = document.getElementsByClassName('needs-validation');
+        // Faz um loop neles e evita o envio
+        var validation = Array.prototype.filter.call(forms, function(form) {
+          form.addEventListener('submit', function(event) {
+            if (form.checkValidity() === false) {
+              event.preventDefault();
+              event.stopPropagation();
+            }
+            form.classList.add('was-validated');
+          }, false);
+        });
+      }, false);
+    })();
+</script>
 </body>
 </html>

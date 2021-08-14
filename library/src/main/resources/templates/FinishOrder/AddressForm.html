@@ -9,8 +9,8 @@
 <body>
 
     <div th:replace = "layout :: navbarLayout"></div>
-
-    <form class="container-fluid"  id="addressForm" method="POST">
+    <div class="container-fluid mt-4 mb-3">
+    <form id="addressForm" method="POST" enctype="multipart/form-data" class="needs-validation" novalidate >
         <section class="container">
             <div class="row">
                 <h3 class="dark-grey">Finalizar Pedido</h3>
@@ -18,37 +18,73 @@
                     <div class="form-group col-lg-9">
                         <label for="nation">País</label>
 <!--                        <label th:if="${#fields.hasErrors('nation')}" th:errors="*{nation}">País Error</label>-->
-                        <input type="text"  name="nation" class="form-control" id="nation" value="">
+                        <input type="text"  name="nation" class="form-control" id="nation" value="" required>
+                        <div class="valid-feedback">
+                            Tudo certo!
+                        </div>
+                        <div class="invalid-feedback">
+                            Por favor, preencha o campo.
+                        </div>
                     </div>
 
                     <div class="form-group col-lg-9 mt-4">
                         <label for="state">Estado</label>
 <!--                        <label th:if="${#fields.hasErrors('state')}" th:errors="*{state}">Estado Error</label>-->
-                        <input type="text"  name="state" class="form-control" id="state" value="">
+                        <input type="text"  name="state" class="form-control" id="state" value="" required>
+                        <div class="valid-feedback">
+                            Tudo certo!
+                        </div>
+                        <div class="invalid-feedback">
+                            Por favor, preencha o campo.
+                        </div>
                     </div>
 
                     <div class="form-group col-lg-9 mt-4">
                         <label for="city">Cidade</label>
 <!--                        <label th:if="${#fields.hasErrors('city')}" th:errors="*{city}">Cidade Error</label>-->
-                        <input type="text"  name="city" class="form-control" id="city" value="">
+                        <input type="text"  name="city" class="form-control" id="city" value="" required>
+                        <div class="valid-feedback">
+                            Tudo certo!
+                        </div>
+                        <div class="invalid-feedback">
+                            Por favor, preencha o campo.
+                        </div>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group col-lg-9">
                         <label for="ZipCode">CEP</label>
 <!--                        <label th:if="${#fields.hasErrors('ZipCode')}" th:errors="*{ZipCode}">CEP Error</label>-->
-                        <input type="number"  name="ZipCode" class="form-control" id="ZipCode" value="">
+                        <input type="number"  name="ZipCode" class="form-control" id="ZipCode" value="" required>
+                        <div class="valid-feedback">
+                            Tudo certo!
+                        </div>
+                        <div class="invalid-feedback">
+                            Por favor, preencha o campo.
+                        </div>
                     </div>
 
                     <div class="form-group col-lg-9 mt-4">
                         <label for="Neighborhood">Bairro</label>
 <!--                        <label th:if="${#fields.hasErrors('Neighborhood')}" th:errors="*{Neighborhood}">Bairro Error</label>-->
-                        <input type="text"  name="Neighborhood" class="form-control" id="Neighborhood" value="">
+                        <input type="text"  name="Neighborhood" class="form-control" id="Neighborhood" value="" required>
+                        <div class="valid-feedback">
+                            Tudo certo!
+                        </div>
+                        <div class="invalid-feedback">
+                            Por favor, preencha o campo.
+                        </div>
                     </div>
                     <div class="form-group col-lg-9 mt-4">
                         <label for="Road">Rua</label>
 <!--                        <label th:if="${#fields.hasErrors('Road')}" th:errors="*{Road}">Rua Error</label>-->
-                        <input type="text" name="Road" class="form-control" id="Road" value="">
+                        <input type="text" name="Road" class="form-control" id="Road" value="" required>
+                        <div class="valid-feedback">
+                            Tudo certo!
+                        </div>
+                        <div class="invalid-feedback">
+                            Por favor, preencha o campo.
+                        </div>
                     </div>
                 </div>
             </div>
@@ -56,5 +92,25 @@
 <!--            <label><span th:text="${erro}"></span> </label>-->
         </section>
     </form>
+    </div>
+    <script>
+    (function() {
+      'use strict';
+      window.addEventListener('load', function() {
+        // Pega todos os formulários que nós queremos aplicar estilos de validação Bootstrap personalizados.
+        var forms = document.getElementsByClassName('needs-validation');
+        // Faz um loop neles e evita o envio
+        var validation = Array.prototype.filter.call(forms, function(form) {
+          form.addEventListener('submit', function(event) {
+            if (form.checkValidity() === false) {
+              event.preventDefault();
+              event.stopPropagation();
+            }
+            form.classList.add('was-validated');
+          }, false);
+        });
+      }, false);
+    })();
+</script>
 </body>
 </html>

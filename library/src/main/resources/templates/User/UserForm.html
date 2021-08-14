@@ -9,27 +9,63 @@
 
 <body>
     <div th:replace = "layout :: navbarLayout"></div>
-
-    <form class="container" method="post">
+    <div class="container-fluid mt-4 mb-3">
+    <form method="post" enctype="multipart/form-data" class="needs-validation" novalidate >
 
         <div class="mb-3">
             <label for="name" class="form-label">Nome</label>
-            <input type="text" class="form-control" id="name" name="name" placeholder="Digite um nome"/>
-
+            <input type="text" class="form-control" id="name" name="name" placeholder="Digite um nome" required/>
+            <div class="valid-feedback">
+                Tudo certo!
+            </div>
+            <div class="invalid-feedback">
+                Por favor, preencha o campo.
+            </div>
         </div>
 
         <div class="mb-3">
             <label for="email" class="form-label">E-mail</label>
-            <input type="email" class="form-control" id="email" name="email" placeholder="Digite um e-mail"/>
+            <input type="email" class="form-control" id="email" name="email" placeholder="Digite um e-mail" required/>
+            <div class="valid-feedback">
+                Tudo certo!
+            </div>
+            <div class="invalid-feedback">
+                Por favor, preencha o campo.
+            </div>
         </div>
 
         <div class="mb-3">
             <label for="password" class="form-label">Senha</label>
-            <input type="password" class="form-control" id="password" name="password" placeholder="Digite sua senha"/>
+            <input type="password" class="form-control" id="password" name="password" placeholder="Digite sua senha" required/>
+            <div class="valid-feedback">
+                Tudo certo!
+            </div>
+            <div class="invalid-feedback">
+                Por favor, preencha o campo.
+            </div>
         </div>
         <input class="btn btn-primary" type="submit" value="Cadastrar-se"/>
         <a class="btn btn-outline-success" href="http://localhost:8080//sign-in">Já sou cliente</a>
     </form>
-
+    </div>
+    <script>
+    (function() {
+      'use strict';
+      window.addEventListener('load', function() {
+        // Pega todos os formulários que nós queremos aplicar estilos de validação Bootstrap personalizados.
+        var forms = document.getElementsByClassName('needs-validation');
+        // Faz um loop neles e evita o envio
+        var validation = Array.prototype.filter.call(forms, function(form) {
+          form.addEventListener('submit', function(event) {
+            if (form.checkValidity() === false) {
+              event.preventDefault();
+              event.stopPropagation();
+            }
+            form.classList.add('was-validated');
+          }, false);
+        });
+      }, false);
+    })();
+</script>
 </body>
 </html>
