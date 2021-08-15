@@ -5,15 +5,18 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 //CLASSE REPOSITORY DE USER(USUÁRIO)
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
 
     //MÉTODO PARA LISTAR USERS PELO EMAIL
-    public User findByEmail(String emailUser);
+    User findByEmail(String emailUser);
 
     //MÉTODO PARA LISTAR USERS PELO NOME
-    public User findByName(String nameUser);
+    User findByName(String nameUser);
+
+
 
 }

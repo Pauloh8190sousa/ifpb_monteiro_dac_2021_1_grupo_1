@@ -3,8 +3,15 @@ package com.library.models;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
+
+import java.util.Collection;
+import java.util.List;
 
 import static javax.persistence.GenerationType.IDENTITY;
 
@@ -14,7 +21,7 @@ import static javax.persistence.GenerationType.IDENTITY;
 @Table(name = "user_tb")
 @Getter
 @Setter
-public class User {
+public class User implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = IDENTITY)
@@ -25,6 +32,10 @@ public class User {
     private String email;
 
     private String password;
+
+	@LazyCollection(LazyCollectionOption.FALSE)
+    @ManyToMany
+    private List<Profile> profiles;
 
     @OneToOne(cascade = CascadeType.PERSIST)
     private Address address;
@@ -38,5 +49,47 @@ public class User {
     public User() {
 
     }
+
+    @Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		// TODO Auto-generated method stub
+		return this.profiles;
+	}
+
+	@Override
+	public String getPassword() {
+		// TODO Auto-generated method stub
+		return password;
+	}
+
+	@Override
+	public String getUsername() {
+		// TODO Auto-generated method stub
+		return name;
+	}
+
+	@Override
+	public boolean isAccountNonExpired() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+	@Override
+	public boolean isAccountNonLocked() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+	@Override
+	public boolean isCredentialsNonExpired() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+	@Override
+	public boolean isEnabled() {
+		// TODO Auto-generated method stub
+		return true;
+	}
 
 }
