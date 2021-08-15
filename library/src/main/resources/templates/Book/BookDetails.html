@@ -32,7 +32,10 @@
         <td><span th:text="${book.isbn}"></span></td>
         <td><span th:text="${book.illustration}"></span></td>
         <td><span th:text="${book.price}"></span></td>
-        <td><a class="btn btn-primary" th:href="@{/AddToCart/{id}(id=${book.id})}" role="button">Adicionar ao carrinho</a></td>
+        <td><a class="btn btn-primary" th:href="@{/AddToCart/{id}(id=${book.id})}" role="button">
+          Adicionar ao carrinho
+          <img th:src="@{/img/icons8-adicionar-o-carrinho-de-compras-30.png}" />
+        </a></td>
       </tr>
       </tbody>
     </table>
