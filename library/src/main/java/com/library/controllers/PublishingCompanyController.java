@@ -88,4 +88,16 @@ public class PublishingCompanyController {
         return modelAndView;
     }
 
+    @GetMapping("/listPublishingCompanySearch")
+    public ModelAndView listPublishingCompanySearch(@RequestParam(defaultValue = "") String name) {
+
+        List<PublishingCompany> publishingCompanies = publishingCompanyService.findByNameContaining(name);
+
+        ModelAndView mv = new ModelAndView("Admin/PublishingCompanyConfig");
+
+        mv.addObject("publishingCompanies",publishingCompanies);
+
+        return mv;
+    }
+
 }

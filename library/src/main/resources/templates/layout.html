@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org/">
+      xmlns:th="http://www.thymeleaf.org/" xmlns:sec="http://www.w3.org/1999/xhtml">
 
 <head th:fragment = "headerLayout">
     <meta charset="UTF-8">
@@ -51,9 +51,23 @@
                         </li>
                     </ul>
 
+<!--                    <form class="d-flex">-->
+<!--                        <a class="btn btn-outline-success" href="http://localhost:8080/register">Cadastrar-se</a>-->
+<!--                    </form>-->
                     <form class="d-flex">
-                        <a class="btn btn-outline-success" href="http://localhost:8080/register">Cadastrar-se</a>
+                        <a sec:authorize="! isAuthenticated()" class="btn btn-outline-success" href="http://localhost:8080/register">
+                            Cadastrar-se
+                        </a>
                     </form>
+                    <div sec:authorize="isAuthenticated()">
+                        <form method="post" th:action="@{/logout}">
+                            <button class="btn btn-danger" type="submit">Sair</button>
+                        </form>
+                    </div>
+<!--                    <form class="d-flex">-->
+<!--                        <a sec:authorize="isAuthenticated()" class="nav-link" th:action="@{/logout}"><button-->
+<!--                                class="btn btn-primary">Sair</button></a>-->
+<!--                    </form>-->
                 </div>
             </div>
         </nav>

@@ -1,4 +1,5 @@
 package com.library.services;
+import com.library.models.Author;
 import com.library.models.Category;
 import com.library.repositories.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,5 +46,9 @@ public class CategoryService {
     //MÉTODO PARA LISTAR TODOS OS USERS
     public List<Category> findAll() {
         return categoryRepository.findAll();
+    }
+
+    public List<Category> findByTypeContaining(String type) {
+        return categoryRepository.findByTypeContaining(type);
     }
 }

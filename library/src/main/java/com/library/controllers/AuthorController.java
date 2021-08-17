@@ -1,6 +1,7 @@
 package com.library.controllers;
 
 import com.library.models.Author;
+import com.library.models.Book;
 import com.library.services.Validation;
 import com.library.services.AuthorService;
 import lombok.extern.slf4j.Slf4j;
@@ -90,6 +91,18 @@ public class AuthorController {
         modelAndView.addObject("authors", authors);
 
         return modelAndView;
+    }
+
+    @GetMapping("/listSearchAuthor")
+    public ModelAndView listAuthorSearch(@RequestParam(defaultValue = "") String name) {
+
+        List<Author> authors = authorService.findByNameContaining(name);
+
+        ModelAndView mv = new ModelAndView("Admin/AuthorConfig");
+
+        mv.addObject("authors",authors);
+
+        return mv;
     }
 
 }

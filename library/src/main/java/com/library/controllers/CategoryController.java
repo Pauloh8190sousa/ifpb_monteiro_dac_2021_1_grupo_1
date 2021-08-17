@@ -86,4 +86,16 @@ public class CategoryController {
 
         return modelAndView;
     }
+
+    @GetMapping("/listSearchCategory")
+    public ModelAndView listCategorySearch(@RequestParam(defaultValue = "") String type) {
+
+        List<Category> categories = categoryService.findByTypeContaining(type);
+
+        ModelAndView mv = new ModelAndView("Admin/CategoryConfig");
+
+        mv.addObject("categories",categories);
+
+        return mv;
+    }
 }

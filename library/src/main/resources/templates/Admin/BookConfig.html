@@ -22,10 +22,15 @@
 </nav>
 <div class="container">
 
-  <form class="form-group input-group" >
-    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-    <button class="btn btn-outline-success" type="submit">Search</button>
+  <form class="row" action="/listSearchConfig">
+    <div class="col-md-6">
+      <input type="text" class="form-control" id="title" name="title" placeholder="Título do livro...">
+    </div>
+    <div class="col-md-6">
+      <button type="submit" class="btn btn-primary">Pesquisar</button>
+    </div>
   </form>
+
   <table id="tabela" class="table table-hover">
     <thead>
     <tr>

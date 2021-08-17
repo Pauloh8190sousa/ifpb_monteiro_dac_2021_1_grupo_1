@@ -45,4 +45,8 @@ public class PublishingCompanyService {
         return publishingCompanyRepository.findAll();
     }
 
+    public List<PublishingCompany> findByNameContaining(String name) {
+        return publishingCompanyRepository.findByNameContaining(name);
+    }
+
 }

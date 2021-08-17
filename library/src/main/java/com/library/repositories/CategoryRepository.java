@@ -13,4 +13,6 @@ public interface CategoryRepository extends JpaRepository<Category, Long> {
     //MÉTODO PARA LISTAR CATEGORIES PELO NOME
     public List<Category> findByType(String categoryType);
 
+    List<Category> findByTypeContaining(String type);
+
 }
