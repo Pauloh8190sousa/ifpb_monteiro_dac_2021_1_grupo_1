@@ -6,6 +6,7 @@ import com.library.services.Validation;
 import com.library.services.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
@@ -29,7 +30,8 @@ public class UserController {
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     public String registerUser(@Validated User user, BindingResult bindingResult) {
-
+        String password = new BCryptPasswordEncoder().encode(user.getPassword());
+        user.setPassword(password);
         if(bindingResult.hasErrors()){
             System.out.println("Erro no campo");
             return "redirect:/register";

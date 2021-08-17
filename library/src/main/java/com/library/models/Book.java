@@ -3,6 +3,7 @@ package com.library.models;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.Type;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -40,6 +41,7 @@ public class Book implements Comparable<Book> {
     private boolean illustration;
 
     @Lob
+    @Type(type = "org.hibernate.type.ImageType")
     private byte[] imageLink;
 
 //    @DateTimeFormat(pattern = "dd/MM/yyyy")

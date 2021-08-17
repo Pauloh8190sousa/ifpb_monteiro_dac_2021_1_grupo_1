@@ -55,7 +55,12 @@ public class CartController {
             order = new Order();
             order.setTotalOrderPrice(0);
         }
-        List<OrderBook> orderBooks = orderService.findAll().get(orderService.findAll().size() - 1).getOrderBooks();
+
+        List<OrderBook> orderBooks = null;
+        if (orderService.findAll().size() > 0) {
+            orderBooks = orderService.findAll().get(orderService.findAll().size() - 1).getOrderBooks();
+        }
+
 
         modelAndView.addObject("order", order);
         modelAndView.addObject("orderBooks", orderBooks);
@@ -102,13 +107,6 @@ public class CartController {
     @GetMapping("/AddToCart/{id}")
     public String addToCart(@PathVariable("id") Long id) {
 
-//        if (orderBookService.findAll().size() > 1) {
-//            for (OrderBook orderBook: orderBookService.findAll()) {
-//                OrderBook orderBookSaved = orderBookService.findById(orderBook.getId());
-//                orderBookService.delete(orderBookSaved);
-//            }
-//        }
-
         book = bookService.findById(id);
 
         if(orderService.findAll().size() == 0 ) {
@@ -133,7 +131,7 @@ public class CartController {
                 repeatedBook = true;
             }
         }
-        //O PROBLEMA TÁ NESSE IF
+
         if(!repeatedBook) {
             OrderBook orderBook = new OrderBook();
             orderBook.setBook(book);
@@ -141,9 +139,6 @@ public class CartController {
 
             orderBook.setTotalValue(orderBook.getTotalValue() + (book.getPrice() * orderBook.getAmount()));
             orderBookService.save(orderBook);
-
-           // orderService.findAll().get(orderService.findAll().size() - 1).getOrderBooks().add(orderBook);
-          //  orderBookService.findAll().add(orderBook);
 
             order.getOrderBooks().add(orderBook);
 
