@@ -61,7 +61,7 @@ public class CategoryController {
     }
 
 
-    @RequestMapping("/listCategory/{action}")
+    @RequestMapping("/listCategory/page/{action}")
     public ModelAndView AuthorList(@PathVariable Integer action) {
         ModelAndView modelAndView = new ModelAndView("Admin/CategoryConfig");
         List<Category> categories;

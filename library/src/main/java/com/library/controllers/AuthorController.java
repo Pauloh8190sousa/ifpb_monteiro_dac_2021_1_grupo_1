@@ -67,7 +67,7 @@ public class AuthorController {
     }
 
 
-    @RequestMapping("/listAuthor/{action}")
+    @RequestMapping("/listAuthor/page/{action}")
     public ModelAndView AuthorList(@PathVariable Integer action) {
         ModelAndView modelAndView = new ModelAndView("Admin/AuthorConfig");
         List<Author> authors;

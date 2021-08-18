@@ -68,7 +68,7 @@ public class PaymentController {
         return "redirect:/listPayment";
     }
 
-    @RequestMapping("/listPayment/{action}")
+    @RequestMapping("/listPayment/page/{action}")
     public ModelAndView PaymentList(@PathVariable Integer action) {
         ModelAndView modelAndView = new ModelAndView("Admin/PaymentConfig");
         List<Payment> payments;

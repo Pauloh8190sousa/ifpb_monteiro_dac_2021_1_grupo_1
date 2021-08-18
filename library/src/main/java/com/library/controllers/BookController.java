@@ -136,8 +136,8 @@ public class BookController {
         return modelAndView;
     }
 
-    @RequestMapping("/listBook/{action}")
-    public ModelAndView BookList(@PathVariable Integer action) {
+    @RequestMapping("/listBook/page/{action}")
+    public ModelAndView BookList(@PathVariable("action") Integer action) {
         ModelAndView modelAndView = new ModelAndView("Book/BookList");
         List<Book> books;
         if(action != null){
@@ -197,14 +197,15 @@ public class BookController {
         return mv;
     }
 
-    @GetMapping("/listBookCategory")
-    public ModelAndView listBookCategory(@RequestParam(defaultValue = "") String type) {
-
-        List<Book> books = bookService.findCategory(type);
-        ModelAndView mv = new ModelAndView("Book/BookListCategory");
-        mv.addObject("booksCategory", books);
-        return mv;
-
-    }
+//    @GetMapping("/listBookCategory")
+//    public ModelAndView listBookCategory() {
+//
+//        List<Book> books = bookService.findCategory("Ação");
+//        System.out.println(books);
+//        ModelAndView mv = new ModelAndView("Book/BookListCategory");
+//        mv.addObject("booksCategory", books);
+//        return mv;
+//
+//    }
 
 }

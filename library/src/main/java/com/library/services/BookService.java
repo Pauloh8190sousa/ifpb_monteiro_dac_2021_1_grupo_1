@@ -121,9 +121,9 @@ public class BookService {
     }
 
 
-    //MÉTODO PARA LISTAR TODOS OS LIVROS POR CATEGORIA
-    public List<Book> findCategory(String type) {
-        return manager.createQuery("select book case when type="+type+" from category_book_tb",Book.class).getResultList();
-    }
+//    //MÉTODO PARA LISTAR TODOS OS LIVROS POR CATEGORIA
+//    public List<Book> findCategory(String type) {
+//        return manager.createQuery("select b from book_tb b",Book.class).getResultList();
+//    }
 
 }

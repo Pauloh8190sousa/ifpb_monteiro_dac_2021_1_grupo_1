@@ -62,7 +62,7 @@ public class PublishingCompanyController {
     }
 
 
-    @RequestMapping("/listPublishingCompany/{action}")
+    @RequestMapping("/listPublishingCompany/page/{action}")
     public ModelAndView listPublishingCompany(@PathVariable Integer action) {
         ModelAndView modelAndView = new ModelAndView("Admin/PublishingCompanyConfig");
         List<PublishingCompany> publishingCompanies;
