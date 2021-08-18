@@ -40,9 +40,6 @@ public class Book implements Comparable<Book> {
 
     private boolean illustration;
 
-    @Lob
-//    @Type(type = "org.hibernate.type.ImageType")
-    private byte[] imageLink;
 
 //    @DateTimeFormat(pattern = "dd/MM/yyyy")
 //    @Temporal(TemporalType.DATE)

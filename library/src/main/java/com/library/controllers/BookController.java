@@ -55,7 +55,7 @@ public class BookController {
     }
 
     @RequestMapping(value = "/createBook", method = RequestMethod.POST)
-    public String createBook(Book book, @RequestParam("image") MultipartFile file) {
+    public String createBook(Book book) {
         Validation validation = new Validation();
         try {
 
@@ -64,7 +64,6 @@ public class BookController {
                     validation.validationTitle(book.getTitle()) &&
                     validation.pageLimit(book.getNbOfPages()) &&
                     validation.validationDescriptionBook(book.getDescription())){
-                book.setImageLink(file.getBytes());
                 bookService.save(book);
             }
         }catch(Exception e){
@@ -74,13 +73,6 @@ public class BookController {
 
 
         return "redirect:/listBookConfig";
-    }
-
-    @GetMapping("/imagens/{idbook}")
-    @ResponseBody
-    public byte[] exibirImage(@PathVariable("idbook") Long idbook){
-        Book book = bookService.findById(idbook);
-        return book.getImageLink();
     }
 
     @PostMapping("/listBook/{id}")
