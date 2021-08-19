@@ -42,7 +42,18 @@ public class DeleteAuthorTest {
     try {
       driver.get("http://localhost:8080//listAuthor");
       Thread.sleep(500);
-      driver.manage().window().setSize(new Dimension(1382, 744));
+      driver.findElement(By.id("username")).click();
+      driver.findElement(By.id("username")).sendKeys("Inathan");
+      Thread.sleep(500);
+      driver.findElement(By.id("password")).sendKeys("123");
+      Thread.sleep(500);
+      driver.findElement(By.cssSelector(".btn")).click();
+      Thread.sleep(500);
+      driver.findElement(By.linkText("Opções de Gerenciamento")).click();
+      Thread.sleep(500);
+      driver.findElement(By.id("navbarAuthor")).click();
+      Thread.sleep(500);
+      driver.findElement(By.linkText("Listar")).click();
       Thread.sleep(1000);
       driver.findElement(By.cssSelector("tr:nth-child(1) .btn-danger > .fa")).click();
     } catch (InterruptedException error) {
