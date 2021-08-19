@@ -44,6 +44,19 @@ public class RegisterBookTest {
       Thread.sleep(500);
       driver.manage().window().setSize(new Dimension(1382, 744));
       Thread.sleep(500);
+      driver.findElement(By.id("username")).click();
+      driver.findElement(By.id("username")).sendKeys("Inathan");
+      Thread.sleep(500);
+      driver.findElement(By.id("password")).sendKeys("123");
+      Thread.sleep(500);
+      driver.findElement(By.cssSelector(".btn")).click();
+      Thread.sleep(500);
+      driver.findElement(By.linkText("Opções de Gerenciamento")).click();
+      Thread.sleep(500);
+      driver.findElement(By.id("navbarBook")).click();
+      Thread.sleep(500);
+      driver.findElement(By.linkText("Cadastrar")).click();
+      Thread.sleep(500);
       driver.findElement(By.id("title")).click();
       driver.findElement(By.id("title")).sendKeys("Harry Potter");
       Thread.sleep(500);
@@ -81,7 +94,7 @@ public class RegisterBookTest {
       driver.findElement(By.cssSelector(".btn-primary")).click();
     } catch (InterruptedException error) {
     error.printStackTrace();
-  }
+    }
 
   }
 }

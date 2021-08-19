@@ -44,6 +44,18 @@ public class RegisterPaymentTest {
       driver.get("http://localhost:8080//createPayment");
       Thread.sleep(500);
       driver.manage().window().setSize(new Dimension(1382, 744));
+      driver.findElement(By.id("username")).click();
+      driver.findElement(By.id("username")).sendKeys("Inathan");
+      Thread.sleep(500);
+      driver.findElement(By.id("password")).sendKeys("123");
+      Thread.sleep(500);
+      driver.findElement(By.cssSelector(".btn")).click();
+      Thread.sleep(500);
+      driver.findElement(By.linkText("Opções de Gerenciamento")).click();
+      Thread.sleep(500);
+      driver.findElement(By.id("navbarPaymentMethods")).click();
+      Thread.sleep(500);
+      driver.findElement(By.linkText("Cadastrar")).click();
       Thread.sleep(500);
       driver.findElement(By.id("typeCart")).click();
       driver.findElement(By.id("typeCart")).sendKeys("Crédito");

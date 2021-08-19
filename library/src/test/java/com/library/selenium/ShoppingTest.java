@@ -44,6 +44,13 @@ public class ShoppingTest {
       Thread.sleep(500);
       driver.manage().window().setSize(new Dimension(1382, 744));
       Thread.sleep(500);
+      driver.findElement(By.id("username")).click();
+      driver.findElement(By.id("username")).sendKeys("Inathan");
+      Thread.sleep(500);
+      driver.findElement(By.id("password")).sendKeys("123");
+      Thread.sleep(500);
+      driver.findElement(By.cssSelector(".btn")).click();
+      Thread.sleep(500);
       driver.findElement(By.cssSelector("tr:nth-child(1) a > span")).click();
       Thread.sleep(500);
       driver.findElement(By.linkText("Adicionar ao carrinho")).click();

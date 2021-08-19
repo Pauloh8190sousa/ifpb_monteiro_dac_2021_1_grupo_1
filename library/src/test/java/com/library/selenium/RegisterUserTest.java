@@ -41,18 +41,18 @@ public class RegisterUserTest {
   @Test
   public void registerUserTest() {
       try {
-          driver.get("http://localhost:8080//register");
-          Thread.sleep(300);
+          driver.get("http://localhost:8080/register");
+          Thread.sleep(500);
           driver.manage().window().setSize(new Dimension(1382, 744));
-          Thread.sleep(300);
+          Thread.sleep(500);
           driver.findElement(By.id("name")).click();
           driver.findElement(By.id("name")).sendKeys("Inathan");
-          Thread.sleep(300);
+          Thread.sleep(500);
           driver.findElement(By.id("email")).click();
           driver.findElement(By.id("email")).sendKeys("inathan@gmail.com");
-          Thread.sleep(300);
+          Thread.sleep(500);
           driver.findElement(By.id("password")).click();
-          driver.findElement(By.id("password")).sendKeys("user123");
+          driver.findElement(By.id("password")).sendKeys("123");
           Thread.sleep(1000);
           driver.findElement(By.cssSelector(".btn-primary")).click();
       } catch (InterruptedException error) {
