@@ -35,16 +35,18 @@ public class SearchBookTest {
     js = (JavascriptExecutor) driver;
     vars = new HashMap<String, Object>();
   }
+
   @After
   public void tearDown() {
     driver.quit();
   }
+
   @Test
   public void searchBook() {
     try {
       driver.get("http://localhost:8080/Home");
       Thread.sleep(500);
-      driver.manage().window().setSize(new Dimension(1382, 744));
+      driver.manage().window().setSize(new Dimension(1050, 708));
       Thread.sleep(500);
       driver.findElement(By.linkText("Listagem de Livros")).click();
       Thread.sleep(500);

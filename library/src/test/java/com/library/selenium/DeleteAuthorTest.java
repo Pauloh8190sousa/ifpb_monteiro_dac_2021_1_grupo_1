@@ -22,10 +22,13 @@ import org.openqa.selenium.Keys;
 import java.util.*;
 import java.net.MalformedURLException;
 import java.net.URL;
+
 public class DeleteAuthorTest {
+
   private WebDriver driver;
   private Map<String, Object> vars;
   JavascriptExecutor js;
+
   @Before
   public void setUp() {
     System.setProperty("webdriver.chrome.driver", "src/test/java/chromedriver.exe");
@@ -33,10 +36,12 @@ public class DeleteAuthorTest {
     js = (JavascriptExecutor) driver;
     vars = new HashMap<String, Object>();
   }
+
   @After
   public void tearDown() {
     driver.quit();
   }
+
   @Test
   public void deleteAuthor() {
     try {

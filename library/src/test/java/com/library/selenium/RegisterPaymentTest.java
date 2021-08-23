@@ -23,10 +23,13 @@ import org.openqa.selenium.Keys;
 import java.util.*;
 import java.net.MalformedURLException;
 import java.net.URL;
+
 public class RegisterPaymentTest {
+
   private WebDriver driver;
   private Map<String, Object> vars;
   JavascriptExecutor js;
+
   @Before
   public void setUp() {
     System.setProperty("webdriver.chrome.driver", "src/test/java/chromedriver.exe");
@@ -39,11 +42,11 @@ public class RegisterPaymentTest {
     driver.quit();
   }
   @Test
-  public void registerpayment() {
+  public void registerPayment() {
     try {
       driver.get("http://localhost:8080//createPayment");
       Thread.sleep(500);
-      driver.manage().window().setSize(new Dimension(1382, 744));
+      driver.manage().window().setSize(new Dimension(1050, 708));
       driver.findElement(By.id("username")).click();
       driver.findElement(By.id("username")).sendKeys("Inathan");
       Thread.sleep(500);

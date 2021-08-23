@@ -22,10 +22,13 @@ import org.openqa.selenium.Keys;
 import java.util.*;
 import java.net.MalformedURLException;
 import java.net.URL;
+
 public class ShoppingTest {
+
   private WebDriver driver;
   private Map<String, Object> vars;
   JavascriptExecutor js;
+
   @Before
   public void setUp() {
     System.setProperty("webdriver.chrome.driver", "src/test/java/chromedriver.exe");
@@ -37,12 +40,13 @@ public class ShoppingTest {
   public void tearDown() {
     driver.quit();
   }
+
   @Test
   public void shopping() {
     try {
       driver.get("http://localhost:8080//Home");
       Thread.sleep(500);
-      driver.manage().window().setSize(new Dimension(1382, 744));
+      driver.manage().window().setSize(new Dimension(1050, 708));
       Thread.sleep(500);
       driver.findElement(By.id("username")).click();
       driver.findElement(By.id("username")).sendKeys("Inathan");

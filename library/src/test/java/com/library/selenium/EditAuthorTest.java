@@ -22,16 +22,18 @@ public class EditAuthorTest {
     js = (JavascriptExecutor) driver;
     vars = new HashMap<String, Object>();
   }
+
   @After
   public void tearDown() {
     driver.quit();
   }
+
   @Test
   public void editAuthor() {
     try {
       driver.get("http://localhost:8080/Home");
       Thread.sleep(500);
-      driver.manage().window().setSize(new Dimension(1382, 744));
+      driver.manage().window().setSize(new Dimension(1050, 708));
       Thread.sleep(500);
       driver.findElement(By.linkText("Opções de Gerenciamento")).click();
       Thread.sleep(500);
@@ -48,7 +50,7 @@ public class EditAuthorTest {
       Thread.sleep(500);
       driver.findElement(By.linkText("Listar")).click();
       Thread.sleep(500);
-      driver.findElement(By.cssSelector("tr:nth-child(3) .btn-primary > .fa")).click();
+      driver.findElement(By.cssSelector("tr:nth-child(1) .btn-primary > .fa")).click();
       Thread.sleep(500);
       driver.findElement(By.id("name")).click();
       driver.findElement(By.cssSelector("body")).click();

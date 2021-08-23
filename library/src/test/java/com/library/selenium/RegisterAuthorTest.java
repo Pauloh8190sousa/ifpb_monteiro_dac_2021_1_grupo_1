@@ -30,7 +30,7 @@ public class RegisterAuthorTest {
     try {
       driver.get("http://localhost:8080/Home");
       Thread.sleep(500);
-      driver.manage().window().setSize(new Dimension(1382, 744));
+      driver.manage().window().setSize(new Dimension(1050, 708));
       Thread.sleep(500);
       driver.findElement(By.linkText("Opções de Gerenciamento")).click();
       driver.findElement(By.id("username")).click();

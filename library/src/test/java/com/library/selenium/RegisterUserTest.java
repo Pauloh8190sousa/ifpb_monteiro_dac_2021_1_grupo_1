@@ -43,7 +43,7 @@ public class RegisterUserTest {
       try {
           driver.get("http://localhost:8080/register");
           Thread.sleep(500);
-          driver.manage().window().setSize(new Dimension(1382, 744));
+          driver.manage().window().setSize(new Dimension(1050, 708));
           Thread.sleep(500);
           driver.findElement(By.id("name")).click();
           driver.findElement(By.id("name")).sendKeys("Inathan");
