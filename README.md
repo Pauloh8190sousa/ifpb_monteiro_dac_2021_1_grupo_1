@@ -21,5 +21,5 @@ Paulo Henrique Pereira de Sousa e Inathan Moreira da Silva.**
 # **Etapa Atual**
 - [x] Camada de Dados
 - [x] Camada de Apresentação
-- [ ] Camada de Integrção
-- [ ] Apresentação do Projeto
+- [x] Camada de Integrção
+- [x] Apresentação do Projeto
